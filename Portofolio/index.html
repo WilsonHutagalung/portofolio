@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description"
+    content="Personal Portfolio of Wilson Boyaron Hutagalung — Software Engineer & Cloud Specialist. Crafting scalable architectures and high-performance digital systems." />
+  <meta name="author" content="Wilson Boyaron Hutagalung" />
+  <title>Wilson Boyaron Hutagalung // Software Engineer & Cloud Architect</title>
+
+  <script>
+    (function () {
+      try {
+        const storageKey = 'portfolio-theme';
+        const storedTheme = localStorage.getItem(storageKey);
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = storedTheme || systemTheme;
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      } catch (error) {
+        document.documentElement.dataset.theme = 'dark';
+        document.documentElement.style.colorScheme = 'dark';
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Poppins:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/bold/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Floating Glass Navbar -->
+  <nav id="navbar" class="navbar">
+    <div class="navbar__container">
+      <a href="#hero" class="navbar__logo">
+        <span class="navbar__logo-symbol">//</span>
+        <span class="navbar__logo-text">WILSON<span class="navbar__logo-accent">.DEV</span></span>
+      </a>
+
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="#about" class="navbar__link">About</a></li>
+        <li><a href="#principles" class="navbar__link">Architecture</a></li>
+        <li><a href="#education" class="navbar__link">Education</a></li>
+        <li><a href="#experience" class="navbar__link">Experience</a></li>
+        <li><a href="#projects" class="navbar__link">Projects</a></li>
+        <li><a href="#certifications" class="navbar__link">Certs</a></li>
+        <li><a href="#contact" class="navbar__link navbar__link--cta">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <button class="navbar__theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+          <i class="ph ph-moon-stars navbar__theme-icon navbar__theme-icon--dark" aria-hidden="true"></i>
+          <i class="ph ph-sun navbar__theme-icon navbar__theme-icon--light" aria-hidden="true"></i>
+        </button>
+        <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation">
+          <span class="navbar__toggle-bar"></span>
+          <span class="navbar__toggle-bar"></span>
+          <span class="navbar__toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero__grid-bg"></div>
+    <div class="hero__radial-glow"></div>
+
+    <div class="container hero__container">
+      <div class="hero__content">
+        <div class="hero__badge anim-fade-up">
+          <span class="status-dot"></span>
+          <span>AVAILABLE FOR NEW OPPORTUNITIES</span>
+        </div>
+
+        <h1 class="hero__name anim-fade-up" style="animation-delay: 0.1s;">
+          Wilson Boyaron <br />
+          <span class="text-gradient">Hutagalung</span>
+        </h1>
+
+        <div class="hero__subtitle-wrapper anim-fade-up" style="animation-delay: 0.2s;">
+          <span class="code-tag">&lt;role&gt;</span>
+          <span class="hero__title">Software Engineer & Cloud Computing Specialist</span>
+          <span class="code-tag">&lt;/role&gt;</span>
+        </div>
+
+        <p class="hero__tagline anim-fade-up" style="animation-delay: 0.3s;">
+          Building resilient web architectures, optimized API services, and scalable cloud solutions with clean code
+          principles.
+        </p>
+
+        <div class="hero__actions anim-fade-up" style="animation-delay: 0.4s;">
+          <a href="#projects" class="btn btn--primary">
+            <span>Explore Engineering Work</span>
+            <i class="ph ph-arrow-down-right"></i>
+          </a>
+          <a href="#contact" class="btn btn--outline">
+            <i class="ph ph-paper-plane-tilt"></i>
+            <span>Get In Touch</span>
+          </a>
+        </div>
+
+        <!-- Metrics Strip -->
+        <div class="hero__metrics anim-fade-up" style="animation-delay: 0.5s;">
+          <div class="metric-item">
+            <span class="metric-val">3.83</span>
+            <span class="metric-lbl">Cumulative GPA</span>
+          </div>
+          <div class="metric-sep"></div>
+          <div class="metric-item">
+            <span class="metric-val">Cloud</span>
+            <span class="metric-lbl">Bangkit GCP Track</span>
+          </div>
+          <div class="metric-sep"></div>
+          <div class="metric-item">
+            <span class="metric-val">9+</span>
+            <span class="metric-lbl">Professional Certs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Terminal Component -->
+      <div class="hero__terminal anim-fade-up" style="animation-delay: 0.3s;">
+        <div class="terminal__header">
+          <div class="terminal__dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal__title">engineer.config.ts</div>
+          <div class="terminal__badge">TypeScript 5.4</div>
+        </div>
+        <div class="terminal__body">
+          <pre><code><span class="syn-kw">const</span> <span class="syn-var">engineer</span> = {
+  <span class="syn-prop">name</span>: <span class="syn-str">"Wilson Boyaron Hutagalung"</span>,
+  <span class="syn-prop">location</span>: <span class="syn-str">"Samarinda, Indonesia"</span>,
+  <span class="syn-prop">degree</span>: <span class="syn-str">"B.S. Informatics"</span>,
+  <span class="syn-prop">gpa</span>: <span class="syn-num">3.83</span>,
+  <span class="syn-prop">focus</span>: [
+    <span class="syn-str">"Backend Systems"</span>,
+    <span class="syn-str">"Cloud Infrastructure"</span>,
+    <span class="syn-str">"Full-Stack Web"</span>
+  ],
+  <span class="syn-prop">techStack</span>: {
+    <span class="syn-prop">languages</span>: [<span class="syn-str">"Python"</span>, <span class="syn-str">"JavaScript"</span>, <span class="syn-str">"Java"</span>, <span class="syn-str">"SQL"</span>, <span class="syn-str">"PHP"</span>],
+    <span class="syn-prop">frameworks</span>: [<span class="syn-str">"React"</span>, <span class="syn-str">"Laravel"</span>, <span class="syn-str">"Node.js"</span>],
+    <span class="syn-prop">cloud</span>: [<span class="syn-str">"GCP"</span>, <span class="syn-str">"App Engine"</span>, <span class="syn-str">"Cloud Run"</span>, <span class="syn-str">"Docker"</span>]
+  },
+  <span class="syn-prop">status</span>: <span class="syn-str">"Open for Engineering Opportunities"</span>
+};
+
+<span class="syn-comment">// Philosophy</span>
+<span class="syn-kw">function</span> <span class="syn-fn">buildSystem</span>() {
+  <span class="syn-kw">return</span> <span class="syn-str">"Resilient. Performant. Clean."</span>;
+}</code></pre>
+        </div>
+        <div class="terminal__footer">
+          <span class="terminal__status"><i class="ph ph-check-circle"></i> Compiled successfully</span>
+          <span class="terminal__time">0ms latency</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="hero__scroll-down" aria-label="Scroll to About Section">
+      <span class="scroll-text">SCROLL DOWN</span>
+      <i class="ph ph-arrow-down"></i>
+    </a>
+  </section>
+
+  <!-- Certificate Lightbox Modal -->
+  <div id="certificateModal" class="certificate-modal" aria-hidden="true">
+    <div class="certificate-modal__backdrop" id="certBackdrop"></div>
+    <div class="certificate-modal__panel" role="dialog" aria-modal="true" aria-label="Certificate Preview">
+      <button class="certificate-modal__close" id="certClose" aria-label="Close">&times;</button>
+      <img src="" alt="Certificate" id="certImage" class="certificate-modal__img" style="display:none;" />
+      <iframe id="certFrame" class="certificate-modal__frame" style="display:none;" frameborder="0"></iframe>
+      <div class="certificate-modal__actions">
+        <button id="certOpenNew" class="certificate-modal__open">
+          <i class="ph ph-arrow-square-out"></i> Open Original Document
+        </button>
+      </div>
+      <div class="certificate-modal__meta" id="certMeta"></div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section__header" data-anim="fade-up">
+        <div class="section__tag">PROFILE OVERVIEW</div>
+        <h2 class="section__title">About Me</h2>
+        <div class="section__line"></div>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__portrait-card" data-anim="fade-up">
+          <div class="portrait-frame">
+            <img src="Foto Pribadi.jpeg" alt="Wilson Boyaron Hutagalung" class="portrait-img" />
+            <div class="portrait-overlay"></div>
+          </div>
+          <div class="portrait-meta">
+            <span class="meta-name">Wilson Boyaron Hutagalung, S.Kom</span>
+            <span class="meta-role">Informatics Undergraduate</span>
+          </div>
+        </div>
+
+        <div class="about__text-block" data-anim="fade-up" data-anim-delay="100">
+          <h3 class="about__heading">
+            Dedicated Software Engineer with a passion for Cloud Systems & Modern Web Applications.
+          </h3>
+          <p class="about__paragraph">
+            Final-year undergraduate Informatics student at <strong>Mulawarman University</strong> with a solid
+            <strong>GPA of 3.83/4.00</strong>. Skilled in designing backend architectures, deploying scalable
+            microservices, and crafting smooth user interfaces.
+          </p>
+          <p class="about__paragraph">
+            As an alumnus of <strong>MSIB Bangkit Academy (Cloud Computing Track)</strong>, I have hands-on experience
+            building containerized applications, RESTful APIs, and deploying cloud infrastructures on <strong>Google
+              Cloud Platform (GCP)</strong>.
+          </p>
+
+          <!-- Highlights Grid -->
+          <div class="about__highlights">
+            <div class="highlight-item">
+              <i class="ph ph-map-pin"></i>
+              <div>
+                <strong>Location</strong>
+                <span>Samarinda, East Kalimantan</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <i class="ph ph-graduation-cap"></i>
+              <div>
+                <strong>Degree & GPA</strong>
+                <span>S.Kom — GPA 3.83</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <i class="ph ph-cloud-check"></i>
+              <div>
+                <strong>Cloud Expertise</strong>
+                <span>GCP Architecture & Cloud APIs</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <i class="ph ph-briefcase"></i>
+              <div>
+                <strong>Status</strong>
+                <span>Open for Engineering Positions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Engineering Principles (Reference Concept) -->
+  <section id="principles" class="section principles">
+    <div class="container">
+      <div class="section__header" data-anim="fade-up">
+        <div class="section__tag">SYSTEM ARCHITECTURE & CRAFT</div>
+        <h2 class="section__title">Engineering Principles</h2>
+        <div class="section__line"></div>
+      </div>
+
+      <div class="principles__grid">
+        <div class="principle-card" data-anim="fade-up">
+          <div class="principle-card__icon"><i class="ph ph-tree-structure"></i></div>
+          <h3 class="principle-card__title">Modular Architecture</h3>
+          <p class="principle-card__desc">
+            Enforcing clean domain boundaries, separation of concerns, and reusable code modules that scale effortlessly
+            over time.
+          </p>
+        </div>
+
+        <div class="principle-card" data-anim="fade-up" data-anim-delay="100">
+          <div class="principle-card__icon"><i class="ph ph-lightning"></i></div>
+          <h3 class="principle-card__title">Cloud Infrastructure</h3>
+          <p class="principle-card__desc">
+            Leveraging Google Cloud Platform resources, containerized services, and automated CI/CD for high
+            availability and low latency.
+          </p>
+        </div>
+
+        <div class="principle-card" data-anim="fade-up" data-anim-delay="200">
+          <div class="principle-card__icon"><i class="ph ph-code-block"></i></div>
+          <h3 class="principle-card__title">Type-Safe & Clean APIs</h3>
+          <p class="principle-card__desc">
+            Building intuitive RESTful endpoints and data pipelines with comprehensive error handling and strict input
+            validation.
+          </p>
+        </div>
+
+        <div class="principle-card" data-anim="fade-up" data-anim-delay="300">
+          <div class="principle-card__icon"><i class="ph ph-layout"></i></div>
+          <h3 class="principle-card__title">Intuitive UI Engineering</h3>
+          <p class="principle-card__desc">
+            Crafting responsive, accessible, and aesthetically polished interfaces focused on user experience and
+            seamless interaction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section education">
+    <div class="container">
+      <div class="section__header" data-anim="fade-up">
+        <div class="section__tag">ACADEMIC BACKGROUND</div>
+        <h2 class="section__title">Education</h2>
+        <div class="section__line"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline__item" data-anim="fade-up">
+          <div class="timeline__marker"></div>
+          <div class="timeline__card">
+            <div class="timeline__header">
+              <span class="timeline__badge">2022 — 2026</span>
+              <span class="timeline__gpa">GPA 3.83 / 4.00</span>
+            </div>
+            <h3 class="timeline__title">Mulawarman University</h3>
+            <p class="timeline__subtitle">Bachelor of Informatics (S1)</p>
+            <p class="timeline__desc">
+              Specializing in Software Engineering, Cloud Computing, Database Management, Data Structures & Algorithms,
+              and Artificial Intelligence.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline__item" data-anim="fade-up" data-anim-delay="150">
+          <div class="timeline__marker"></div>
+          <div class="timeline__card">
+            <div class="timeline__header">
+              <span class="timeline__badge">2019 — 2022</span>
+              <span class="timeline__gpa">Avg Score 81</span>
+            </div>
+            <h3 class="timeline__title">State Senior High School 9 Berau</h3>
+            <p class="timeline__subtitle">Natural Sciences Major (IPA)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section experience">
+    <div class="container">
+      <div class="section__header" data-anim="fade-up">
+        <div class="section__tag">CAREER & LEADERSHIP</div>
+        <h2 class="section__title">Professional Experience</h2>
+        <div class="section__line"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline__item" data-anim="fade-up">
+          <div class="timeline__marker"></div>
+          <div class="timeline__card">
+            <div class="timeline__header">
+              <span class="timeline__badge">AUG 2024 — DEC 2024</span>
+              <span class="timeline__tag">MSIB Program</span>
+            </div>
+            <h3 class="timeline__title">Cloud Computing Cohort</h3>
+            <p class="timeline__subtitle">Bangkit Academy led by Google, GoTo, and Traveloka</p>
+            <ul class="timeline__list">
+              <li>Completed the Cloud Computing Cohort curriculum at Bangkit Academy, covering cloud computing
+                fundamentals, DevOps/SRE, web programming, JavaScript (Node.js), RESTful API backend development,
+                database management, storage, and service deployment on Google Cloud Platform.</li>
+              <li>Developed backend APIs using Express.js and Node.js, integrated with Cloud SQL and Google Cloud
+                Storage, as well as Gemini API for Generative AI features.</li>
+              <li>Deployed backend APIs using App Engine and machine learning models using Cloud Run.</li>
+              <li>Applied key learnings to the BiteWise capstone project—a healthcare modernization application—as a
+                graduation requirement for Bangkit Academy.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item" data-anim="fade-up" data-anim-delay="150">
+          <div class="timeline__marker"></div>
+          <div class="timeline__card">
+            <div class="timeline__header">
+              <span class="timeline__badge">JAN 2023 — DEC 2023</span>
+              <span class="timeline__tag">Student Organization</span>
+            </div>
+            <h3 class="timeline__title">Study Club Coordinator</h3>
+            <p class="timeline__subtitle">Association of Informatics</p>
+            <ul class="timeline__list">
+              <li>Led a 4-member event coordination team to organize course orientation and introduction sessions for
+                109 freshman students, covering topics such as Algorithms, Networking, Multimedia, Artificial
+                Intelligence, Mathematics, and Physics.</li>
+              <li>Served as an organizing committee member for the national event MIT-Week (Mulawarman Informatics Tech
+                Week) 2024.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Showcase Section -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <div class="section__header" data-anim="fade-up">
+        <div class="section__tag">FEATURED PROJECTS</div>
+        <h2 class="section__title">Engineering Projects</h2>
+        <div class="section__line"></div>
+      </div>
+
+      <div class="projects__grid">
+        <!-- Project 01 -->
+        <article class="project-card" data-anim="fade-up">
+          <div class="project-card__top">
+            <span class="project-card__idx">01 // CLOUD & WEB</span>
+            <div class="project-card__actions">
+              <a href="https://github.com/WilsonHutagalung" target="_blank" class="p-action"
+                aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
+              <a href="#" class="p-action" aria-label="Live Demo"><i class="ph ph-arrow-up-right"></i></a>
+            </div>
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">Sales Analytics Platform & Dashboard</h3>
+            <p class="project-card__desc">
+              An interactive web application for real-time sales data visualization featuring dynamic metric charts,
+              automated report aggregation, and multi-filter criteria.
+            </p>
+            <div class="project-card__tech">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>Chart.js</span>
+              <span>REST API</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 02 -->
+        <article class="project-card" data-anim="fade-up" data-anim-delay="100">
+          <div class="project-card__top">
+            <span class="project-card__idx">02 // AI & BACKEND</span>
+            <div class="project-card__actions">
+              <a href="https://github.com/WilsonHutagalung" target="_blank" class="p-action"
+                aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
+              <a href="#" class="p-action" aria-label="Live Demo"><i class="ph ph-arrow-up-right"></i></a>
+            </div>
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">AI Automated Chatbot Engine</h3>
+            <p class="project-card__desc">
+              An NLP-powered conversational service designed to process user inquiries, retrieve knowledge contextual
+              data, and return accurate automated responses.
+            </p>
+            <div class="project-card__tech">
+              <span>Python</span>
+              <span>Flask</span>
+              <span>NLP</span>
+              <span>GCP Run</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 03 -->
+        <article class="project-card" data-anim="fade-up" data-anim-delay="200">
+          <div class="project-card__top">
+            <span class="project-card__idx">03 // FULL-STACK</span>
+            <div class="project-card__actions">
+              <a href="https://github.com/WilsonHutagalung" target="_blank" class="p-action"
+                aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
+              <a href="#" class="p-action" aria-label="Live Demo"><i class="ph ph-arrow-up-right"></i></a>
+            </div>
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">E-Commerce System & Order API</h3>
+            <p class="project-card__desc">
+              A full-stack e-commerce web platform equipped with secure user authentication, interactive cart
+              management, inventory database tracking, and payment flows.
+            </p>
+            <div class="project-card__tech">
+              <span>Laravel</span>
+              <span>MySQL</span>
+              <span>Bootstrap</span>
+              <span>REST API</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section certifications">
+    <div class="container">
+      <div class="section__header" data-anim="fade-up">
+        <div class="section__tag">CREDENTIALS & ACCOMPLISHMENTS</div>
+        <h2 class="section__title">Certifications</h2>
+        <div class="section__line"></div>
+      </div>
+
+      <div class="certs__grid">
+        <button class="cert-card" data-full="Sertifikat/Belalajar Dasar AI.pdf" data-type="pdf" data-anim="fade-up">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Basic AI Learning</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Pemrograman%20JavaScript.pdf" data-type="pdf"
+          data-anim="fade-up" data-anim-delay="50">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Basic JavaScript Programming</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Git%20dengan%20GitHub.pdf" data-type="pdf"
+          data-anim="fade-up" data-anim-delay="100">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Basic Git with GitHub</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Pemrograman%20Web.pdf" data-type="pdf"
+          data-anim="fade-up" data-anim-delay="150">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Basic Web Programming</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card"
+          data-full="Sertifikat/Belajar%20Membuat%20Aplikasi%20Back-End%20untuk%20Pemula%20dengan%20Google%20Cloud.pdf"
+          data-type="pdf" data-anim="fade-up" data-anim-delay="200">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Building Back-End Applications (GCP)</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card"
+          data-full="Sertifikat/Belajar%20Penerapan%20Machine%20Learning%20dengan%20Google%20Cloud.pdf" data-type="pdf"
+          data-anim="fade-up" data-anim-delay="250">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Applying Machine Learning (GCP)</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card"
+          data-full="Sertifikat/Memulai%20Dasar%20Pemrograman%20untuk%20Menjadi%20Pengembang%20Software.pdf"
+          data-type="pdf" data-anim="fade-up" data-anim-delay="300">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Software Engineering Fundamentals</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card" data-full="Sertifikat/Memulai%20Pemrograman%20dengan%20Python.pdf" data-type="pdf"
+          data-anim="fade-up" data-anim-delay="350">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Python Programming Language</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+
+        <button class="cert-card" data-full="Sertifikat/Menjadi%20Google%20Cloud%20Engineer.pdf" data-type="pdf"
+          data-anim="fade-up" data-anim-delay="400">
+          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
+          <div class="cert-card__details">
+            <h3 class="cert-card__title">Google Cloud Engineer Learning Path</h3>
+            <span class="cert-card__issuer">Dicoding Indonesia</span>
+          </div>
+          <div class="cert-card__badge">PDF</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section__header" data-anim="fade-up">
+        <div class="section__tag">GET IN TOUCH</div>
+        <h2 class="section__title">Initiate Contact</h2>
+        <div class="section__line"></div>
+      </div>
+
+      <div class="contact__wrapper">
+        <div class="contact__intro" data-anim="fade-up">
+          <h3 class="contact__heading">Let's build something extraordinary together.</h3>
+          <p class="contact__sub">
+            Whether you have a question, a project proposal, or an engineering opportunity, my inbox is always open.
+          </p>
+        </div>
+
+        <div class="contact__grid">
+          <a href="mailto:wboyaron@email.com" class="contact-card" data-anim="fade-up">
+            <div class="contact-card__icon"><i class="ph ph-envelope-simple"></i></div>
+            <div class="contact-card__content">
+              <span class="contact-card__label">Direct Email</span>
+              <strong class="contact-card__value">wboyaron@email.com</strong>
+            </div>
+            <i class="ph ph-arrow-up-right contact-card__arrow"></i>
+          </a>
+
+          <a href="tel:+6281316270922" class="contact-card" data-anim="fade-up" data-anim-delay="100">
+            <div class="contact-card__icon"><i class="ph ph-phone"></i></div>
+            <div class="contact-card__content">
+              <span class="contact-card__label">Phone / WhatsApp</span>
+              <strong class="contact-card__value">+62 813-1627-0922</strong>
+            </div>
+            <i class="ph ph-arrow-up-right contact-card__arrow"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/in/wilsonhutagalung" target="_blank" rel="noopener noreferrer"
+            class="contact-card" data-anim="fade-up" data-anim-delay="200">
+            <div class="contact-card__icon"><i class="ph ph-linkedin-logo"></i></div>
+            <div class="contact-card__content">
+              <span class="contact-card__label">LinkedIn Profile</span>
+              <strong class="contact-card__value">linkedin.com/in/wilsonhutagalung</strong>
+            </div>
+            <i class="ph ph-arrow-up-right contact-card__arrow"></i>
+          </a>
+
+          <a href="https://github.com/WilsonHutagalung" target="_blank" rel="noopener noreferrer" class="contact-card"
+            data-anim="fade-up" data-anim-delay="300">
+            <div class="contact-card__icon"><i class="ph ph-github-logo"></i></div>
+            <div class="contact-card__content">
+              <span class="contact-card__label">GitHub Code Repos</span>
+              <strong class="contact-card__value">github.com/WilsonHutagalung</strong>
+            </div>
+            <i class="ph ph-arrow-up-right contact-card__arrow"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__brand">
+          <span class="footer__logo">// WILSON.DEV</span>
+          <p class="footer__tag">Designed with clean architecture & modern web standards.</p>
+        </div>
+
+        <div class="footer__links">
+          <a href="https://github.com/WilsonHutagalung" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
+              class="ph ph-github-logo"></i></a>
+          <a href="https://www.linkedin.com/in/wilsonhutagalung" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+          <a href="mailto:wboyaron@email.com" aria-label="Email"><i class="ph ph-envelope-simple"></i></a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2026 Wilson Boyaron Hutagalung. All rights reserved.</p>
+        <span class="footer__sys">STATUS: OPERATIONAL</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll To Top Floating Button -->
+  <a href="#hero" id="scrollToTop" class="scroll-top-btn" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
