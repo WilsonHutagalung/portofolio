@@ -954,7 +954,7 @@ button {
    -------------------------------------------------------------------------- */
 .projects__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.75rem;
 }
 
@@ -1011,6 +1011,22 @@ button {
   border-color: var(--accent-cyan);
 }
 
+.p-action--disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.p-action--disabled:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.project-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 .project-card__title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -1019,10 +1035,12 @@ button {
 }
 
 .project-card__desc {
+  flex: 1;
   font-size: 0.875rem;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  text-align: justify;
 }
 
 .project-card__tech {
