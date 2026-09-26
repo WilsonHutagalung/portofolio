@@ -1,12 +1,4 @@
-/**
- * Portfolio Interactive Scripts
- * Handles Dark/Light Theme Switching, Mobile Nav, Scroll Reveal, and Certificate Lightbox
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-  /* --------------------------------------------------------------------------
-     1. THEME TOGGLE LOGIC
-     -------------------------------------------------------------------------- */
   const themeToggleBtn = document.getElementById('themeToggle');
   const storageKey = 'portfolio-theme';
 
@@ -27,9 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* --------------------------------------------------------------------------
-     2. LANGUAGE SWITCHING
-     -------------------------------------------------------------------------- */
   const languageButtons = document.querySelectorAll('[data-language]');
   const languageStorageKey = 'portfolio-language';
   const translations = {
@@ -267,9 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   setLanguage(localStorage.getItem(languageStorageKey) || 'en');
 
-  /* --------------------------------------------------------------------------
-     3. NAVBAR SCROLL EFFECT & MOBILE TOGGLE
-     -------------------------------------------------------------------------- */
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
@@ -321,10 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
-  /* --------------------------------------------------------------------------
-     3. SCROLL REVEAL ANIMATIONS
-     -------------------------------------------------------------------------- */
   const animatedElements = document.querySelectorAll('[data-anim="fade-up"], .anim-fade-up');
 
   const observerOptions = {
@@ -345,9 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  /* --------------------------------------------------------------------------
-     4. CERTIFICATE MODAL PREVIEW
-     -------------------------------------------------------------------------- */
   const certButtons = document.querySelectorAll('.cert-card[data-full]');
   const certModal = document.getElementById('certificateModal');
   const certBackdrop = document.getElementById('certBackdrop');
