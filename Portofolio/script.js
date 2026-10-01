@@ -1,3 +1,17 @@
+(() => {
+  try {
+    const storageKey = 'portfolio-theme';
+    const storedTheme = localStorage.getItem(storageKey);
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const theme = storedTheme || systemTheme;
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  } catch (error) {
+    document.documentElement.dataset.theme = 'dark';
+    document.documentElement.style.colorScheme = 'dark';
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const themeToggleBtn = document.getElementById('themeToggle');
   const storageKey = 'portfolio-theme';
@@ -69,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'terminal.scroll': 'SCROLL DOWN',
       'certificate.open': 'Open Original Document',
       'about.role': 'Informatics Undergraduate',
-      'about.heading': 'Dedicated Software Engineer with a passion for Cloud Systems & Modern Web Applications.',
-      'about.paragraphOne': 'Final-year undergraduate Informatics student at <strong>Mulawarman University</strong> with a solid <strong>GPA of 3.83/4.00</strong>. Skilled in designing backend architectures, deploying scalable microservices, and crafting smooth user interfaces.',
-      'about.paragraphTwo': 'As an alumnus of <strong>MSIB Bangkit Academy (Cloud Computing Track)</strong>, I have hands-on experience building containerized applications, RESTful APIs, and deploying cloud infrastructures on <strong>Google Cloud Platform (GCP)</strong>.',
+      'about.heading': 'Software Engineer focused on Backend Systems & Cloud Computing.',
+      'about.paragraphOne': 'Informatics graduate from <strong>Mulawarman University</strong> with a <strong>GPA of 3.83/4.00</strong>, focused on backend engineering and cloud computing. Experienced in building web and mobile applications, RESTful APIs with Node.js, and database-driven services.',
+      'about.paragraphTwo': 'Through <strong>MSIB Bangkit Academy (Cloud Computing Track)</strong>, I worked with Express.js, Hapi.js, Cloud SQL, Cloud Storage, App Engine, and Cloud Run on <strong>Google Cloud Platform (GCP)</strong>. I also have experience developing Augmented Reality applications with Unity and C#.',
       'about.locationLabel': 'Location',
       'about.locationValue': 'Samarinda, East Kalimantan',
       'about.degreeLabel': 'Degree & GPA',
@@ -102,7 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'experience.accifenceTitle': 'Accifence Event Coordinator',
       'experience.accifenceSubtitle': 'Association of Informatics',
       'experience.accifenceOne': 'Led a 4-member event coordination team to organize course orientation and introduction sessions for 109 freshman students, covering Algorithms, Networking, Multimedia, Artificial Intelligence, Mathematics, and Physics.',
-      'experience.accifenceTwo': 'Served as an organizing committee member for the national event MIT-Week (Mulawarman Informatics Tech Week) 2024.',
+      'experience.accifenceTwo': 'Served as an organizing committee member for the national event MIT-Week (Mulawarman Informatics Tech Week) 2023.',
+      'experience.communityTag': 'Community Service',
+      'experience.communityTitle': 'Community Service Program Executor',
+      'experience.communitySubtitle': 'Mulawarman University',
+      'experience.communityOne': 'Organized microcontroller training for more than 30 students of SMAN 6 Samarinda with a five-member team, including an assessment through exercises at the end of the training.',
+      'experience.communityTwo': 'Published a community service article from the activity in Jurnal Inovasi Teknologi Masyarakat (INTEKMAS).',
       'certificates.ai': 'Basic AI Learning',
       'certificates.javascript': 'Basic JavaScript Programming',
       'certificates.git': 'Basic Git with GitHub',
@@ -112,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'certificates.software': 'Software Engineering Fundamentals',
       'certificates.python': 'Python Programming Language',
       'certificates.cloud': 'Google Cloud Engineer Learning Path',
+      'certificates.bangkit': 'Bangkit Cloud Computing',
       'certificates.issuer': 'Dicoding Indonesia',
       'page.title': 'Wilson Boyaron Hutagalung // Software Engineer & Cloud Architect',
       'experience.msibTag': 'MSIB Program',
@@ -175,9 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'terminal.scroll': 'GULIR KE BAWAH',
       'certificate.open': 'Buka Dokumen Asli',
       'about.role': 'Mahasiswa Informatika',
-      'about.heading': 'Software Engineer yang berdedikasi dengan minat pada sistem cloud dan aplikasi web modern.',
-      'about.paragraphOne': 'Mahasiswa tingkat akhir Informatika di <strong>Universitas Mulawarman</strong> dengan <strong>IPK 3,83/4,00</strong>. Terampil dalam merancang arsitektur backend, mengembangkan microservices yang skalabel, dan membangun antarmuka yang nyaman digunakan.',
-      'about.paragraphTwo': 'Sebagai alumni <strong>MSIB Bangkit Academy (Jalur Cloud Computing)</strong>, saya memiliki pengalaman langsung dalam membangun aplikasi berbasis container, RESTful API, dan infrastruktur cloud di <strong>Google Cloud Platform (GCP)</strong>.',
+      'about.heading': 'Software Engineer yang berfokus pada Backend dan Cloud Computing.',
+      'about.paragraphOne': 'Lulusan Informatika <strong>Universitas Mulawarman</strong> dengan <strong>IPK 3,83/4,00</strong> yang berfokus pada backend engineering dan cloud computing. Berpengalaman membangun aplikasi web dan mobile, RESTful API dengan Node.js, serta layanan berbasis database.',
+      'about.paragraphTwo': 'Melalui <strong>MSIB Bangkit Academy (Jalur Cloud Computing)</strong>, saya menggunakan Express.js, Hapi.js, Cloud SQL, Cloud Storage, App Engine, dan Cloud Run di <strong>Google Cloud Platform (GCP)</strong>. Saya juga memiliki pengalaman mengembangkan aplikasi Augmented Reality dengan Unity dan C#.',
       'about.locationLabel': 'Lokasi',
       'about.locationValue': 'Samarinda, Kalimantan Timur',
       'about.degreeLabel': 'Gelar & IPK',
@@ -208,7 +228,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'experience.accifenceTitle': 'Koordinator Acara Accifence',
       'experience.accifenceSubtitle': 'Asosiasi Informatika',
       'experience.accifenceOne': 'Memimpin tim koordinasi acara yang terdiri dari 4 orang untuk menyelenggarakan orientasi dan pengenalan mata kuliah bagi 109 mahasiswa baru, meliputi Algoritma, Jaringan, Multimedia, Artificial Intelligence, Matematika, dan Fisika.',
-      'experience.accifenceTwo': 'Menjadi anggota panitia pelaksana acara nasional MIT-Week (Mulawarman Informatics Tech Week) 2024.',
+      'experience.accifenceTwo': 'Menjadi anggota panitia pelaksana acara nasional MIT-Week (Mulawarman Informatics Tech Week) 2023.',
+      'experience.communityTag': 'Pengabdian Masyarakat',
+      'experience.communityTitle': 'Pelaksana Kegiatan Pengabdian Kepada Masyarakat',
+      'experience.communitySubtitle': 'Universitas Mulawarman',
+      'experience.communityOne': 'Menyelenggarakan pelatihan mikrokontroler bagi lebih dari 30 siswa SMAN 6 Samarinda bersama tim beranggotakan lima orang, disertai evaluasi berupa pengerjaan soal di akhir pelatihan.',
+      'experience.communityTwo': 'Mempublikasikan artikel pengabdian masyarakat dari kegiatan tersebut pada Jurnal Inovasi Teknologi Masyarakat (INTEKMAS).',
       'certificates.ai': 'Belajar Dasar AI',
       'certificates.javascript': 'Belajar Dasar Pemrograman JavaScript',
       'certificates.git': 'Belajar Dasar Git dengan GitHub',
@@ -218,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'certificates.software': 'Dasar-Dasar Software Engineering',
       'certificates.python': 'Bahasa Pemrograman Python',
       'certificates.cloud': 'Learning Path Google Cloud Engineer',
+      'certificates.bangkit': 'Cloud Computing Bangkit',
       'certificates.issuer': 'Dicoding Indonesia',
       'page.title': 'Wilson Boyaron Hutagalung // Software Engineer & Arsitek Cloud',
       'experience.msibTag': 'Program MSIB',
