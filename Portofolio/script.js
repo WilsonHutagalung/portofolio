@@ -299,6 +299,58 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
 
   const scrollToTopBtn = document.getElementById('scrollToTop');
+  const routeSections = new Map([
+    ['/about', 'about'],
+    ['/principles', 'principles'],
+    ['/education', 'education'],
+    ['/experience', 'experience'],
+    ['/projects', 'projects'],
+    ['/certifications', 'certifications'],
+    ['/contact', 'contact']
+  ]);
+
+  function scrollToRoute(path, updateHistory = false) {
+    const sectionId = routeSections.get(path);
+    const section = sectionId ? document.getElementById(sectionId) : null;
+
+    if (!section) return false;
+
+    if (updateHistory) {
+      window.history.pushState({}, '', path);
+    }
+
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return true;
+  }
+
+  document.querySelectorAll('a[href^="/"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const path = new URL(link.href).pathname;
+
+      if (path === '/') {
+        event.preventDefault();
+        window.history.pushState({}, '', '/');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      if (scrollToRoute(path, true)) {
+        event.preventDefault();
+      }
+    });
+  });
+
+  if (routeSections.has(window.location.pathname)) {
+    window.requestAnimationFrame(() => scrollToRoute(window.location.pathname));
+  }
+
+  window.addEventListener('popstate', () => {
+    if (window.location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      scrollToRoute(window.location.pathname);
+    }
+  });
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
