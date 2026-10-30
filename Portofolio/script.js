@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ==========================================================================
-     1. Asset URL Resolver (Preserves directory context across Live Server / subfolders)
-     ========================================================================== */
+  // Asset URL Resolver
   const scriptElement = document.currentScript || document.querySelector('script[src*="script.js"]');
   const baseDir = scriptElement?.src
     ? new URL('.', scriptElement.src)
@@ -30,9 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Graceful no-op
   }
 
-  /* ==========================================================================
-     2. Theme Management (Sync with inline head script)
-     ========================================================================== */
+  // Theme Management
   const themeToggle = document.getElementById('themeToggle');
   const getTheme = () => document.documentElement.dataset.theme || 'dark';
   const setTheme = (theme) => {
@@ -47,10 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ==========================================================================
-     3. Internationalization (i18n)
-     Harvests base EN copy from DOM to avoid duplicate dictionaries.
-     ========================================================================== */
+  // Multilanguage / i18n
   const langBtns = document.querySelectorAll('[data-language]');
   const translations = {
     en: {},
@@ -92,9 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'projects.cloudTag': 'Cloud Computing & Backend',
       'projects.bitewiseTitle': 'Bitewise Backend API',
       'projects.bitewiseDescription': 'Bitewise adalah platform nutrisi yang menangani tantangan gizi di Indonesia seperti stunting, wasting, obesitas, dan anemia, terutama pada anak-anak dan perempuan. Sebagai bagian dari tim Cloud Computing, saya membangun REST API backend dengan Node.js dan Express untuk menangani autentikasi, akses database, dan penyimpanan file. Saya juga melakukan deployment bersama layanan prediksi machine learning dalam container Docker di Google Cloud. API didokumentasikan menggunakan Postman untuk tim mobile.',
-      'projects.hrTag': 'Sistem Presensi & Manajemen SDM',
-      'projects.hrTitle': 'Sistem Presensi & Manajemen SDM',
+      'projects.hrTag': 'Sistem Presensi Manajemen SDM',
+      'projects.hrTitle': 'Sistem Presensi Manajemen SDM',
       'projects.hrDescription': 'Aplikasi presensi dan manajemen kehadiran karyawan berbasis web untuk perusahaan maupun industri. Sistem ini mendukung pencatatan kehadiran harian melalui Clock In/Out, manajemen shift kerja, kalkulasi keterlambatan otomatis, serta pengajuan cuti dan izin. Dilengkapi portal karyawan yang responsif dan panel admin berbasis Filament untuk mengelola data master dan hak akses secara terpusat.',
+      'projects.atomosTag': 'Aplikasi Augmented Reality',
+      'projects.atomosTitle': 'Atomos — Media Pembelajaran AR Struktur Atom',
+      'projects.atomosDescription': 'Aplikasi pembelajaran interaktif berbasis Augmented Reality (AR) untuk memvisualisasikan materi struktur atom kelas X yang abstrak menjadi model 3D interaktif bagi siswa SMA Negeri 16 Samarinda. Dibangun menggunakan Unity, Vuforia Engine, dan C#, aplikasi ini memvisualisasikan 5 model atom 3D dengan animasi orbit elektron, kuis evaluasi pemahaman, serta tabel periodik unsur.',
       'sections.certificationsTag': 'SERTIFIKAT & PENCAPAIAN',
       'sections.certificationsTitle': 'Sertifikasi',
       'sections.contactTag': 'HUBUNGI SAYA',
@@ -141,6 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'education.universityDescription': 'Berfokus pada Software Engineering, Cloud Computing, Manajemen Database, Struktur Data & Algoritma, serta Augmented Reality.',
       'education.highSchoolScore': 'Nilai Rata-rata 81',
       'education.highSchoolMajor': 'Jurusan Ilmu Pengetahuan Alam (IPA)',
+      'experience.arTag': 'Penelitian Skripsi',
+      'experience.arTitle': 'Pengembang Aplikasi Augmented Reality “Atomos”',
+      'experience.arSubtitle': 'SMA Negeri 16 Samarinda (Penelitian Skripsi)',
+      'experience.arOne': 'Mewawancarai guru kimia untuk menggali kendala belajar struktur atom di kelas X, yaitu materi yang abstrak dan masih diajarkan lewat gambar 2D.',
+      'experience.arTwo': 'Merancang dan membangun aplikasi AR berbasis marker “Atomos” (C#, Unity, Vuforia, Blender, Figma) melalui 2 iterasi Agile, dengan 5 model atom 3D, animasi orbit elektron, kuis, dan tabel periodik.',
+      'experience.arThree': 'Mengujicobakan aplikasi di sekolah secara berkala untuk menemukan error dan kekurangan, lalu memperbaikinya pada iterasi berikutnya.',
+      'experience.arFour': 'Menjalankan Pengujian UAT berskala Likert kepada 34 siswa/i dan 1 guru kimia, dengan skor rata-rata 87,2% (siswa/i) dan 92,6% (guru), serta seluruh variabel di atas 80% (kategori Sangat Baik).',
       'experience.bangkitTitle': 'Peserta Cloud Computing',
       'experience.bangkitSubtitle': 'Bangkit Academy yang dipimpin Google, GoTo, dan Traveloka',
       'experience.bangkitOne': 'Menyelesaikan kurikulum Cloud Computing di Bangkit Academy yang mencakup dasar cloud computing, DevOps/SRE, pemrograman web, JavaScript (Node.js), pengembangan backend RESTful API, manajemen database, storage, dan deployment layanan di Google Cloud Platform.',
@@ -219,9 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setLanguage('en');
   }
 
-  /* ==========================================================================
-     4. Navigation & Smooth Section Scrolling (Hash-based, preserving directory paths)
-     ========================================================================== */
+  // Navigasi & Smooth Scroll
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
@@ -319,9 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ==========================================================================
-     5. Scroll Animation Observer
-     ========================================================================== */
+  // Animasi Scroll (Fade Up)
   const animElements = document.querySelectorAll('[data-anim="fade-up"]');
   const animObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -339,9 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animObserver.observe(el);
   });
 
-  /* ==========================================================================
-     6. Modals (Certificates & Projects)
-     ========================================================================== */
+  // Modal (Sertifikat & Proyek)
   const openModal = (modal) => {
     if (!modal) return;
     modal.classList.add('active');
@@ -460,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     pos: {
-      image: 'assets/projects/aplikasi-kasir.jpg',
+      image: 'assets/projects/aplikasi-kasir.png',
       github: 'https://github.com/WilsonHutagalung/Aplikasi-Kasir',
       demo: '',
       tech: ['Laravel / PHP', 'React / Vite', 'Electron', 'PostgreSQL', 'Sanctum'],
@@ -516,13 +513,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     hr: {
-      image: 'assets/projects/hr-management-system.jpg',
-      github: '',
+      image: 'assets/projects/hr-management-system.png',
+      github: 'https://github.com/WilsonHutagalung/Sistem-Presensi-Manajemen-SDM',
       demo: '',
       tech: ['Laravel 12', 'Filament v5', 'PHP 8.2', 'MySQL', 'Tailwind CSS', 'Blade'],
       en: {
-        tag: 'Enterprise HR & Workforce System',
-        title: 'Attendance & HR Management System',
+        tag: 'HR Management & Attendance System',
+        title: 'HR Management & Attendance System',
         desc: 'An enterprise workforce attendance and personnel management system. It provides comprehensive employee shift monitoring, real-time clock-in/out logging, automated late calculation, and centralized administrative management.',
         highlights: [
           'Enterprise admin control panel built with Laravel 12 and Filament v5.',
@@ -532,14 +529,42 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
       },
       id: {
-        tag: 'Sistem Presensi & Manajemen SDM',
-        title: 'Sistem Presensi & Manajemen SDM',
+        tag: 'Sistem Presensi Manajemen SDM',
+        title: 'Sistem Presensi Manajemen SDM',
         desc: 'Sistem presensi karyawan dan administrasi SDM berbasis web tingkat enterprise. Mengoptimalkan pemantauan shift kerja, pencatatan absensi real-time, kalkulasi keterlambatan otomatis, serta sentralisasi pengelolaan data staf.',
         highlights: [
           'Panel kontrol administrasi modern dan responsif berbasis Laravel 12 dan Filament v5.',
           'Pencatatan Clock In / Out real-time dengan kalkulasi otomatis keterlambatan dan durasi lembur.',
           'Portal mandiri bagi karyawan untuk pengajuan cuti, izin sakit, dan verifikasi kehadiran.',
           'Manajemen multi-shift, sistem hak akses bertingkat, dan rekapitulasi data presensi periodik.'
+        ]
+      }
+    },
+    atomos: {
+      image: 'assets/projects/Aplikas-AR-Struktur-Atom.png',
+      github: '',
+      demo: '',
+      tech: ['Unity', 'Vuforia Engine', 'C#', 'Blender', 'Figma', 'Android'],
+      en: {
+        tag: 'Augmented Reality Application',
+        title: 'Atomos — Augmented Reality Chemistry Learning',
+        desc: 'A marker-based Augmented Reality educational application developed for SMA Negeri 16 Samarinda to help high school students visualize abstract 3D atomic structures. Features 5 interactive 3D atomic models, real-time electron orbit animations, comprehensive learning materials, quizzes, and a dynamic periodic table.',
+        highlights: [
+          'Engineered interactive 3D atomic models (Dalton, Thomson, Rutherford, Bohr, and Quantum Mechanical Model) with real-time electron orbit animations.',
+          'Built with Unity and Vuforia Engine utilizing high-accuracy marker-based AR tracking on Android devices.',
+          'Conducted 2 Agile iterations incorporating direct chemistry teacher feedback and periodic classroom testing.',
+          'Achieved outstanding Likert-scale UAT scores: 87.2% student acceptance (34 students) and 92.6% teacher evaluation (Very Good category).'
+        ]
+      },
+      id: {
+        tag: 'Aplikasi Augmented Reality',
+        title: 'Atomos — Media Pembelajaran AR Struktur Atom',
+        desc: 'Aplikasi Augmented Reality (AR) berbasis marker “Atomos” yang dikembangkan untuk SMA Negeri 16 Samarinda guna membantu visualisasi materi struktur atom kelas X yang abstrak menjadi model 3D interaktif. Dilengkapi 5 model atom 3D, animasi orbit elektron, kuis evaluasi, dan tabel periodik unsur.',
+        highlights: [
+          'Merancang dan membangun 5 model atom 3D (Dalton, Thomson, Rutherford, Bohr, dan Mekanika Kuantum) beserta animasi orbit elektron.',
+          'Pengembangan menggunakan C#, Unity, dan Vuforia Engine dengan pelacakan marker berakurasi tinggi untuk perangkat Android.',
+          'Dikembangkan melalui 2 iterasi Agile dengan pengujian berkala di sekolah bersama guru kimia untuk evaluasi dan perbaikan fitur.',
+          'Meraih hasil Pengujian UAT berskala Likert sebesar 87,2% dari 34 siswa/i dan 92,6% dari guru kimia (kategori Sangat Baik).'
         ]
       }
     }

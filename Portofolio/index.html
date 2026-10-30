@@ -413,6 +413,24 @@
           <div class="timeline__marker"></div>
           <div class="timeline__card">
             <div class="timeline__header">
+              <span class="timeline__badge">FEB 2026 — APR 2026</span>
+              <span class="timeline__tag" data-i18n="experience.arTag">Thesis Research</span>
+            </div>
+            <h3 class="timeline__title" data-i18n="experience.arTitle">Augmented Reality Application Developer “Atomos”</h3>
+            <p class="timeline__subtitle" data-i18n="experience.arSubtitle">SMA Negeri 16 Samarinda</p>
+            <ul class="timeline__list">
+              <li data-i18n="experience.arOne">Interviewed chemistry teachers to identify learning challenges in Grade X atomic structure education, addressing abstract concepts traditionally taught through 2D textbook illustrations.</li>
+              <li data-i18n="experience.arTwo">Designed and developed the marker-based Augmented Reality application “Atomos” (C#, Unity, Vuforia, Blender, Figma) across 2 Agile iterations, featuring 5 3D atomic models, electron orbit animations, an interactive quiz, and a periodic table.</li>
+              <li data-i18n="experience.arThree">Conducted periodic on-site testing at the school to discover usability issues and bugs, iteratively refining and optimizing the app across development cycles.</li>
+              <li data-i18n="experience.arFour">Executed Likert-scale User Acceptance Testing (UAT) with 34 students and 1 chemistry teacher, achieving average approval scores of 87.2% (students) and 92.6% (teacher), with all evaluation dimensions scoring above 80% (Very Good category).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item" data-anim="fade-up" data-anim-delay="100">
+          <div class="timeline__marker"></div>
+          <div class="timeline__card">
+            <div class="timeline__header">
               <span class="timeline__badge">AUG 2024 — DEC 2024</span>
               <span class="timeline__tag" data-i18n="experience.msibTag">MSIB Program</span>
             </div>
@@ -526,7 +544,7 @@
         <article class="project-card" data-anim="fade-up" data-anim-delay="100">
           <div class="project-card__media project-preview-trigger" data-project="pos" role="button" tabindex="0"
             aria-label="Open Universal POS Preview">
-            <img src="assets/projects/aplikasi-kasir.jpg" alt="Aplikasi Kasir POS" class="project-card__img"
+            <img src="assets/projects/aplikasi-kasir.png" alt="Aplikasi Kasir POS" class="project-card__img"
               loading="lazy" />
             <div class="project-card__overlay">
               <span class="btn-preview-project"><i class="ph ph-arrows-out-simple"></i> <span
@@ -608,7 +626,7 @@
         <article class="project-card" data-anim="fade-up" data-anim-delay="300">
           <div class="project-card__media project-preview-trigger" data-project="hr" role="button" tabindex="0"
             aria-label="Open HR System Preview">
-            <img src="assets/projects/hr-management-system.jpg" alt="Attendance & HR Management System"
+            <img src="assets/projects/hr-management-system.png" alt="Attendance & HR Management System"
               class="project-card__img" loading="lazy" />
             <div class="project-card__overlay">
               <span class="btn-preview-project"><i class="ph ph-arrows-out-simple"></i> <span
@@ -616,15 +634,17 @@
             </div>
           </div>
           <div class="project-card__top">
-            <span class="project-card__idx" data-i18n="projects.hrTag">HR & Attendance System</span>
+            <span class="project-card__idx" data-i18n="projects.hrTag">HR Management & Attendance System</span>
             <div class="project-card__actions">
+              <a href="https://github.com/WilsonHutagalung/Sistem-Presensi-Manajemen-SDM" target="_blank" rel="noopener noreferrer"
+                class="p-action" aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
               <button type="button" class="p-action project-preview-trigger" data-project="hr"
                 aria-label="Quick View"><i class="ph ph-eye"></i></button>
             </div>
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title project-card__title--clickable project-preview-trigger" data-project="hr"
-              data-i18n="projects.hrTitle">Attendance & HR Management System</h3>
+              data-i18n="projects.hrTitle">HR Management & Attendance System</h3>
             <p class="project-card__desc" data-i18n="projects.hrDescription">
               A web-based employee attendance and workforce management application for companies and industrial
               organizations. It supports daily attendance recording through Clock In/Out, work shift management,
@@ -638,6 +658,41 @@
               <span>MySQL</span>
               <span>Tailwind CSS</span>
               <span>Blade</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 05 -->
+        <article class="project-card" data-anim="fade-up" data-anim-delay="400">
+          <div class="project-card__media project-preview-trigger" data-project="atomos" role="button" tabindex="0"
+            aria-label="Open Atomos AR Preview">
+            <img src="assets/projects/Aplikas-AR-Struktur-Atom.png" alt="Atomos Augmented Reality Chemistry"
+              class="project-card__img" loading="lazy" />
+            <div class="project-card__overlay">
+              <span class="btn-preview-project"><i class="ph ph-arrows-out-simple"></i> <span
+                  data-i18n="projects.preview">Quick View</span></span>
+            </div>
+          </div>
+          <div class="project-card__top">
+            <span class="project-card__idx" data-i18n="projects.atomosTag">Educational AR Application</span>
+            <div class="project-card__actions">
+              <button type="button" class="p-action project-preview-trigger" data-project="atomos"
+                aria-label="Quick View"><i class="ph ph-eye"></i></button>
+            </div>
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title project-card__title--clickable project-preview-trigger" data-project="atomos"
+              data-i18n="projects.atomosTitle">Atomos — Augmented Reality Chemistry Learning</h3>
+            <p class="project-card__desc" data-i18n="projects.atomosDescription">
+              An interactive Augmented Reality application designed to visualize Grade X 3D atomic structures for SMA Negeri 16 Samarinda. Built with Unity, Vuforia Engine, and C#, it transforms abstract textbook diagrams into immersive 3D interactive models with electron orbit animations, learning modules, quizzes, and a periodic table.
+            </p>
+            <div class="project-card__tech">
+              <span>Unity</span>
+              <span>Vuforia</span>
+              <span>C#</span>
+              <span>Blender</span>
+              <span>Figma</span>
+              <span>Android</span>
             </div>
           </div>
         </article>
