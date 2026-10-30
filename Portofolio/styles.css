@@ -1,57 +1,57 @@
+/* ==========================================================================
+   1. Theme Variables & Design Tokens (Zero Blue - Emerald & Zinc Theme)
+   ========================================================================== */
 :root[data-theme="dark"] {
   --bg-primary: #09090b;
-  --bg-secondary: #18181b;
-  --bg-card: rgba(24, 24, 27, 0.6);
-  --bg-card-hover: rgba(39, 39, 42, 0.8);
-  --bg-glass: rgba(9, 9, 11, 0.85);
+  --bg-secondary: #141416;
+  --bg-card: rgba(22, 22, 26, 0.75);
+  --bg-card-hover: rgba(32, 32, 38, 0.9);
+  --bg-glass: rgba(9, 9, 11, 0.88);
 
   --text-primary: #fafafa;
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
 
-  --accent-cyan: #e4e4e7;
-  --accent-cyan-glow: rgba(228, 228, 231, 0.04);
-  --accent-indigo: #a1a1aa;
-  --accent-teal: #d4d4d8;
+  --accent-primary: #10b981;
+  --accent-primary-hover: #059669;
+  --accent-glow: rgba(16, 185, 129, 0.14);
+  --accent-subtle: rgba(16, 185, 129, 0.08);
 
   --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  --border-hover: rgba(255, 255, 255, 0.18);
 
-  --code-bg: #18181b;
-  --code-header: #27272a;
-
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 0 24px rgba(16, 185, 129, 0.12);
 }
 
 :root[data-theme="light"] {
   --bg-primary: #ffffff;
   --bg-secondary: #f4f4f5;
   --bg-card: #ffffff;
-  --bg-card-hover: #f4f4f5;
-  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #f8fafc;
+  --bg-glass: rgba(255, 255, 255, 0.92);
 
   --text-primary: #09090b;
   --text-secondary: #52525b;
   --text-muted: #71717a;
 
-  --accent-cyan: #18181b;
-  --accent-cyan-glow: rgba(24, 24, 27, 0.04);
-  --accent-indigo: #52525b;
-  --accent-teal: #3f3f46;
+  --accent-primary: #059669;
+  --accent-primary-hover: #047857;
+  --accent-glow: rgba(5, 150, 105, 0.12);
+  --accent-subtle: rgba(5, 150, 105, 0.06);
 
   --border-color: #e4e4e7;
-  --border-hover: #d4d4d8;
-
-  --code-bg: #f4f4f5;
-  --code-header: #e4e4e7;
+  --border-hover: #cbd5e1;
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px rgba(5, 150, 105, 0.1);
 }
 
+/* ==========================================================================
+   2. Reset & Base Typography
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -68,7 +68,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -81,7 +81,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 ul {
@@ -95,21 +95,67 @@ button {
   background: none;
 }
 
+/* ==========================================================================
+   3. Utility Classes
+   ========================================================================== */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* Typography Gradient Effect */
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-indigo) 100%);
+  background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
 
+.btn--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 8px;
+}
+
+.btn--primary {
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  background: var(--accent-primary-hover);
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.btn--outline {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn--outline:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   4. Floating Navbar & Mobile Menu
+   ========================================================================== */
 .navbar {
   position: fixed;
   top: 1.25rem;
@@ -122,18 +168,10 @@ button {
   border: 1px solid var(--border-color);
   border-radius: 100px;
   padding: 0.75rem 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.navbar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
   background: var(--bg-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  z-index: -1;
+  transition: top 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -151,31 +189,22 @@ button {
 .navbar__logo {
   font-family: 'Fira Code', monospace;
   font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: -0.5px;
+  font-size: 1.05rem;
+  letter-spacing: -0.3px;
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-.navbar__logo-symbol {
-  color: var(--accent-cyan);
-  margin-right: 0.3rem;
-}
-
-.navbar__logo-text {
-  white-space: nowrap;
-}
-
 .navbar__logo-accent {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
 }
 
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.6rem;
 }
 
 .navbar__link {
@@ -185,31 +214,25 @@ button {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-}
-
-.navbar__link .nav-num {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  color: var(--accent-cyan);
-  opacity: 0.8;
+  transition: color 0.2s ease;
 }
 
 .navbar__link:hover {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
 }
 
 .navbar__link--cta {
-  background: rgba(56, 189, 248, 0.1);
+  background: var(--accent-subtle);
   border: 1px solid var(--border-hover);
-  color: var(--accent-cyan) !important;
+  color: var(--accent-primary);
   padding: 0.4rem 1rem;
   border-radius: 50px;
   font-weight: 600;
 }
 
 .navbar__link--cta:hover {
-  background: var(--accent-cyan);
-  color: var(--bg-primary) !important;
+  background: var(--accent-primary);
+  color: #ffffff;
 }
 
 .navbar__actions {
@@ -229,7 +252,7 @@ button {
 }
 
 .language-switcher > i {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
   font-size: 1rem;
   margin-right: 0.1rem;
 }
@@ -244,6 +267,7 @@ button {
 .language-switcher__option:hover,
 .language-switcher__option.is-active {
   color: var(--text-primary);
+  font-weight: 600;
 }
 
 .language-switcher__separator {
@@ -261,12 +285,12 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .navbar__theme-toggle:hover {
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
   transform: rotate(15deg);
 }
 
@@ -282,16 +306,28 @@ button {
   display: none;
   flex-direction: column;
   gap: 4px;
-  width: 30px;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
 }
 
 .navbar__toggle-bar {
-  height: 2px;
-  width: 100%;
+  height: 1.5px;
+  width: 15px;
   background: var(--text-primary);
-  transition: 0.3s;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
+/* ==========================================================================
+   5. Hero Section & Real Competencies Card (Clean, Human Crafted)
+   ========================================================================== */
 .hero {
   position: relative;
   min-height: calc(100vh - 4rem);
@@ -299,38 +335,12 @@ button {
   padding-bottom: 4rem;
   display: flex;
   align-items: center;
-  overflow: hidden;
-}
-
-.hero__grid-bg {
-  position: absolute;
-  inset: 0;
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, var(--border-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
-  mask-image: radial-gradient(circle at 50% 40%, black 0%, transparent 70%);
-  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 0%, transparent 70%);
-  z-index: -2;
-}
-
-.hero__radial-glow {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  max-width: 100vw;
-  height: 600px;
-  background: radial-gradient(circle, var(--accent-cyan-glow) 0%, transparent 70%);
-  z-index: -1;
-  pointer-events: none;
 }
 
 .hero__container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
   align-items: center;
   width: 100%;
 }
@@ -340,12 +350,11 @@ button {
   align-items: center;
   gap: 0.6rem;
   padding: 0.4rem 1rem;
-  background: var(--accent-cyan-glow);
+  background: var(--accent-subtle);
   border: 1px solid var(--border-hover);
   border-radius: 100px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  color: var(--accent-cyan);
+  font-size: 0.78rem;
+  color: var(--accent-primary);
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
@@ -353,27 +362,9 @@ button {
 .status-dot {
   width: 8px;
   height: 8px;
-  background: #22C55E;
+  background: var(--accent-primary);
   border-radius: 50%;
-  box-shadow: 0 0 10px #22C55E;
-  animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-  }
+  box-shadow: 0 0 8px var(--accent-primary);
 }
 
 .hero__name {
@@ -386,21 +377,11 @@ button {
 }
 
 .hero__subtitle-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
   margin-bottom: 1.25rem;
-  flex-wrap: wrap;
-}
-
-.code-tag {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.85rem;
-  color: var(--text-muted);
 }
 
 .hero__title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -408,9 +389,9 @@ button {
 .hero__tagline {
   font-size: 1.05rem;
   color: var(--text-secondary);
-  max-width: 540px;
+  max-width: 520px;
   margin-bottom: 2rem;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .hero__actions {
@@ -418,43 +399,6 @@ button {
   align-items: center;
   gap: 1rem;
   margin-bottom: 2.5rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.25 ease;
-}
-
-.btn--primary {
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card-hover) 100%);
-  border: 1px solid var(--border-hover);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
-}
-
-.btn--primary:hover {
-  transform: translateY(-2px);
-  background: var(--bg-card-hover);
-  border-color: var(--text-muted);
-  box-shadow: var(--shadow-lg);
-}
-
-.btn--outline {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-}
-
-.btn--outline:hover {
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  transform: translateY(-2px);
 }
 
 .hero__metrics {
@@ -489,122 +433,115 @@ button {
   background: var(--border-color);
 }
 
-/* Terminal Card Styling */
-.hero__terminal {
-  background: var(--code-bg);
+/* Real Competencies Card (Replaces fake terminal) */
+.hero__card {
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 20px;
+  padding: 1.75rem;
   box-shadow: var(--shadow-lg);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   transition: border-color 0.3s ease;
 }
 
-.hero__terminal:hover {
+.hero__card:hover {
   border-color: var(--border-hover);
 }
 
-.terminal__header {
-  background: var(--code-header);
-  padding: 0.6rem 1rem;
+.hero__card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
 }
 
-.terminal__dots {
+.hero__card-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.hero__card-pill {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  background: var(--accent-subtle);
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.hero__card-body {
   display: flex;
-  gap: 6px;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.terminal__dots .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.skill-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.dot.red {
-  background: #EF4444;
+.skill-category__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.dot.yellow {
-  background: #F59E0B;
+.skill-category__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
-.dot.green {
-  background: #10B981;
-}
-
-.terminal__title {
+.skill-category__tags span {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
   font-family: 'Fira Code', monospace;
-  font-size: 0.78rem;
-  color: #94A3B8;
 }
 
-.terminal__badge {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.68rem;
-  background: rgba(255, 255, 255, 0.08);
-  color: #38BDF8;
-  padding: 0.15rem 0.45rem;
-  border-radius: 4px;
-}
-
-.terminal__body {
-  padding: 1rem 1.1rem;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.78rem;
-  line-height: 1.45;
-  overflow-x: auto;
-}
-
-/* Code Syntax Highlighting Tokens */
-.syn-kw {
-  color: #F472B6;
-}
-
-.syn-var {
-  color: #38BDF8;
-}
-
-.syn-prop {
-  color: #E2E8F0;
-}
-
-.syn-str {
-  color: #34D399;
-}
-
-.syn-num {
-  color: #FBBF24;
-}
-
-.syn-comment {
-  color: #64748B;
-  font-style: italic;
-}
-
-.syn-fn {
-  color: #60A5FA;
-}
-
-.terminal__footer {
-  background: var(--code-header);
-  padding: 0.5rem 1.25rem;
+.hero__card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  color: #64748B;
-  border-top: 1px solid var(--border-color);
+  font-size: 0.82rem;
 }
 
-.terminal__status {
-  color: #10B981;
+.hero__card-stat {
   display: flex;
   align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.hero__card-stat i {
+  font-size: 1rem;
+}
+
+.hero__card-link {
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
   gap: 0.3rem;
+  transition: color 0.2s ease;
+}
+
+.hero__card-link:hover {
+  color: var(--text-primary);
 }
 
 .hero__scroll-down {
@@ -620,32 +557,15 @@ button {
   font-family: 'Fira Code', monospace;
   font-size: 0.7rem;
   letter-spacing: 1px;
-  animation: bounce-slow 2.5s infinite ease-in-out;
 }
 
 .hero__scroll-down:hover {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
 }
 
-@keyframes bounce-slow {
-
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  40% {
-    transform: translateX(-50%) translateY(-8px);
-  }
-
-  60% {
-    transform: translateX(-50%) translateY(-4px);
-  }
-}
-
+/* ==========================================================================
+   6. Section Base
+   ========================================================================== */
 .section {
   padding: 6rem 0;
   position: relative;
@@ -660,16 +580,15 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  color: var(--accent-cyan);
+  font-size: 0.8rem;
+  color: var(--accent-primary);
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.5px;
   margin-bottom: 0.5rem;
   padding: 0.25rem 0.75rem;
   border-radius: 99px;
-  background: rgba(0, 242, 254, 0.05);
-  border: 1px solid rgba(0, 242, 254, 0.15);
+  background: var(--accent-subtle);
+  border: 1px solid var(--border-hover);
 }
 
 .section__tag::before {
@@ -678,8 +597,7 @@ button {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-cyan);
-  box-shadow: 0 0 6px var(--accent-cyan);
+  background: var(--accent-primary);
 }
 
 .section__title {
@@ -691,21 +609,17 @@ button {
   gap: 1rem;
 }
 
-.section__title-num {
-  font-family: 'Fira Code', monospace;
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
 .section__line {
   height: 2px;
-  width: 60px;
-  background: var(--accent-cyan);
+  width: 50px;
+  background: var(--accent-primary);
   margin-top: 0.75rem;
   border-radius: 2px;
 }
 
+/* ==========================================================================
+   7. About Section
+   ========================================================================== */
 .about__grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -733,13 +647,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(20%);
-  transition: filter 0.3s ease, transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .portrait-frame:hover .portrait-img {
-  filter: grayscale(0%);
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .portrait-meta {
@@ -757,7 +669,6 @@ button {
 .meta-role {
   font-size: 0.85rem;
   color: var(--text-muted);
-  font-family: 'Fira Code', monospace;
 }
 
 .about__heading {
@@ -794,8 +705,8 @@ button {
 }
 
 .highlight-item i {
-  font-size: 1.4rem;
-  color: var(--accent-cyan);
+  font-size: 1.35rem;
+  color: var(--accent-primary);
   margin-top: 2px;
 }
 
@@ -810,6 +721,9 @@ button {
   color: var(--text-muted);
 }
 
+/* ==========================================================================
+   8. Principles Section
+   ========================================================================== */
 .principles__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -822,31 +736,23 @@ button {
   border-radius: 16px;
   padding: 1.75rem 1.5rem;
   position: relative;
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .principle-card:hover {
   transform: translateY(-5px);
-  border-color: var(--border-hover);
+  border-color: var(--accent-primary);
   box-shadow: var(--shadow-glow);
-}
-
-.principle-card__num {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.8rem;
-  color: var(--accent-cyan);
-  font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 .principle-card__icon {
   font-size: 2rem;
-  color: var(--text-primary);
+  color: var(--accent-primary);
   margin-bottom: 1.25rem;
 }
 
 .principle-card__title {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
@@ -855,8 +761,12 @@ button {
   font-size: 0.875rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  text-align: justify;
 }
 
+/* ==========================================================================
+   9. Education / Timeline Section
+   ========================================================================== */
 .timeline {
   position: relative;
   max-width: 900px;
@@ -888,8 +798,7 @@ button {
   height: 12px;
   border-radius: 50%;
   background: var(--bg-primary);
-  border: 3px solid var(--accent-cyan);
-  box-shadow: 0 0 10px var(--accent-cyan);
+  border: 3px solid var(--accent-primary);
 }
 
 .timeline__card {
@@ -897,11 +806,12 @@ button {
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 1.75rem;
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
 .timeline__card:hover {
   border-color: var(--border-hover);
+  transform: translateY(-3px);
 }
 
 .timeline__header {
@@ -914,10 +824,11 @@ button {
 .timeline__badge {
   font-family: 'Fira Code', monospace;
   font-size: 0.75rem;
-  color: var(--accent-cyan);
-  background: var(--accent-cyan-glow);
+  color: var(--accent-primary);
+  background: var(--accent-subtle);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
+  font-weight: 600;
 }
 
 .timeline__gpa,
@@ -943,6 +854,7 @@ button {
   font-size: 0.9rem;
   color: var(--text-muted);
   line-height: 1.6;
+  text-align: justify;
 }
 
 .timeline__list {
@@ -955,15 +867,19 @@ button {
   font-size: 0.9rem;
   color: var(--text-secondary);
   margin-bottom: 0.4rem;
+  text-align: justify;
 }
 
 .timeline__list li::before {
   content: '▹';
   position: absolute;
   left: 0;
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
 }
 
+/* ==========================================================================
+   10. Projects Section
+   ========================================================================== */
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -974,30 +890,99 @@ button {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 18px;
-  padding: 1.75rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-hover);
+  transform: translateY(-5px);
+  border-color: var(--accent-primary);
   box-shadow: var(--shadow-glow);
+}
+
+.project-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border-color);
+  background: #141416;
+  cursor: pointer;
+}
+
+.project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.project-card:hover .project-card__img {
+  transform: scale(1.03);
+}
+
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 20, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-card__overlay {
+  opacity: 1;
+}
+
+.btn-preview-project,
+.btn-preview-cert {
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 14px var(--accent-glow);
+  transform: translateY(4px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.project-card:hover .btn-preview-project,
+.cert-card:hover .btn-preview-cert {
+  transform: translateY(0);
+}
+
+.btn-preview-project:hover,
+.btn-preview-cert:hover {
+  background: var(--accent-primary-hover);
 }
 
 .project-card__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .project-card__idx {
-  font-family: 'Fira Code', monospace;
   font-size: 0.75rem;
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .project-card__actions {
@@ -1016,21 +1001,13 @@ button {
   justify-content: center;
   color: var(--text-secondary);
   font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .p-action:hover {
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
-}
-
-.p-action--disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
-}
-
-.p-action--disabled:hover {
-  color: var(--text-secondary);
-  border-color: var(--border-color);
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .project-card__content {
@@ -1044,6 +1021,15 @@ button {
   font-weight: 700;
   margin-bottom: 0.75rem;
   line-height: 1.3;
+}
+
+.project-card__title--clickable {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.project-card__title--clickable:hover {
+  color: var(--accent-primary);
 }
 
 .project-card__desc {
@@ -1071,64 +1057,138 @@ button {
   border: 1px solid var(--border-color);
 }
 
+/* ==========================================================================
+   12. Certifications Section
+   ========================================================================== */
 .certs__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .cert-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 1.25rem;
+  border-radius: 16px;
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
   text-align: left;
-  transition: all 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
+  padding: 0;
+  cursor: pointer;
 }
 
 .cert-card:hover {
-  border-color: var(--accent-cyan);
+  border-color: var(--accent-primary);
   background: var(--bg-card-hover);
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
 }
 
-.cert-card__icon {
-  font-size: 1.75rem;
-  color: var(--accent-cyan);
+.cert-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #141416;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.cert-card__details {
+.cert-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.cert-card:hover .cert-card__img {
+  transform: scale(1.03);
+}
+
+.cert-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 20, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cert-card:hover .cert-card__overlay {
+  opacity: 1;
+}
+
+.cert-card__body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   flex: 1;
 }
 
-.cert-card__title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.3;
-}
-
-.cert-card__issuer {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  display: block;
+.cert-card__badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
 }
 
 .cert-card__badge {
   font-family: 'Fira Code', monospace;
   font-size: 0.7rem;
-  color: var(--accent-cyan);
-  background: var(--accent-cyan-glow);
-  padding: 0.15rem 0.4rem;
+  color: var(--accent-primary);
+  background: var(--accent-subtle);
+  padding: 0.15rem 0.45rem;
   border-radius: 4px;
+  font-weight: 600;
 }
 
-/* Certificate Modal */
-.certificate-modal {
+.cert-card__format {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cert-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.cert-card__issuer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.cert-card__verified {
+  color: var(--accent-primary);
+  font-size: 0.95rem;
+}
+
+.cert-card__issuer {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   13. Unified Modal Architecture (Certificates & Projects)
+   ========================================================================== */
+.certificate-modal,
+.project-modal {
   position: fixed;
   inset: 0;
   z-index: 2000;
@@ -1137,70 +1197,280 @@ button {
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
+  padding: 1.5rem;
 }
 
-.certificate-modal.active {
+.certificate-modal.active,
+.project-modal.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-.certificate-modal__backdrop {
+.certificate-modal__backdrop,
+.project-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 10, 12, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.certificate-modal__panel,
+.project-modal__panel {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  width: 100%;
+  max-height: 90vh;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), var(--shadow-glow);
+  z-index: 10;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .certificate-modal__panel {
-  position: relative;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  width: 90%;
-  max-width: 900px;
-  height: 80vh;
-  padding: 1.5rem;
+  max-width: 960px;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-lg);
 }
 
-.certificate-modal__close {
+.project-modal__panel {
+  max-width: 860px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.certificate-modal__close,
+.project-modal__close {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   color: var(--text-primary);
-  z-index: 10;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
-.certificate-modal__frame,
+.certificate-modal__close *,
+.project-modal__close * {
+  pointer-events: none;
+}
+
+.certificate-modal__close:hover,
+.project-modal__close:hover {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  transform: rotate(90deg) scale(1.05);
+}
+
+.certificate-modal__header {
+  margin-bottom: 1rem;
+  padding-right: 2.5rem;
+}
+
+.certificate-modal__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.certificate-modal__issuer {
+  font-size: 0.85rem;
+  color: var(--accent-primary);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.certificate-modal__media {
+  flex: 1;
+  min-height: 420px;
+  max-height: 72vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+}
+
 .certificate-modal__img {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  display: block;
   object-fit: contain;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.2s ease;
+}
+
+.certificate-modal__img:not([src]),
+.certificate-modal__img[src=""] {
+  display: none !important;
+}
+
+.certificate-modal__frame {
+  width: 100%;
+  height: 70vh;
+  border: 0;
+  border-radius: 8px;
 }
 
 .certificate-modal__actions {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   display: flex;
   justify-content: flex-end;
+  gap: 0.75rem;
 }
 
-.certificate-modal__open {
-  background: var(--accent-cyan);
-  color: #000;
+/* Project Modal Details */
+.project-modal__media {
+  width: 100%;
+  max-height: 380px;
+  overflow: hidden;
+  background: #141416;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+}
+
+.project-modal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-modal__body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.project-modal__idx {
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   font-weight: 600;
-  padding: 0.5rem 1.25rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
 }
 
+.project-modal__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.25rem;
+}
+
+.project-modal__desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.project-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-modal__subtitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-modal__subtitle i {
+  color: var(--accent-primary);
+}
+
+.project-modal__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-modal__highlights li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.project-modal__highlights li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-weight: bold;
+}
+
+.project-modal__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-modal__tech span {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.project-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   14. Contact Section
+   ========================================================================== */
 .contact__intro {
   max-width: 600px;
   margin-bottom: 2.5rem;
@@ -1219,7 +1489,7 @@ button {
 
 .contact__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -1227,51 +1497,73 @@ button {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1.35rem 1.4rem;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.1rem;
   position: relative;
-  transition: all 0.3s ease;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
 .contact-card:hover {
-  border-color: var(--accent-cyan);
-  transform: translateY(-3px);
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
 }
 
 .contact-card__icon {
-  font-size: 1.75rem;
-  color: var(--accent-cyan);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--accent-primary);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .contact-card__content {
   flex: 1;
-
+  min-width: 0;
+  overflow: hidden;
 }
 
 .contact-card__label {
   font-size: 0.75rem;
   color: var(--text-muted);
   display: block;
-  font-family: 'Fira Code', monospace;
+  margin-bottom: 0.2rem;
 }
 
 .contact-card__value {
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: var(--text-primary);
+  display: block;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
 }
 
 .contact-card__arrow {
   color: var(--text-muted);
   font-size: 1.25rem;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .contact-card:hover .contact-card__arrow {
-  color: var(--accent-cyan);
+  color: var(--accent-primary);
+  transform: translate(2px, -2px);
 }
 
+/* ==========================================================================
+   15. Footer
+   ========================================================================== */
 .footer {
   border-top: 1px solid var(--border-color);
   padding: 3rem 0;
@@ -1282,13 +1574,13 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.footer__logo {
+.footer__brand .footer__logo {
   font-family: 'Fira Code', monospace;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-primary);
 }
 
@@ -1314,11 +1606,12 @@ button {
   justify-content: center;
   font-size: 1.1rem;
   color: var(--text-secondary);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .footer__links a:hover {
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .footer__bottom {
@@ -1331,239 +1624,122 @@ button {
   color: var(--text-muted);
 }
 
-.footer__sys {
-  font-family: 'Fira Code', monospace;
-  color: #10B981;
-}
-
-[data-anim="fade-up"],
-.anim-fade-up {
+/* ==========================================================================
+   16. Scroll Animations & Scroll To Top
+   ========================================================================== */
+[data-anim="fade-up"] {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-[data-anim="fade-up"].is-visible,
-.anim-fade-up.is-visible {
+[data-anim="fade-up"].is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Card Micro Hover Animations */
-.principle-card,
-.project-card,
-.cert-card,
-.contact-card,
-.timeline__card {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease !important;
-}
-
-.principle-card:hover,
-.project-card:hover,
-.cert-card:hover,
-.contact-card:hover,
-.timeline__card:hover {
-  transform: translateY(-6px) scale(1.015);
-}
-
-/* Scroll To Top Floating Arrow Button (Theme Responsive) */
 .scroll-top-btn {
-  position: fixed !important;
-  bottom: 2rem !important;
-  right: 2rem !important;
-  width: 50px !important;
-  height: 50px !important;
-  border-radius: 50% !important;
-  background: var(--bg-card) !important;
-  border: 1px solid var(--border-hover) !important;
-  color: var(--accent-cyan) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  box-shadow: var(--shadow-lg) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  z-index: 99999 !important;
-  text-decoration: none !important;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border-color 0.2s ease;
+  z-index: 999;
 }
 
 .scroll-top-btn svg {
-  width: 24px !important;
-  height: 24px !important;
-  stroke: var(--accent-cyan) !important;
-  transition: stroke 0.3s ease !important;
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
 }
 
 .scroll-top-btn.is-visible {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0) !important;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .scroll-top-btn:hover {
-  background: var(--accent-cyan) !important;
-  border-color: var(--accent-cyan) !important;
-  transform: translateY(-4px) !important;
-  box-shadow: var(--shadow-glow) !important;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
 }
 
 .scroll-top-btn:hover svg {
-  stroke: #FFFFFF !important;
+  transform: translateY(-2px);
 }
 
-:root[data-theme="light"] .scroll-top-btn:hover svg {
-  stroke: #FFFFFF !important;
-}
-
+/* ==========================================================================
+   17. Responsive Media Queries
+   ========================================================================== */
 @media (max-width: 1024px) {
-  .hero__container {
-    grid-template-columns: 1fr;
-  }
-
+  .hero__container,
   .about__grid {
     grid-template-columns: 1fr;
   }
 
-  .principles__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .projects__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  .principles__grid,
+  .projects__grid,
   .certs__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
   .navbar {
     top: 0.75rem;
     width: calc(100% - 1.5rem);
-    max-width: calc(100% - 1.5rem);
     padding: 0.45rem 0.85rem;
-    border-radius: 100px;
   }
 
   .navbar.scrolled {
     top: 0.5rem;
-    box-shadow: var(--shadow-lg);
-  }
-
-  .navbar__container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
   }
 
   .navbar__logo {
     font-size: 0.95rem;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .navbar__logo-symbol {
-    margin-right: 0.25rem;
-  }
-
-  .navbar__actions {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
-  }
-
-  .language-switcher {
-    font-size: 0.68rem;
-    gap: 0.15rem;
-    padding: 0.22rem 0.45rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 100px;
-    white-space: nowrap;
-  }
-
-  .language-switcher > i {
-    font-size: 0.8rem;
-    margin-right: 0.1rem;
-  }
-
-  .language-switcher__option {
-    padding: 0.1rem 0.15rem;
-  }
-
-  .navbar__theme-toggle {
-    width: 32px;
-    height: 32px;
-    font-size: 0.95rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
   }
 
   .navbar__toggle {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    gap: 3.5px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    flex-shrink: 0;
-    cursor: pointer;
-    z-index: 1000;
-    position: relative;
-    transition: all 0.2s ease;
   }
 
-  .navbar__toggle:hover,
-  .navbar__toggle.open {
-    border-color: var(--accent-cyan);
-    color: var(--accent-cyan);
-  }
-
-  .navbar__toggle-bar {
-    height: 1.5px;
-    width: 15px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: transform 0.25s ease, opacity 0.2s ease;
-  }
-
-  /* Hamburger → X animation */
   .navbar__toggle.open .navbar__toggle-bar:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
+    transform: translateY(5.5px) rotate(45deg);
   }
 
   .navbar__toggle.open .navbar__toggle-bar:nth-child(2) {
     opacity: 0;
-    transform: scaleX(0);
   }
 
   .navbar__toggle.open .navbar__toggle-bar:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
+    transform: translateY(-5.5px) rotate(-45deg);
   }
 
   .navbar__links {
-    display: flex;
-    flex-direction: column;
     position: absolute;
     top: calc(100% + 0.5rem);
     left: 0;
@@ -1574,16 +1750,13 @@ button {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    justify-content: flex-start;
-    align-items: stretch;
+    flex-direction: column;
     padding: 0.75rem 0.85rem;
     gap: 0.25rem;
     z-index: 999;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    box-shadow: var(--shadow-lg);
     max-height: calc(100vh - 5.5rem);
     overflow-y: auto;
-
-    /* Smooth scale & fade reveal */
     opacity: 0;
     transform: translateY(-8px) scale(0.98);
     transition: opacity 0.25s ease, transform 0.25s ease;
@@ -1602,21 +1775,15 @@ button {
 
   .navbar__links .navbar__link {
     font-size: 0.95rem;
-    font-weight: 500;
     color: var(--text-primary);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease, color 0.2s ease;
     padding: 0.65rem 0.9rem;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
     width: 100%;
   }
 
   .navbar__links .navbar__link:hover {
     background: var(--bg-card-hover);
-    color: var(--accent-cyan);
+    color: var(--accent-primary);
   }
 
   .navbar__links li:last-child {
@@ -1626,43 +1793,22 @@ button {
   }
 
   .navbar__links .navbar__link--cta {
-    justify-content: center !important;
-    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-indigo) 100%) !important;
-    color: var(--bg-primary) !important;
+    justify-content: center;
+    background: var(--accent-primary);
+    color: #ffffff;
     border: none;
-    padding: 0.75rem 1rem !important;
+    padding: 0.75rem 1rem;
     border-radius: 12px;
-    font-weight: 600;
-    box-shadow: var(--shadow-sm);
   }
-
-  .navbar__links .navbar__link--cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
-  }
-
-  .navbar__links.active .navbar__link {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  /* Staggered animation for each nav link */
-  .navbar__links.active li:nth-child(1) .navbar__link { transition-delay: 0.03s; }
-  .navbar__links.active li:nth-child(2) .navbar__link { transition-delay: 0.06s; }
-  .navbar__links.active li:nth-child(3) .navbar__link { transition-delay: 0.09s; }
-  .navbar__links.active li:nth-child(4) .navbar__link { transition-delay: 0.12s; }
-  .navbar__links.active li:nth-child(5) .navbar__link { transition-delay: 0.15s; }
-  .navbar__links.active li:nth-child(6) .navbar__link { transition-delay: 0.18s; }
-  .navbar__links.active li:nth-child(7) .navbar__link { transition-delay: 0.21s; }
 
   .hero {
-    padding-top: 5.75rem;
+    padding-top: 6.5rem;
     padding-bottom: 3rem;
     min-height: auto;
   }
 
   .hero__name {
-    font-size: 2.5rem;
+    font-size: 2.35rem;
   }
 
   .section {
@@ -1673,27 +1819,53 @@ button {
     font-size: 1.85rem;
   }
 
-  .section__header {
-    margin-bottom: 2.5rem;
-  }
-
   .principles__grid,
   .projects__grid,
   .certs__grid,
-  .contact__grid {
-    grid-template-columns: 1fr;
+  .contact__grid,
+  .about__highlights {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .about__highlights {
-    grid-template-columns: 1fr;
+  .contact-card {
+    padding: 1.2rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline__marker {
+    left: -1.5rem;
+  }
+
+  .timeline__card {
+    padding: 1.35rem 1.15rem;
+  }
+
+  .certificate-modal,
+  .project-modal {
+    padding: 1rem;
+  }
+
+  .certificate-modal__panel,
+  .project-modal__panel {
+    padding: 1.35rem 1.15rem;
+    border-radius: 16px;
+    max-height: 94vh;
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
   .navbar {
+    top: 0.5rem;
     width: calc(100% - 1.25rem);
-    max-width: calc(100% - 1.25rem);
-    padding: 0.45rem 0.75rem;
+    padding: 0.4rem 0.75rem;
   }
 
   .navbar__logo {
@@ -1701,28 +1873,44 @@ button {
   }
 
   .language-switcher {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.65rem;
+    font-size: 0.68rem;
+    gap: 0.2rem;
   }
 
-  .navbar__theme-toggle,
-  .navbar__toggle {
-    width: 30px;
-    height: 30px;
+  .navbar__theme-toggle {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  .hero {
+    padding-top: 5.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hero__badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.65rem;
   }
 
   .hero__name {
-    font-size: 2rem;
+    font-size: clamp(1.85rem, 8.5vw, 2.25rem);
+    line-height: 1.15;
+  }
+
+  .hero__title {
+    font-size: 0.95rem;
   }
 
   .hero__tagline {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
   }
 
   .hero__actions {
     flex-direction: column;
     width: 100%;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .hero__actions .btn {
@@ -1731,16 +1919,192 @@ button {
   }
 
   .hero__metrics {
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    padding-top: 1.25rem;
+    width: 100%;
+  }
+
+  .metric-val {
+    font-size: 1.2rem;
+  }
+
+  .metric-lbl {
+    font-size: 0.68rem;
+    line-height: 1.3;
   }
 
   .metric-sep {
     display: none;
   }
 
+  .hero__card {
+    padding: 1.15rem 0.9rem;
+    border-radius: 16px;
+    gap: 1.15rem;
+  }
+
+  .skill-category__tags span {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.45rem;
+  }
+
+  .section {
+    padding: 3.25rem 0;
+  }
+
+  .section__header {
+    margin-bottom: 2rem;
+  }
+
   .section__title {
     font-size: 1.5rem;
+  }
+
+  .about__heading {
+    font-size: 1.2rem;
+  }
+
+  .about__paragraph {
+    font-size: 0.9rem;
+  }
+
+  .about__portrait-card {
+    padding: 0.85rem;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .highlight-item {
+    padding: 0.85rem;
+    gap: 0.65rem;
+  }
+
+  .timeline {
+    padding-left: 1.15rem;
+  }
+
+  .timeline__marker {
+    left: -1.15rem;
+    width: 9px;
+    height: 9px;
+  }
+
+  .timeline__card {
+    padding: 1.15rem 0.85rem;
+    border-radius: 14px;
+  }
+
+  .timeline__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .timeline__title {
+    font-size: 1.05rem;
+  }
+
+  .timeline__subtitle {
+    font-size: 0.85rem;
+  }
+
+  .timeline__list li {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .project-card,
+  .cert-card {
+    padding: 1.15rem 0.95rem;
+    border-radius: 14px;
+  }
+
+  .contact-card {
+    padding: 1rem 0.9rem;
+    gap: 0.75rem;
+    border-radius: 14px;
+  }
+
+  .contact-card__icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+  }
+
+  .contact-card__label {
+    font-size: 0.68rem;
+  }
+
+  .contact-card__value {
+    font-size: clamp(0.78rem, 3.4vw, 0.88rem);
+  }
+
+  .contact-card__arrow {
+    font-size: 1.05rem;
+  }
+
+  .certificate-modal,
+  .project-modal {
+    padding: 0.5rem;
+  }
+
+  .certificate-modal__panel,
+  .project-modal__panel {
+    padding: 1.15rem 0.85rem;
+    border-radius: 14px;
+  }
+
+  .certificate-modal__title,
+  .project-modal__title {
+    font-size: 1.1rem;
+  }
+
+  .certificate-modal__media {
+    min-height: 200px;
+    max-height: 50vh;
+    padding: 0.4rem;
+  }
+
+  .project-modal__body {
+    padding: 1.15rem 0.85rem;
+  }
+
+  .certificate-modal__actions,
+  .project-modal__actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .certificate-modal__actions .btn,
+  .project-modal__actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .footer {
+    padding: 2.25rem 0;
+  }
+
+  .footer__content {
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .footer__links {
+    justify-content: center;
+  }
+
+  .scroll-top-btn {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 40px;
+    height: 40px;
   }
 }

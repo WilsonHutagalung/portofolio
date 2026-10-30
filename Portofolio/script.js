@@ -1,159 +1,59 @@
-(() => {
-  try {
-    const storageKey = 'portfolio-theme';
-    const storedTheme = localStorage.getItem(storageKey);
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const theme = storedTheme || systemTheme;
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-  } catch (error) {
-    document.documentElement.dataset.theme = 'dark';
-    document.documentElement.style.colorScheme = 'dark';
-  }
-})();
-
 document.addEventListener('DOMContentLoaded', () => {
-  const themeToggleBtn = document.getElementById('themeToggle');
-  const storageKey = 'portfolio-theme';
+  /* ==========================================================================
+     1. Asset URL Resolver (Preserves directory context across Live Server / subfolders)
+     ========================================================================== */
+  const scriptElement = document.currentScript || document.querySelector('script[src*="script.js"]');
+  const baseDir = scriptElement?.src
+    ? new URL('.', scriptElement.src)
+    : new URL('.', window.location.href);
 
-  function getCurrentTheme() {
-    return document.documentElement.dataset.theme || 'dark';
+  const getAssetUrl = (path) => {
+    if (!path) return '';
+    if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) return path;
+    try {
+      return new URL(path, baseDir).href;
+    } catch {
+      return path;
+    }
+  };
+
+  // Self-heal legacy pathnames from old pushState (e.g. /certifications -> base path + #certifications)
+  try {
+    const legacyRoutes = ['certifications', 'projects', 'about', 'experience', 'education', 'principles', 'contact'];
+    const currentPath = window.location.pathname;
+    const matchedRoute = legacyRoutes.find(r => currentPath.endsWith('/' + r) || currentPath === '/' + r);
+    if (matchedRoute) {
+      const corrected = baseDir.pathname + '#' + matchedRoute;
+      window.history.replaceState(null, '', corrected);
+    }
+  } catch (e) {
+    // Graceful no-op
   }
 
-  function setTheme(theme) {
+  /* ==========================================================================
+     2. Theme Management (Sync with inline head script)
+     ========================================================================== */
+  const themeToggle = document.getElementById('themeToggle');
+  const getTheme = () => document.documentElement.dataset.theme || 'dark';
+  const setTheme = (theme) => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    localStorage.setItem(storageKey, theme);
-  }
+    localStorage.setItem('portfolio-theme', theme);
+  };
 
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const nextTheme = getCurrentTheme() === 'dark' ? 'light' : 'dark';
-      setTheme(nextTheme);
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      setTheme(getTheme() === 'dark' ? 'light' : 'dark');
     });
   }
 
-  const languageButtons = document.querySelectorAll('[data-language]');
-  const languageStorageKey = 'portfolio-language';
+  /* ==========================================================================
+     3. Internationalization (i18n)
+     Harvests base EN copy from DOM to avoid duplicate dictionaries.
+     ========================================================================== */
+  const langBtns = document.querySelectorAll('[data-language]');
   const translations = {
-    en: {
-      'nav.about': 'About',
-      'nav.architecture': 'Architecture',
-      'nav.education': 'Education',
-      'nav.experience': 'Experience',
-      'nav.projects': 'Projects',
-      'nav.certifications': 'Certs',
-      'nav.contact': 'Contact',
-      'hero.badge': 'AVAILABLE FOR NEW OPPORTUNITIES',
-      'hero.title': 'Software Engineer & Cloud Computing Specialist',
-      'hero.tagline': 'Building resilient web architectures, optimized API services, and scalable cloud solutions with clean code principles.',
-      'hero.explore': 'Explore Engineering Work',
-      'hero.contact': 'Get In Touch',
-      'metrics.gpa': 'Cumulative GPA',
-      'metrics.track': 'Bangkit GCP Track',
-      'metrics.certs': 'Professional Certs',
-      'sections.aboutTag': 'PROFILE OVERVIEW',
-      'sections.aboutTitle': 'About Me',
-      'sections.principlesTag': 'SYSTEM ARCHITECTURE & CRAFT',
-      'sections.principlesTitle': 'Engineering Principles',
-      'sections.educationTag': 'ACADEMIC BACKGROUND',
-      'sections.educationTitle': 'Education',
-      'sections.experienceTag': 'CAREER & LEADERSHIP',
-      'sections.experienceTitle': 'Professional Experience',
-      'sections.projectsTag': 'FEATURED PROJECTS',
-      'sections.projectsTitle': 'Engineering Projects',
-      'projects.aressaTitle': 'Aressa Golden Farm',
-      'projects.aressaDescription': 'A company profile website for Aressa Golden Farm, an exporter of palm sugar. It presents the company and its palm sugar products through a modern, responsive interface built with React and Vite.',
-      'projects.posTitle': 'Cashier Application (Universal POS)',
-      'projects.posDescription': 'An offline desktop point-of-sale application for retail, food and beverage, service businesses, and more. It supports product and service management, inventory, customers, suppliers, cashier shifts, transaction history, sales reports, database backup, and role-based access for admins, cashiers, and managers.',
-      'projects.cloudTag': '03 // CLOUD COMPUTING & BACKEND',
-      'projects.bitewiseTitle': 'Bitewise Backend API',
-      'projects.bitewiseDescription': 'Bitewise is a nutrition platform that tackles Indonesia\'s nutrition challenges such as stunting, wasting, obesity, and anemia, especially among children and women. As part of the Cloud Computing team, I built the backend REST API with Node.js and Express, handling authentication, database access, and file storage, and I deployed it together with the machine learning prediction service as Docker containers on Google Cloud. The API is documented with Postman for the mobile team.',
-      'projects.hrTag': '04 // HUMAN RESOURCES SYSTEM',
-      'projects.hrTitle': 'Attendance & HR Management System',
-      'projects.hrDescription': 'A web-based employee attendance and workforce management application for companies and industrial organizations. It supports daily attendance recording through Clock In/Out, work shift management, automatic late calculation, and leave and permission requests. The system features a responsive employee portal and a Filament-based admin panel for centralized master data and access management.',
-      'sections.certificationsTag': 'CREDENTIALS & ACCOMPLISHMENTS',
-      'sections.certificationsTitle': 'Certifications',
-      'sections.contactTag': 'GET IN TOUCH',
-      'sections.contactTitle': 'Initiate Contact',
-      'contact.heading': "Let's build something extraordinary together.",
-      'contact.description': 'Whether you have a question, a project proposal, or an engineering opportunity, my inbox is always open.',
-      'contact.email': 'Direct Email',
-      'contact.phone': 'Phone / WhatsApp',
-      'contact.linkedin': 'LinkedIn Profile',
-      'contact.github': 'GitHub Code Repos',
-      'footer.tagline': 'Designed with clean architecture & modern web standards.',
-      'terminal.version': 'TypeScript 5.4',
-      'terminal.status': 'Compiled successfully',
-      'terminal.latency': '0ms latency',
-      'terminal.scroll': 'SCROLL DOWN',
-      'certificate.open': 'Open Original Document',
-      'about.role': 'Informatics Graduate',
-      'about.heading': 'Software Engineer focused on Backend Systems & Cloud Computing.',
-      'about.paragraphOne': 'Informatics graduate from <strong>Mulawarman University</strong> with a <strong>GPA of 3.83/4.00</strong>, focused on backend engineering and cloud computing. Experienced in building web and mobile applications, RESTful APIs with Node.js, and database-driven services.',
-      'about.paragraphTwo': 'Through <strong>MSIB Bangkit Academy (Cloud Computing Track)</strong>, I worked with Express.js, Hapi.js, Cloud SQL, Cloud Storage, App Engine, and Cloud Run on <strong>Google Cloud Platform (GCP)</strong>. I also have experience developing Augmented Reality applications with Unity and C#.',
-      'about.locationLabel': 'Location',
-      'about.locationValue': 'Samarinda, East Kalimantan',
-      'about.degreeLabel': 'Degree & GPA',
-      'about.degreeValue': 'S.Kom — GPA 3.83',
-      'about.cloudLabel': 'Cloud Expertise',
-      'about.cloudValue': 'GCP Architecture & Cloud APIs',
-      'about.statusLabel': 'Status',
-      'about.statusValue': 'Open for Engineering Positions',
-      'principles.modularTitle': 'Backend & Modular Systems',
-      'principles.modularDescription': 'Designing maintainable backend systems with clear responsibilities, reusable modules, and reliable data flows.',
-      'principles.cloudTitle': 'Cloud Computing & Deployment',
-      'principles.cloudDescription': 'Deploying containerized applications and machine learning services with Google Cloud, App Engine, and Cloud Run.',
-      'principles.apiTitle': 'REST APIs & Database Engineering',
-      'principles.apiDescription': 'Building RESTful services with Node.js and Express, integrating database access, authentication, storage, and validation.',
-      'principles.uiTitle': 'Responsive Web & Application UI',
-      'principles.uiDescription': 'Creating responsive web interfaces with React and modern frontend tools, with attention to usability and clear interaction.',
-      'education.gpa': 'GPA 3.83 / 4.00',
-      'education.universityDegree': 'Bachelor of Informatics (S1)',
-      'education.universityDescription': 'Specializing in Software Engineering, Cloud Computing, Database Management, Data Structures & Algorithms, and Augmented Reality.',
-      'education.highSchoolScore': 'Avg Score 81',
-      'education.highSchoolMajor': 'Natural Sciences Major (IPA)',
-      'experience.bangkitTitle': 'Cloud Computing Cohort',
-      'experience.bangkitSubtitle': 'Bangkit Academy led by Google, GoTo, and Traveloka',
-      'experience.bangkitOne': 'Completed the Cloud Computing Cohort curriculum at Bangkit Academy, covering cloud computing fundamentals, DevOps/SRE, web programming, JavaScript (Node.js), RESTful API backend development, database management, storage, and service deployment on Google Cloud Platform.',
-      'experience.bangkitTwo': 'Developed backend APIs using Express.js and Node.js, integrated with Cloud SQL and Google Cloud Storage, as well as Gemini API for Generative AI features.',
-      'experience.bangkitThree': 'Deployed backend APIs using App Engine and machine learning models using Cloud Run.',
-      'experience.bangkitFour': 'Applied key learnings to the BiteWise capstone project, a healthcare modernization application, as a graduation requirement for Bangkit Academy.',
-      'experience.accifenceTitle': 'Accifence Event Coordinator',
-      'experience.accifenceSubtitle': 'Association of Informatics',
-      'experience.accifenceOne': 'Led a 4-member event coordination team to organize course orientation and introduction sessions for 109 freshman students, covering Algorithms, Networking, Multimedia, Artificial Intelligence, Mathematics, and Physics.',
-      'experience.accifenceTwo': 'Served as an organizing committee member for the national event MIT-Week (Mulawarman Informatics Tech Week) 2023.',
-      'experience.communityTag': 'Community Service',
-      'experience.communityTitle': 'Community Service Program Executor',
-      'experience.communitySubtitle': 'Mulawarman University',
-      'experience.communityOne': 'Organized microcontroller training for more than 30 students of SMAN 6 Samarinda with a five-member team, including an assessment through exercises at the end of the training.',
-      'experience.communityTwo': 'Published a community service article from the activity in Jurnal Inovasi Teknologi Masyarakat (INTEKMAS).',
-      'certificates.ai': 'Basic AI Learning',
-      'certificates.javascript': 'Basic JavaScript Programming',
-      'certificates.git': 'Basic Git with GitHub',
-      'certificates.web': 'Basic Web Programming',
-      'certificates.backend': 'Building Back-End Applications (GCP)',
-      'certificates.ml': 'Applying Machine Learning (GCP)',
-      'certificates.software': 'Software Engineering Fundamentals',
-      'certificates.python': 'Python Programming Language',
-      'certificates.cloud': 'Google Cloud Engineer Learning Path',
-      'certificates.bangkit': 'Bangkit Cloud Computing',
-      'certificates.issuer': 'Dicoding Indonesia',
-      'page.title': 'Wilson Boyaron Hutagalung // Software Engineer & Cloud Architect',
-      'experience.msibTag': 'MSIB Program',
-      'experience.organizationTag': 'Student Organization',
-      'projects.websiteTag': '01 // BUSINESS WEBSITE',
-      'projects.applicationTag': '02 // BUSINESS APPLICATION',
-      'footer.copyright': '&copy; 2026 Wilson Boyaron Hutagalung. All rights reserved.',
-      'footer.status': 'STATUS: OPERATIONAL',
-      'terminal.degree': '"B.S. Informatics"',
-      'terminal.backend': '"Backend Systems"',
-      'terminal.infrastructure': '"Cloud Infrastructure"',
-      'terminal.fullStack': '"Full-Stack Web"',
-      'terminal.opportunities': '"Open for Engineering Opportunities"',
-      'terminal.philosophy': '// Philosophy',
-      'terminal.motto': '"Resilient. Performant. Clean."'
-    },
+    en: {},
     id: {
       'nav.about': 'Tentang Saya',
       'nav.architecture': 'Arsitektur',
@@ -176,18 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
       'sections.principlesTitle': 'Prinsip Engineering',
       'sections.educationTag': 'LATAR BELAKANG AKADEMIK',
       'sections.educationTitle': 'Pendidikan',
-      'sections.experienceTag': 'KARIER & KEPEMIMPINAN',
-      'sections.experienceTitle': 'Pengalaman Profesional',
+      'sections.experienceTag': 'Pengalaman',
+      'sections.experienceTitle': 'Pengalaman',
       'sections.projectsTag': 'PROJECT UNGGULAN',
       'sections.projectsTitle': 'Project Engineering',
+      'projects.preview': 'Lihat Detail',
+      'projects.highlightsTitle': 'Arsitektur & Fitur Utama',
+      'projects.techTitle': 'Teknologi & Tools',
+      'projects.openGithub': 'Repository GitHub',
+      'projects.openLive': 'Live Demo / Docs',
       'projects.aressaTitle': 'Aressa Golden Farm',
       'projects.aressaDescription': 'Website company profile untuk Aressa Golden Farm, perusahaan eksportir gula aren. Website ini menampilkan informasi perusahaan dan produk gula aren melalui tampilan modern dan responsif yang dibangun dengan React dan Vite.',
       'projects.posTitle': 'Aplikasi Kasir (Universal POS)',
       'projects.posDescription': 'Aplikasi point of sale desktop yang berjalan secara offline untuk berbagai jenis usaha retail, F&B, jasa, dan lainnya. Aplikasi ini mendukung pengelolaan produk dan jasa, inventori, pelanggan, supplier, shift kasir, riwayat transaksi, laporan penjualan, backup database, serta akses berbasis peran untuk Admin, Kasir, dan Manajer.',
-      'projects.cloudTag': '03 // CLOUD COMPUTING & BACKEND',
+      'projects.cloudTag': 'Cloud Computing & Backend',
       'projects.bitewiseTitle': 'Bitewise Backend API',
       'projects.bitewiseDescription': 'Bitewise adalah platform nutrisi yang menangani tantangan gizi di Indonesia seperti stunting, wasting, obesitas, dan anemia, terutama pada anak-anak dan perempuan. Sebagai bagian dari tim Cloud Computing, saya membangun REST API backend dengan Node.js dan Express untuk menangani autentikasi, akses database, dan penyimpanan file. Saya juga melakukan deployment bersama layanan prediksi machine learning dalam container Docker di Google Cloud. API didokumentasikan menggunakan Postman untuk tim mobile.',
-      'projects.hrTag': '04 // SISTEM MANAJEMEN SDM',
+      'projects.hrTag': 'Sistem Presensi & Manajemen SDM',
       'projects.hrTitle': 'Sistem Presensi & Manajemen SDM',
       'projects.hrDescription': 'Aplikasi presensi dan manajemen kehadiran karyawan berbasis web untuk perusahaan maupun industri. Sistem ini mendukung pencatatan kehadiran harian melalui Clock In/Out, manajemen shift kerja, kalkulasi keterlambatan otomatis, serta pengajuan cuti dan izin. Dilengkapi portal karyawan yang responsif dan panel admin berbasis Filament untuk mengelola data master dan hak akses secara terpusat.',
       'sections.certificationsTag': 'SERTIFIKAT & PENCAPAIAN',
@@ -201,11 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
       'contact.linkedin': 'Profil LinkedIn',
       'contact.github': 'Repository GitHub',
       'footer.tagline': 'Dirancang dengan arsitektur yang bersih dan standar web modern.',
-      'terminal.version': 'TypeScript 5.4',
-      'terminal.status': 'Berhasil dikompilasi',
-      'terminal.latency': 'Latensi 0ms',
-      'terminal.scroll': 'GULIR KE BAWAH',
-      'certificate.open': 'Buka Dokumen Asli',
+      'hero.cardTitle': 'Kompetensi Teknis',
+      'hero.cardPill': 'Fokus Utama',
+      'hero.categoryBackend': 'Backend & API',
+      'hero.categoryCloud': 'Cloud & Infrastruktur',
+      'hero.categoryData': 'Database & Tools',
+      'hero.cardStat': 'Lulusan Bangkit 2024',
+      'hero.cardLink': 'Tentang Latar Belakang',
+      'certificate.open': 'Buka Dokumen PDF',
+      'certificate.preview': 'Lihat',
+      'certificate.viewImage': 'Lihat Gambar Penuh',
       'about.role': 'Lulusan Informatika',
       'about.heading': 'Software Engineer yang berfokus pada Backend dan Cloud Computing.',
       'about.paragraphOne': 'Lulusan Informatika <strong>Universitas Mulawarman</strong> dengan <strong>IPK 3,83/4,00</strong> yang berfokus pada backend engineering dan cloud computing. Berpengalaman membangun aplikasi web dan mobile, RESTful API dengan Node.js, serta layanan berbasis database.',
@@ -255,240 +165,480 @@ document.addEventListener('DOMContentLoaded', () => {
       'certificates.software': 'Dasar-Dasar Software Engineering',
       'certificates.python': 'Bahasa Pemrograman Python',
       'certificates.cloud': 'Learning Path Google Cloud Engineer',
+      'certificates.logic': 'Pengenalan ke Logika Pemrograman',
       'certificates.bangkit': 'Cloud Computing Bangkit',
       'certificates.issuer': 'Dicoding Indonesia',
-      'page.title': 'Wilson Boyaron Hutagalung // Software Engineer & Arsitek Cloud',
+      'certificates.bangkitIssuer': 'Bangkit Academy (Google, GoTo, Traveloka)',
+      'page.title': 'Wilson Boyaron Hutagalung | Software Engineer & Spesialis Cloud',
       'experience.msibTag': 'Program MSIB',
       'experience.organizationTag': 'Organisasi Mahasiswa',
-      'projects.websiteTag': '01 // WEBSITE BISNIS',
-      'projects.applicationTag': '02 // APLIKASI BISNIS',
-      'footer.copyright': '&copy; 2026 Wilson Boyaron Hutagalung. Hak cipta dilindungi.',
-      'footer.status': 'STATUS: OPERASIONAL',
-      'terminal.degree': '"S1 Informatika"',
-      'terminal.backend': '"Sistem Backend"',
-      'terminal.infrastructure': '"Infrastruktur Cloud"',
-      'terminal.fullStack': '"Web Full-Stack"',
-      'terminal.opportunities': '"Terbuka untuk Peluang Engineering"',
-      'terminal.philosophy': '// Filosofi',
-      'terminal.motto': '"Tangguh. Optimal. Bersih."'
+      'projects.websiteTag': 'Website Profil & Bisnis',
+      'projects.applicationTag': 'Aplikasi Bisnis & POS',
+      'footer.copyright': '&copy; 2026 Wilson Boyaron Hutagalung. Hak cipta dilindungi.'
     }
   };
 
-  function setLanguage(language) {
-    const selectedLanguage = translations[language] ? language : 'en';
-    document.documentElement.lang = selectedLanguage;
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-      const translation = translations[selectedLanguage][element.dataset.i18n];
-      if (translation) element.innerHTML = translation;
+  // Auto-harvest base English strings from DOM
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    translations.en[el.dataset.i18n] = el.tagName === 'TITLE' ? el.textContent.trim() : el.innerHTML.trim();
+  });
+
+  const setLanguage = (lang) => {
+    const selected = translations[lang] ? lang : 'en';
+    document.documentElement.lang = selected;
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const text = translations[selected]?.[el.dataset.i18n];
+      if (text !== undefined) {
+        if (el.tagName === 'TITLE') {
+          el.textContent = text;
+          document.title = text;
+        } else {
+          el.innerHTML = text;
+        }
+      }
     });
-    languageButtons.forEach(button => {
-      const isActive = button.dataset.language === selectedLanguage;
-      button.classList.toggle('is-active', isActive);
-      button.setAttribute('aria-pressed', String(isActive));
+
+    langBtns.forEach((btn) => {
+      const active = btn.dataset.language === selected;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', String(active));
     });
-    localStorage.setItem(languageStorageKey, selectedLanguage);
+
+    localStorage.setItem('portfolio-language', selected);
+  };
+
+  langBtns.forEach((btn) => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.language));
+  });
+
+  const savedLang = localStorage.getItem('portfolio-language');
+  if (savedLang && savedLang !== 'en') {
+    setLanguage(savedLang);
+  } else {
+    setLanguage('en');
   }
 
-  languageButtons.forEach(button => {
-    button.addEventListener('click', () => setLanguage(button.dataset.language));
-  });
-  setLanguage(localStorage.getItem(languageStorageKey) || 'en');
-
+  /* ==========================================================================
+     4. Navigation & Smooth Section Scrolling (Hash-based, preserving directory paths)
+     ========================================================================== */
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
+  const scrollTopBtn = document.getElementById('scrollToTop');
 
-  const scrollToTopBtn = document.getElementById('scrollToTop');
-  const routeSections = new Map([
-    ['/about', 'about'],
-    ['/principles', 'principles'],
-    ['/education', 'education'],
-    ['/experience', 'experience'],
-    ['/projects', 'projects'],
-    ['/certifications', 'certifications'],
-    ['/contact', 'contact']
-  ]);
-
-  function scrollToRoute(path, updateHistory = false) {
-    const sectionId = routeSections.get(path);
-    const section = sectionId ? document.getElementById(sectionId) : null;
-
-    if (!section) return false;
-
-    if (updateHistory) {
-      window.history.pushState({}, '', path);
+  const scrollToTarget = (targetId) => {
+    const id = targetId.replace(/^[/#!]+/, '');
+    if (!id || id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return true;
     }
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return true;
+    }
+    return false;
+  };
 
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return true;
-  }
+  document.querySelectorAll('a[href^="#"], a[href^="/"]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
 
-  document.querySelectorAll('a[href^="/"]').forEach(link => {
-    link.addEventListener('click', event => {
-      const path = new URL(link.href).pathname;
+    link.addEventListener('click', (e) => {
+      const targetId = link.hash ? link.hash.slice(1) : href.replace(/^[/#!]+/, '');
 
-      if (path === '/') {
-        event.preventDefault();
-        window.history.pushState({}, '', '/');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
-
-      if (scrollToRoute(path, true)) {
-        event.preventDefault();
+      if (scrollToTarget(targetId)) {
+        e.preventDefault();
+        if (targetId && targetId !== 'hero') {
+          window.history.pushState(null, '', `#${targetId}`);
+        } else {
+          window.history.pushState(null, '', window.location.pathname);
+        }
       }
     });
   });
-
-  if (routeSections.has(window.location.pathname)) {
-    window.requestAnimationFrame(() => scrollToRoute(window.location.pathname));
-  }
 
   window.addEventListener('popstate', () => {
-    if (window.location.pathname === '/') {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      scrollToTarget(hash);
+    } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      scrollToRoute(window.location.pathname);
     }
   });
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-
-    if (scrollToTopBtn) {
-      if (window.scrollY > 300) {
-        scrollToTopBtn.classList.add('is-visible');
-      } else {
-        scrollToTopBtn.classList.remove('is-visible');
-      }
-    }
-  });
-
-  if (scrollToTopBtn) {
-    scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+  if (window.location.hash) {
+    window.requestAnimationFrame(() => {
+      scrollToTarget(window.location.hash.slice(1));
     });
   }
 
+  // Scroll listener for floating bar & back-to-top button
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    navbar?.classList.toggle('scrolled', y > 50);
+    scrollTopBtn?.classList.toggle('is-visible', y > 300);
+  }, { passive: true });
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Mobile menu toggle
   if (navToggle && navLinks) {
-    const closeMobileMenu = () => {
-      navLinks.classList.remove('active');
-      navToggle.classList.remove('open');
-      navbar.classList.remove('menu-open');
-      document.body.style.overflow = '';
+    const toggleMenu = (open) => {
+      const isOpen = open ?? !navLinks.classList.contains('active');
+      navLinks.classList.toggle('active', isOpen);
+      navToggle.classList.toggle('open', isOpen);
+      navbar.classList.toggle('menu-open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     };
 
     navToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = navLinks.classList.toggle('active');
-      navToggle.classList.toggle('open', isOpen);
-      navbar.classList.toggle('menu-open', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      toggleMenu();
     });
 
-    // Close mobile menu when a nav link is clicked
-    navLinks.querySelectorAll('.navbar__link').forEach(link => {
-      link.addEventListener('click', closeMobileMenu);
+    navLinks.querySelectorAll('.navbar__link').forEach((link) => {
+      link.addEventListener('click', () => toggleMenu(false));
     });
 
-    // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
       if (navLinks.classList.contains('active') && !navbar.contains(e.target)) {
-        closeMobileMenu();
+        toggleMenu(false);
       }
     });
 
-    // Close mobile menu when ESC key is pressed
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-        closeMobileMenu();
+        toggleMenu(false);
       }
     });
   }
 
-  const animatedElements = document.querySelectorAll('[data-anim="fade-up"], .anim-fade-up');
-
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  /* ==========================================================================
+     5. Scroll Animation Observer
+     ========================================================================== */
+  const animElements = document.querySelectorAll('[data-anim="fade-up"]');
+  const animObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        animObserver.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  animatedElements.forEach(el => {
-    observer.observe(el);
+  animElements.forEach((el) => {
+    if (el.dataset.animDelay) {
+      el.style.transitionDelay = `${el.dataset.animDelay}ms`;
+    }
+    animObserver.observe(el);
   });
 
-  const certButtons = document.querySelectorAll('.cert-card[data-full]');
+  /* ==========================================================================
+     6. Modals (Certificates & Projects)
+     ========================================================================== */
+  const openModal = (modal) => {
+    if (!modal) return;
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = (modal) => {
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (modal === certModal) {
+      if (certFrame) certFrame.src = '';
+      if (certImage) {
+        certImage.style.display = 'none';
+        certImage.src = '';
+      }
+    }
+  };
+
+  // Certificate Modal Logic
   const certModal = document.getElementById('certificateModal');
-  const certBackdrop = document.getElementById('certBackdrop');
-  const certClose = document.getElementById('certClose');
   const certImage = document.getElementById('certImage');
   const certFrame = document.getElementById('certFrame');
-  const certOpenNew = document.getElementById('certOpenNew');
-  let currentCertUrl = '';
+  const certTitleEl = document.getElementById('certTitle');
+  const certIssuerEl = document.getElementById('certIssuer');
+  let currentCert = { full: '', image: '' };
 
-  function openCertificate(url, type) {
-    currentCertUrl = url;
-    if (type === 'pdf') {
-      certImage.style.display = 'none';
-      certFrame.style.display = 'block';
-      certFrame.src = url;
-    } else {
-      certFrame.style.display = 'none';
-      certImage.style.display = 'block';
-      certImage.src = url;
-    }
-    certModal.classList.add('active');
-    certModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeCertificate() {
-    certModal.classList.remove('active');
-    certModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      certFrame.src = '';
-      certImage.src = '';
-    }, 300);
-  }
-
-  certButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const url = btn.getAttribute('data-full');
-      const type = btn.getAttribute('data-type') || 'pdf';
-      openCertificate(url, type);
+  if (certImage) {
+    certImage.addEventListener('error', () => {
+      // Gracefully fall back to PDF preview in iframe if image is unavailable
+      if (currentCert.full && certFrame) {
+        certImage.style.display = 'none';
+        certFrame.style.display = 'block';
+        certFrame.src = currentCert.full;
+      }
     });
-  });
 
-  if (certClose) certClose.addEventListener('click', closeCertificate);
-  if (certBackdrop) certBackdrop.addEventListener('click', closeCertificate);
-  if (certOpenNew) {
-    certOpenNew.addEventListener('click', () => {
-      if (currentCertUrl) {
-        window.open(currentCertUrl, '_blank');
+    certImage.addEventListener('load', () => {
+      if (certImage.getAttribute('src')) {
+        certImage.style.display = 'block';
+        if (certFrame) {
+          certFrame.style.display = 'none';
+          certFrame.src = '';
+        }
       }
     });
   }
 
+  const openCertificate = (btn) => {
+    currentCert.full = btn.dataset.full ? getAssetUrl(btn.dataset.full) : '';
+    currentCert.image = btn.dataset.image ? getAssetUrl(btn.dataset.image) : '';
+
+    if (certTitleEl) certTitleEl.textContent = btn.querySelector('.cert-card__title')?.textContent || 'Certificate Preview';
+    if (certIssuerEl) certIssuerEl.textContent = btn.querySelector('.cert-card__issuer')?.textContent || '';
+
+    if (currentCert.image && certImage) {
+      certImage.style.display = 'block';
+      certImage.src = currentCert.image;
+      if (certFrame) {
+        certFrame.style.display = 'none';
+        certFrame.src = '';
+      }
+    } else if (currentCert.full && certFrame) {
+      if (certImage) certImage.style.display = 'none';
+      certFrame.style.display = 'block';
+      certFrame.src = currentCert.full;
+    }
+
+    openModal(certModal);
+  };
+
+  document.querySelectorAll('.cert-card').forEach((btn) => {
+    btn.addEventListener('click', () => openCertificate(btn));
+  });
+
+  document.getElementById('certViewImage')?.addEventListener('click', () => {
+    const target = currentCert.image || currentCert.full;
+    if (target) window.open(target, '_blank', 'noopener,noreferrer');
+  });
+
+  document.getElementById('certOpenNew')?.addEventListener('click', () => {
+    const target = currentCert.full || currentCert.image;
+    if (target) window.open(target, '_blank', 'noopener,noreferrer');
+  });
+
+  // Project Modal Logic & Content
+  const projectData = {
+    aressa: {
+      image: 'assets/projects/aressa-golden-farm.jpg',
+      github: 'https://github.com/WilsonHutagalung/ARESSA-GOLDEN-FARM',
+      demo: '',
+      tech: ['React', 'Vite', 'Tailwind CSS', 'Lucide React', 'Modern UI'],
+      en: {
+        tag: 'Export Showcase & Company Profile',
+        title: 'Aressa Golden Farm',
+        desc: 'A modern company profile and export showcase website for Aressa Golden Farm, a premier Indonesian exporter of pure organic palm sugar. The platform establishes international brand credibility, features comprehensive product catalog specifications, and provides direct buyer inquiry channels.',
+        highlights: [
+          'High-performance reactive frontend built with React, Vite, and Tailwind CSS.',
+          'Interactive product catalog with export grade specifications and logistics overview.',
+          'Modern visual branding with warm organic tones and glassmorphism elements.',
+          'Direct inquiry integration for overseas distributors and business partners.'
+        ]
+      },
+      id: {
+        tag: 'Website Profil & Etalase Ekspor',
+        title: 'Aressa Golden Farm',
+        desc: 'Website company profile dan etalase ekspor modern untuk Aressa Golden Farm, produsen serta eksportir gula aren organik premium asal Indonesia. Platform ini dirancang untuk membangun kredibilitas pasar internasional dan menampilkan spesifikasi produk ekspor secara profesional.',
+        highlights: [
+          'Frontend reaktif berkinerja tinggi yang dibangun menggunakan React, Vite, dan Tailwind CSS.',
+          'Katalog produk interaktif dengan informasi spesifikasi mutu standar ekspor internasional.',
+          'Branding visual modern dengan sentuhan warna organik dan nuansa glassmorphism elegan.',
+          'Integrasi formulir pemesanan langsung untuk distributor dan mitra bisnis global.'
+        ]
+      }
+    },
+    pos: {
+      image: 'assets/projects/aplikasi-kasir.jpg',
+      github: 'https://github.com/WilsonHutagalung/Aplikasi-Kasir',
+      demo: '',
+      tech: ['Laravel / PHP', 'React / Vite', 'Electron', 'PostgreSQL', 'Sanctum'],
+      en: {
+        tag: 'Offline-First POS System',
+        title: 'Cashier Application (Universal POS)',
+        desc: 'A robust offline-first desktop point-of-sale system engineered for retail establishments, food & beverage businesses, and service providers. It guarantees continuous store operations even during internet outages with instantaneous barcode processing and inventory tracking.',
+        highlights: [
+          'Cross-platform desktop software powered by Electron and a reactive React/Vite UI.',
+          'Local offline database persistence utilizing PostgreSQL with automated backup routines.',
+          'Complete cashier shift management, sales reporting, and role-based access (Admin, Cashier, Manager).',
+          'Fast barcode scanner integration, stock deduction logic, and printable invoice receipts.'
+        ]
+      },
+      id: {
+        tag: 'Sistem Kasir Offline-First',
+        title: 'Aplikasi Kasir (Universal POS)',
+        desc: 'Sistem point-of-sale desktop offline-first yang andal untuk toko retail, kafe/F&B, dan berbagai sektor usaha. Menjamin transaksi kasir tetap berlangsung lancar tanpa ketergantungan koneksi internet dengan kecepatan proses transaksi tinggi.',
+        highlights: [
+          'Aplikasi desktop cross-platform berbasis Electron dengan antarmuka modern React/Vite.',
+          'Penyimpanan database lokal offline menggunakan PostgreSQL serta utilitas pencadangan otomatis.',
+          'Manajemen shift kasir lengkap, analitik penjualan, dan hak akses bertingkat (Admin, Kasir, Manajer).',
+          'Integrasi pemindai barcode, kalkulasi stok otomatis, dan pencetakan struk pembayaran instan.'
+        ]
+      }
+    },
+    bitewise: {
+      image: 'assets/projects/bitewise-backend-api.jpg',
+      github: 'https://github.com/bitewise-lab/Backend-API',
+      demo: 'https://documenter.getpostman.com/view/37436900/2sAYBd7nhY',
+      tech: ['Node.js', 'Express.js', 'MySQL', 'Google Cloud', 'Docker', 'JWT', 'Postman'],
+      en: {
+        tag: 'Cloud Architecture & REST API',
+        title: 'Bitewise Backend API',
+        desc: 'A cloud-native health and nutrition platform tackling national nutrition challenges in Indonesia such as stunting, wasting, obesity, and anemia. As part of the Cloud Computing team, Wilson architected the RESTful backend, database clustering, and deployed containerized services on Google Cloud.',
+        highlights: [
+          'Scalable RESTful microservices architecture developed using Node.js and Express.',
+          'High-availability deployments using App Engine and Cloud Run containers on Google Cloud.',
+          'Integrated with Cloud SQL (MySQL), Cloud Storage, and Gemini API for AI nutrition assistance.',
+          'Comprehensive Postman API documentation and secure JWT-based token authentication.'
+        ]
+      },
+      id: {
+        tag: 'Arsitektur Cloud & REST API',
+        title: 'Bitewise Backend API',
+        desc: 'Platform nutrisi dan kesehatan berbasis cloud untuk menanggulangi tantangan gizi nasional seperti stunting, wasting, dan anemia pada anak serta perempuan di Indonesia. Wilson bertanggung jawab merancang backend API, database, dan deployment container di Google Cloud Platform.',
+        highlights: [
+          'Arsitektur RESTful microservices skalabel yang dibangun dengan Node.js dan Express.',
+          'Deployment berkinerja tinggi pada App Engine dan container Cloud Run di Google Cloud Platform.',
+          'Terhubung dengan Cloud SQL (MySQL), Cloud Storage, dan integrasi Gemini AI untuk asisten nutrisi.',
+          'Dokumentasi API lengkap via Postman serta sistem autentikasi keamanan berbasis token JWT.'
+        ]
+      }
+    },
+    hr: {
+      image: 'assets/projects/hr-management-system.jpg',
+      github: '',
+      demo: '',
+      tech: ['Laravel 12', 'Filament v5', 'PHP 8.2', 'MySQL', 'Tailwind CSS', 'Blade'],
+      en: {
+        tag: 'Enterprise HR & Workforce System',
+        title: 'Attendance & HR Management System',
+        desc: 'An enterprise workforce attendance and personnel management system. It provides comprehensive employee shift monitoring, real-time clock-in/out logging, automated late calculation, and centralized administrative management.',
+        highlights: [
+          'Enterprise admin control panel built with Laravel 12 and Filament v5.',
+          'Real-time Clock In / Clock Out with automatic late arrival and overtime calculations.',
+          'Employee self-service portal for leave, sickness, and permission requests.',
+          'Multi-shift work scheduling, role-based access control, and CSV/PDF attendance exports.'
+        ]
+      },
+      id: {
+        tag: 'Sistem Presensi & Manajemen SDM',
+        title: 'Sistem Presensi & Manajemen SDM',
+        desc: 'Sistem presensi karyawan dan administrasi SDM berbasis web tingkat enterprise. Mengoptimalkan pemantauan shift kerja, pencatatan absensi real-time, kalkulasi keterlambatan otomatis, serta sentralisasi pengelolaan data staf.',
+        highlights: [
+          'Panel kontrol administrasi modern dan responsif berbasis Laravel 12 dan Filament v5.',
+          'Pencatatan Clock In / Out real-time dengan kalkulasi otomatis keterlambatan dan durasi lembur.',
+          'Portal mandiri bagi karyawan untuk pengajuan cuti, izin sakit, dan verifikasi kehadiran.',
+          'Manajemen multi-shift, sistem hak akses bertingkat, dan rekapitulasi data presensi periodik.'
+        ]
+      }
+    }
+  };
+
+
+  const projModal = document.getElementById('projectModal');
+  const projImage = document.getElementById('projImage');
+  const projTag = document.getElementById('projTag');
+  const projTitle = document.getElementById('projTitle');
+  const projDesc = document.getElementById('projDesc');
+  const projHighlights = document.getElementById('projHighlights');
+  const projTech = document.getElementById('projTech');
+  const projGithub = document.getElementById('projGithub');
+  const projDemo = document.getElementById('projDemo');
+
+  const openProject = (id) => {
+    const data = projectData[id];
+    if (!data) return;
+
+    const lang = localStorage.getItem('portfolio-language') || 'en';
+    const content = data[lang] || data.en;
+
+    if (projImage) projImage.src = getAssetUrl(data.image);
+    if (projTag) projTag.textContent = content.tag;
+    if (projTitle) projTitle.textContent = content.title;
+    if (projDesc) projDesc.textContent = content.desc;
+
+    if (projHighlights) {
+      projHighlights.innerHTML = content.highlights.map((h) => `<li>${h}</li>`).join('');
+    }
+    if (projTech) {
+      projTech.innerHTML = data.tech.map((t) => `<span>${t}</span>`).join('');
+    }
+
+    if (projGithub) {
+      projGithub.href = data.github || '#';
+      projGithub.style.display = data.github ? 'inline-flex' : 'none';
+    }
+    if (projDemo) {
+      projDemo.href = data.demo || '#';
+      projDemo.style.display = data.demo ? 'inline-flex' : 'none';
+    }
+
+    openModal(projModal);
+  };
+
+  document.querySelectorAll('.project-preview-trigger').forEach((el) => {
+    const trigger = (e) => {
+      e.stopPropagation();
+      const id = el.dataset.project;
+      if (id) openProject(id);
+    };
+    el.addEventListener('click', trigger);
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') trigger(e);
+    });
+  });
+
+  // Modal close handlers (backdrop, close button, and ESC key)
+  const bindCloseBtn = (id, modal) => {
+    const btn = document.getElementById(id);
+    if (!btn || !modal) return;
+    const handleClose = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModal(modal);
+    };
+    btn.addEventListener('click', handleClose);
+    btn.addEventListener('touchend', handleClose);
+  };
+
+  bindCloseBtn('certModalClose', certModal);
+  bindCloseBtn('projectModalClose', projModal);
+
+  // Click on close button via delegated event on modals as well
+  document.querySelectorAll('.certificate-modal__close, .project-modal__close').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const parentModal = btn.closest('.certificate-modal, .project-modal');
+      if (parentModal) closeModal(parentModal);
+    });
+  });
+
+  [certModal, projModal].filter(Boolean).forEach((modal) => {
+    modal.querySelector('[class$="__backdrop"]')?.addEventListener('click', () => closeModal(modal));
+  });
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && certModal && certModal.classList.contains('active')) {
-      closeCertificate();
+    if (e.key === 'Escape') {
+      [certModal, projModal].filter(Boolean).forEach((modal) => {
+        if (modal.classList.contains('active')) {
+          closeModal(modal);
+          if (modal === certModal && certFrame) {
+            setTimeout(() => { certFrame.src = ''; }, 200);
+          }
+        }
+      });
     }
   });
 });

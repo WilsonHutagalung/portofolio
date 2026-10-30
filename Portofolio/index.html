@@ -6,24 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark light" />
   <meta name="description"
-    content="Personal Portfolio of Wilson Boyaron Hutagalung — Software Engineer & Cloud Specialist. Crafting scalable architectures and high-performance digital systems." />
+    content="Personal Portfolio of Wilson Boyaron Hutagalung — Software Engineer & Cloud Specialist. Building clean APIs, database systems, and cloud infrastructure." />
   <meta name="author" content="Wilson Boyaron Hutagalung" />
-  <title data-i18n="page.title">Wilson Boyaron Hutagalung // Software Engineer & Cloud Architect</title>
+  <title data-i18n="page.title">Wilson Boyaron Hutagalung | Software Engineer & Cloud Specialist</title>
 
   <script>
-    (function () {
-      try {
-        const storageKey = 'portfolio-theme';
-        const storedTheme = localStorage.getItem(storageKey);
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const theme = storedTheme || systemTheme;
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.style.colorScheme = theme;
-      } catch (error) {
-        document.documentElement.dataset.theme = 'dark';
-        document.documentElement.style.colorScheme = 'dark';
-      }
-    })();
+    const theme = localStorage.getItem('portfolio-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,29 +23,25 @@
     rel="stylesheet" />
 
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/bold/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css" />
-
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- Floating Glass Navbar -->
+  <!-- Clean Navbar -->
   <nav id="navbar" class="navbar">
     <div class="navbar__container">
-      <a href="/" class="navbar__logo">
-        <span class="navbar__logo-symbol">//</span>
-        <span class="navbar__logo-text">WILSON<span class="navbar__logo-accent">.DEV</span></span>
+      <a href="#" class="navbar__logo">
+        <span class="navbar__logo-text">Wilson<span class="navbar__logo-accent">.dev</span></span>
       </a>
 
       <ul class="navbar__links" id="navLinks">
-        <li><a href="/about" class="navbar__link" data-i18n="nav.about">About</a></li>
-        <li><a href="/principles" class="navbar__link" data-i18n="nav.architecture">Architecture</a></li>
-        <li><a href="/education" class="navbar__link" data-i18n="nav.education">Education</a></li>
-        <li><a href="/experience" class="navbar__link" data-i18n="nav.experience">Experience</a></li>
-        <li><a href="/projects" class="navbar__link" data-i18n="nav.projects">Projects</a></li>
-        <li><a href="/certifications" class="navbar__link" data-i18n="nav.certifications">Certs</a></li>
-        <li><a href="/contact" class="navbar__link navbar__link--cta" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="#about" class="navbar__link" data-i18n="nav.about">About</a></li>
+        <li><a href="#principles" class="navbar__link" data-i18n="nav.architecture">Principles</a></li>
+        <li><a href="#education" class="navbar__link" data-i18n="nav.education">Education</a></li>
+        <li><a href="#experience" class="navbar__link" data-i18n="nav.experience">Pengalaman</a></li>
+        <li><a href="#projects" class="navbar__link" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#certifications" class="navbar__link" data-i18n="nav.certifications">Certs</a></li>
+        <li><a href="#contact" class="navbar__link navbar__link--cta" data-i18n="nav.contact">Contact</a></li>
       </ul>
 
       <div class="navbar__actions">
@@ -63,7 +49,7 @@
           <i class="ph ph-globe" aria-hidden="true"></i>
           <button type="button" class="language-switcher__option is-active" data-language="en"
             aria-label="Switch to English">EN</button>
-          <span class="language-switcher__separator">|</span>
+          <span class="language-switcher__separator">/</span>
           <button type="button" class="language-switcher__option" data-language="id"
             aria-label="Beralih ke Bahasa Indonesia">ID</button>
         </div>
@@ -82,45 +68,39 @@
 
   <!-- Hero Section -->
   <section id="hero" class="hero">
-    <div class="hero__grid-bg"></div>
-    <div class="hero__radial-glow"></div>
-
     <div class="container hero__container">
       <div class="hero__content">
-        <div class="hero__badge anim-fade-up">
+        <div class="hero__badge" data-anim="fade-up">
           <span class="status-dot"></span>
-          <span data-i18n="hero.badge">AVAILABLE FOR NEW OPPORTUNITIES</span>
+          <span data-i18n="hero.badge">Open for Engineering Roles</span>
         </div>
 
-        <h1 class="hero__name anim-fade-up" style="animation-delay: 0.1s;">
+        <h1 class="hero__name" data-anim="fade-up" data-anim-delay="100">
           Wilson Boyaron <br />
           <span class="text-gradient">Hutagalung</span>
         </h1>
 
-        <div class="hero__subtitle-wrapper anim-fade-up" style="animation-delay: 0.2s;">
-          <span class="code-tag">&lt;role&gt;</span>
+        <div class="hero__subtitle-wrapper" data-anim="fade-up" data-anim-delay="200">
           <span class="hero__title" data-i18n="hero.title">Software Engineer & Cloud Computing Specialist</span>
-          <span class="code-tag">&lt;/role&gt;</span>
         </div>
 
-        <p class="hero__tagline anim-fade-up" style="animation-delay: 0.3s;" data-i18n="hero.tagline">
-          Building resilient web architectures, optimized API services, and scalable cloud solutions with clean code
-          principles.
+        <p class="hero__tagline" data-anim="fade-up" data-anim-delay="300" data-i18n="hero.tagline">
+          Informatics graduate specializing in backend development, database systems, and Google Cloud infrastructure.
         </p>
 
-        <div class="hero__actions anim-fade-up" style="animation-delay: 0.4s;">
-          <a href="/projects" class="btn btn--primary">
-            <span data-i18n="hero.explore">Explore Engineering Work</span>
+        <div class="hero__actions" data-anim="fade-up" data-anim-delay="400">
+          <a href="#projects" class="btn btn--primary">
+            <span data-i18n="hero.explore">View Projects</span>
             <i class="ph ph-arrow-down-right"></i>
           </a>
-          <a href="/contact" class="btn btn--outline">
+          <a href="#contact" class="btn btn--outline">
             <i class="ph ph-paper-plane-tilt"></i>
-            <span data-i18n="hero.contact">Get In Touch</span>
+            <span data-i18n="hero.contact">Contact Me</span>
           </a>
         </div>
 
         <!-- Metrics Strip -->
-        <div class="hero__metrics anim-fade-up" style="animation-delay: 0.5s;">
+        <div class="hero__metrics" data-anim="fade-up" data-anim-delay="500">
           <div class="metric-item">
             <span class="metric-val">3.83</span>
             <span class="metric-lbl" data-i18n="metrics.gpa">Cumulative GPA</span>
@@ -138,51 +118,58 @@
         </div>
       </div>
 
-      <!-- Code Terminal Component -->
-      <div class="hero__terminal anim-fade-up" style="animation-delay: 0.3s;">
-        <div class="terminal__header">
-          <div class="terminal__dots">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-          </div>
-          <div class="terminal__title">engineer.config.ts</div>
-          <div class="terminal__badge" data-i18n="terminal.version">TypeScript 5.4</div>
+      <!-- Real Technical Focus & Skills Card (Human Crafted) -->
+      <div class="hero__card" data-anim="fade-up" data-anim-delay="300">
+        <div class="hero__card-header">
+          <div class="hero__card-title" data-i18n="hero.cardTitle">Technical Competencies</div>
+          <span class="hero__card-pill" data-i18n="hero.cardPill">Core Focus</span>
         </div>
-        <div class="terminal__body">
-          <pre><code><span class="syn-kw">const</span> <span class="syn-var">engineer</span> = {
-  <span class="syn-prop">name</span>: <span class="syn-str">"Wilson Boyaron Hutagalung"</span>,
-  <span class="syn-prop">location</span>: <span class="syn-str">"Samarinda, Indonesia"</span>,
-  <span class="syn-prop">degree</span>: <span class="syn-str" data-i18n="terminal.degree">"B.S. Informatics"</span>,
-  <span class="syn-prop">gpa</span>: <span class="syn-num">3.83</span>,
-  <span class="syn-prop">focus</span>: [
-    <span class="syn-str" data-i18n="terminal.backend">"Backend Systems"</span>,
-    <span class="syn-str" data-i18n="terminal.infrastructure">"Cloud Infrastructure"</span>,
-    <span class="syn-str" data-i18n="terminal.fullStack">"Full-Stack Web"</span>
-  ],
-  <span class="syn-prop">techStack</span>: {
-    <span class="syn-prop">languages</span>: [<span class="syn-str">"Python"</span>, <span class="syn-str">"JavaScript"</span>, <span class="syn-str">"Java"</span>, <span class="syn-str">"SQL"</span>, <span class="syn-str">"PHP"</span>],
-    <span class="syn-prop">frameworks</span>: [<span class="syn-str">"React"</span>, <span class="syn-str">"Laravel"</span>, <span class="syn-str">"Node.js"</span>],
-    <span class="syn-prop">cloud</span>: [<span class="syn-str">"GCP"</span>, <span class="syn-str">"App Engine"</span>, <span class="syn-str">"Cloud Run"</span>]
-  },
-  <span class="syn-prop">status</span>: <span class="syn-str" data-i18n="terminal.opportunities">"Open for Engineering Opportunities"</span>
-};
 
-<span class="syn-comment" data-i18n="terminal.philosophy">// Philosophy</span>
-<span class="syn-kw">function</span> <span class="syn-fn">buildSystem</span>() {
-  <span class="syn-kw">return</span> <span class="syn-str" data-i18n="terminal.motto">"Resilient. Performant. Clean."</span>;
-}</code></pre>
+        <div class="hero__card-body">
+          <div class="skill-category">
+            <span class="skill-category__title" data-i18n="hero.categoryBackend">Backend & APIs</span>
+            <div class="skill-category__tags">
+              <span>Node.js</span>
+              <span>Express.js</span>
+              <span>Laravel</span>
+              <span>REST APIs</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <span class="skill-category__title" data-i18n="hero.categoryCloud">Cloud & Infrastructure</span>
+            <div class="skill-category__tags">
+              <span>Google Cloud (GCP)</span>
+              <span>Cloud Run</span>
+              <span>App Engine</span>
+              <span>Docker</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <span class="skill-category__title" data-i18n="hero.categoryData">Databases & Tools</span>
+            <div class="skill-category__tags">
+              <span>MySQL</span>
+              <span>PostgreSQL</span>
+              <span>Cloud SQL</span>
+              <span>Git & GitHub</span>
+            </div>
+          </div>
         </div>
-        <div class="terminal__footer">
-          <span class="terminal__status"><i class="ph ph-check-circle"></i> <span data-i18n="terminal.status">Compiled
-              successfully</span></span>
-          <span class="terminal__time" data-i18n="terminal.latency">0ms latency</span>
+
+        <div class="hero__card-footer">
+          <div class="hero__card-stat">
+            <i class="ph ph-check-circle"></i>
+            <span data-i18n="hero.cardStat">Bangkit 2024 Graduate</span>
+          </div>
+          <a href="#about" class="hero__card-link"><span data-i18n="hero.cardLink">About background</span> <i
+              class="ph ph-arrow-right"></i></a>
         </div>
       </div>
     </div>
 
-    <a href="/about" class="hero__scroll-down" aria-label="Scroll to About Section">
-      <span class="scroll-text" data-i18n="terminal.scroll">SCROLL DOWN</span>
+    <a href="#about" class="hero__scroll-down" aria-label="Scroll to About Section">
+      <span class="scroll-text">SCROLL</span>
       <i class="ph ph-arrow-down"></i>
     </a>
   </section>
@@ -192,14 +179,61 @@
     <div class="certificate-modal__backdrop" id="certBackdrop"></div>
     <div class="certificate-modal__panel" role="dialog" aria-modal="true" aria-label="Certificate Preview">
       <button class="certificate-modal__close" id="certClose" aria-label="Close">&times;</button>
-      <img src="" alt="Certificate" id="certImage" class="certificate-modal__img" style="display:none;" />
-      <iframe id="certFrame" class="certificate-modal__frame" style="display:none;" frameborder="0"></iframe>
+      <div class="certificate-modal__header">
+        <h3 class="certificate-modal__title" id="certTitle">Certificate Preview</h3>
+        <span class="certificate-modal__issuer" id="certIssuer">Issuer</span>
+      </div>
+      <div class="certificate-modal__media">
+        <img src="" alt="Certificate" id="certImage" class="certificate-modal__img" />
+        <iframe id="certFrame" class="certificate-modal__frame" style="display:none;"></iframe>
+      </div>
       <div class="certificate-modal__actions">
-        <button id="certOpenNew" class="certificate-modal__open">
-          <i class="ph ph-arrow-square-out"></i> <span data-i18n="certificate.open">Open Original Document</span>
+        <button id="certViewImage" class="btn btn--outline btn--sm">
+          <i class="ph ph-image"></i> <span data-i18n="certificate.viewImage">View Full Image</span>
+        </button>
+        <button id="certOpenNew" class="btn btn--primary btn--sm">
+          <i class="ph ph-arrow-square-out"></i> <span data-i18n="certificate.open">Open PDF Document</span>
         </button>
       </div>
-      <div class="certificate-modal__meta" id="certMeta"></div>
+    </div>
+  </div>
+
+  <!-- Project Lightbox Modal -->
+  <div id="projectModal" class="project-modal" aria-hidden="true">
+    <div class="project-modal__backdrop" id="projBackdrop"></div>
+    <div class="project-modal__panel" role="dialog" aria-modal="true" aria-label="Project Preview">
+      <button class="project-modal__close" id="projClose" aria-label="Close">&times;</button>
+      <div class="project-modal__media">
+        <img src="" alt="Project Preview" id="projImage" class="project-modal__img" />
+      </div>
+      <div class="project-modal__body">
+        <div class="project-modal__header">
+          <span class="project-modal__idx" id="projTag">Web Application</span>
+          <h3 class="project-modal__title" id="projTitle">Project Title</h3>
+        </div>
+        <p class="project-modal__desc" id="projDesc">Project description goes here...</p>
+
+        <div class="project-modal__section">
+          <h4 class="project-modal__subtitle"><i class="ph ph-lightning"></i> <span
+              data-i18n="projects.highlightsTitle">Key Architecture & Highlights</span></h4>
+          <ul class="project-modal__highlights" id="projHighlights"></ul>
+        </div>
+
+        <div class="project-modal__section">
+          <h4 class="project-modal__subtitle"><i class="ph ph-stack"></i> <span
+              data-i18n="projects.techTitle">Technologies & Tools</span></h4>
+          <div class="project-modal__tech" id="projTech"></div>
+        </div>
+
+        <div class="project-modal__actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" id="projGithub" class="btn btn--outline btn--sm">
+            <i class="ph ph-github-logo"></i> <span data-i18n="projects.openGithub">GitHub Repo</span>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" id="projDemo" class="btn btn--primary btn--sm">
+            <i class="ph ph-arrow-up-right"></i> <span data-i18n="projects.openLive">Live Demo / Docs</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -207,7 +241,7 @@
   <section id="about" class="section about">
     <div class="container">
       <div class="section__header" data-anim="fade-up">
-        <div class="section__tag" data-i18n="sections.aboutTag">PROFILE OVERVIEW</div>
+        <div class="section__tag" data-i18n="sections.aboutTag">Profile</div>
         <h2 class="section__title" data-i18n="sections.aboutTitle">About Me</h2>
         <div class="section__line"></div>
       </div>
@@ -229,10 +263,14 @@
             Software Engineer focused on Backend Systems & Cloud Computing.
           </h3>
           <p class="about__paragraph" data-i18n="about.paragraphOne">
-            Informatics graduate from <strong>Mulawarman University</strong> with a <strong>GPA of 3.83/4.00</strong>, focused on backend engineering and cloud computing. Experienced in building web and mobile applications, RESTful APIs with Node.js, and database-driven services.
+            Informatics graduate from <strong>Mulawarman University</strong> with a <strong>GPA of 3.83/4.00</strong>,
+            focused on backend engineering and cloud computing. Experienced in building web and mobile applications,
+            RESTful APIs with Node.js, and database-driven services.
           </p>
           <p class="about__paragraph" data-i18n="about.paragraphTwo">
-            Through <strong>MSIB Bangkit Academy (Cloud Computing Track)</strong>, I worked with Express.js, Hapi.js, Cloud SQL, Cloud Storage, App Engine, and Cloud Run on <strong>Google Cloud Platform (GCP)</strong>. I also have experience developing Augmented Reality applications with Unity and C#.
+            Through <strong>MSIB Bangkit Academy (Cloud Computing Track)</strong>, I worked with Express.js, Hapi.js,
+            Cloud SQL, Cloud Storage, App Engine, and Cloud Run on <strong>Google Cloud Platform (GCP)</strong>. I also
+            have experience developing Augmented Reality applications with Unity and C#.
           </p>
 
           <!-- Highlights Grid -->
@@ -271,11 +309,11 @@
     </div>
   </section>
 
-  <!-- Technical Engineering Principles (Reference Concept) -->
+  <!-- Technical Engineering Principles -->
   <section id="principles" class="section principles">
     <div class="container">
       <div class="section__header" data-anim="fade-up">
-        <div class="section__tag" data-i18n="sections.principlesTag">SYSTEM ARCHITECTURE & CRAFT</div>
+        <div class="section__tag" data-i18n="sections.principlesTag">Engineering Approach</div>
         <h2 class="section__title" data-i18n="sections.principlesTitle">Engineering Principles</h2>
         <div class="section__line"></div>
       </div>
@@ -324,7 +362,7 @@
   <section id="education" class="section education">
     <div class="container">
       <div class="section__header" data-anim="fade-up">
-        <div class="section__tag" data-i18n="sections.educationTag">ACADEMIC BACKGROUND</div>
+        <div class="section__tag" data-i18n="sections.educationTag">Education</div>
         <h2 class="section__title" data-i18n="sections.educationTitle">Education</h2>
         <div class="section__line"></div>
       </div>
@@ -365,8 +403,8 @@
   <section id="experience" class="section experience">
     <div class="container">
       <div class="section__header" data-anim="fade-up">
-        <div class="section__tag" data-i18n="sections.experienceTag">CAREER & LEADERSHIP</div>
-        <h2 class="section__title" data-i18n="sections.experienceTitle">Professional Experience</h2>
+        <div class="section__tag" data-i18n="sections.experienceTag">Pengalaman</div>
+        <h2 class="section__title" data-i18n="sections.experienceTitle">Pengalaman</h2>
         <div class="section__line"></div>
       </div>
 
@@ -383,15 +421,14 @@
               and Traveloka</p>
             <ul class="timeline__list">
               <li data-i18n="experience.bangkitOne">Completed the Cloud Computing Cohort curriculum at Bangkit Academy,
-                covering cloud computing
-                fundamentals, DevOps/SRE, web programming, JavaScript (Node.js), RESTful API backend development,
-                database management, storage, and service deployment on Google Cloud Platform.</li>
+                covering cloud computing fundamentals, DevOps/SRE, web programming, JavaScript (Node.js), RESTful API
+                backend development, database management, storage, and service deployment on Google Cloud Platform.</li>
               <li data-i18n="experience.bangkitTwo">Developed backend APIs using Express.js and Node.js, integrated with
-                Cloud SQL and Google Cloud
-                Storage, as well as Gemini API for Generative AI features.</li>
+                Cloud SQL and Google Cloud Storage, as well as Gemini API for Generative AI features.</li>
               <li data-i18n="experience.bangkitThree">Deployed backend APIs using App Engine and machine learning models
                 using Cloud Run.</li>
-              <li data-i18n="experience.bangkitFour">Applied key learnings to the BiteWise capstone project, a healthcare
+              <li data-i18n="experience.bangkitFour">Applied key learnings to the BiteWise capstone project, a
+                healthcare
                 modernization application, as a graduation requirement for Bangkit Academy.</li>
             </ul>
           </div>
@@ -411,8 +448,7 @@
                 orientation and introduction sessions for 109 freshman students, covering Algorithms, Networking,
                 Multimedia, Artificial Intelligence, Mathematics, and Physics.</li>
               <li data-i18n="experience.accifenceTwo">Served as an organizing committee member for the national event
-                MIT-Week (Mulawarman Informatics Tech
-                Week) 2023.</li>
+                MIT-Week (Mulawarman Informatics Tech Week) 2023.</li>
             </ul>
           </div>
         </div>
@@ -439,11 +475,12 @@
     </div>
   </section>
 
+
   <!-- Projects Showcase Section -->
   <section id="projects" class="section projects">
     <div class="container">
       <div class="section__header" data-anim="fade-up">
-        <div class="section__tag" data-i18n="sections.projectsTag">FEATURED PROJECTS</div>
+        <div class="section__tag" data-i18n="sections.projectsTag">Projects</div>
         <h2 class="section__title" data-i18n="sections.projectsTitle">Engineering Projects</h2>
         <div class="section__line"></div>
       </div>
@@ -451,17 +488,27 @@
       <div class="projects__grid">
         <!-- Project 01 -->
         <article class="project-card" data-anim="fade-up">
+          <div class="project-card__media project-preview-trigger" data-project="aressa" role="button" tabindex="0"
+            aria-label="Open Aressa Golden Farm Preview">
+            <img src="assets/projects/aressa-golden-farm.jpg" alt="Aressa Golden Farm Website" class="project-card__img"
+              loading="lazy" />
+            <div class="project-card__overlay">
+              <span class="btn-preview-project"><i class="ph ph-arrows-out-simple"></i> <span
+                  data-i18n="projects.preview">Quick View</span></span>
+            </div>
+          </div>
           <div class="project-card__top">
-            <span class="project-card__idx" data-i18n="projects.websiteTag">01 // BUSINESS WEBSITE</span>
+            <span class="project-card__idx" data-i18n="projects.websiteTag">Website & Company Profile</span>
             <div class="project-card__actions">
               <a href="https://github.com/WilsonHutagalung/ARESSA-GOLDEN-FARM" target="_blank" rel="noopener noreferrer"
                 class="p-action" aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
-              <span class="p-action p-action--disabled" aria-label="Live Demo belum tersedia"><i
-                  class="ph ph-arrow-up-right"></i></span>
+              <button type="button" class="p-action project-preview-trigger" data-project="aressa"
+                aria-label="Quick View"><i class="ph ph-eye"></i></button>
             </div>
           </div>
           <div class="project-card__content">
-            <h3 class="project-card__title" data-i18n="projects.aressaTitle">Aressa Golden Farm</h3>
+            <h3 class="project-card__title project-card__title--clickable project-preview-trigger" data-project="aressa"
+              data-i18n="projects.aressaTitle">Aressa Golden Farm</h3>
             <p class="project-card__desc" data-i18n="projects.aressaDescription">
               A company profile website for Aressa Golden Farm, an exporter of palm sugar. It presents the company and
               its palm sugar products through a modern, responsive interface built with React and Vite.
@@ -477,17 +524,27 @@
 
         <!-- Project 02 -->
         <article class="project-card" data-anim="fade-up" data-anim-delay="100">
+          <div class="project-card__media project-preview-trigger" data-project="pos" role="button" tabindex="0"
+            aria-label="Open Universal POS Preview">
+            <img src="assets/projects/aplikasi-kasir.jpg" alt="Aplikasi Kasir POS" class="project-card__img"
+              loading="lazy" />
+            <div class="project-card__overlay">
+              <span class="btn-preview-project"><i class="ph ph-arrows-out-simple"></i> <span
+                  data-i18n="projects.preview">Quick View</span></span>
+            </div>
+          </div>
           <div class="project-card__top">
-            <span class="project-card__idx" data-i18n="projects.applicationTag">02 // BUSINESS APPLICATION</span>
+            <span class="project-card__idx" data-i18n="projects.applicationTag">Desktop Application</span>
             <div class="project-card__actions">
               <a href="https://github.com/WilsonHutagalung/Aplikasi-Kasir" target="_blank" rel="noopener noreferrer"
                 class="p-action" aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
-              <span class="p-action p-action--disabled" aria-label="Live Demo belum tersedia"><i
-                  class="ph ph-arrow-up-right"></i></span>
+              <button type="button" class="p-action project-preview-trigger" data-project="pos"
+                aria-label="Quick View"><i class="ph ph-eye"></i></button>
             </div>
           </div>
           <div class="project-card__content">
-            <h3 class="project-card__title" data-i18n="projects.posTitle">Cashier Application (Universal POS)</h3>
+            <h3 class="project-card__title project-card__title--clickable project-preview-trigger" data-project="pos"
+              data-i18n="projects.posTitle">Cashier Application (Universal POS)</h3>
             <p class="project-card__desc" data-i18n="projects.posDescription">
               An offline desktop point-of-sale application for retail, food and beverage, service businesses, and more.
               It supports product and service management, inventory, customers, suppliers, cashier shifts, transaction
@@ -505,18 +562,30 @@
 
         <!-- Project 03 -->
         <article class="project-card" data-anim="fade-up" data-anim-delay="200">
+          <div class="project-card__media project-preview-trigger" data-project="bitewise" role="button" tabindex="0"
+            aria-label="Open Bitewise Backend API Preview">
+            <img src="assets/projects/bitewise-backend-api.jpg" alt="Bitewise Backend API & Cloud Dashboard"
+              class="project-card__img" loading="lazy" />
+            <div class="project-card__overlay">
+              <span class="btn-preview-project"><i class="ph ph-arrows-out-simple"></i> <span
+                  data-i18n="projects.preview">Quick View</span></span>
+            </div>
+          </div>
           <div class="project-card__top">
-            <span class="project-card__idx" data-i18n="projects.cloudTag">03 // CLOUD COMPUTING & BACKEND</span>
+            <span class="project-card__idx" data-i18n="projects.cloudTag">Cloud Infrastructure & Backend</span>
             <div class="project-card__actions">
               <a href="https://github.com/bitewise-lab/Backend-API" target="_blank" rel="noopener noreferrer"
                 class="p-action" aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
               <a href="https://documenter.getpostman.com/view/37436900/2sAYBd7nhY" target="_blank"
                 rel="noopener noreferrer" class="p-action" aria-label="API Documentation (Postman)"><i
                   class="ph ph-arrow-up-right"></i></a>
+              <button type="button" class="p-action project-preview-trigger" data-project="bitewise"
+                aria-label="Quick View"><i class="ph ph-eye"></i></button>
             </div>
           </div>
           <div class="project-card__content">
-            <h3 class="project-card__title" data-i18n="projects.bitewiseTitle">Bitewise Backend API</h3>
+            <h3 class="project-card__title project-card__title--clickable project-preview-trigger"
+              data-project="bitewise" data-i18n="projects.bitewiseTitle">Bitewise Backend API</h3>
             <p class="project-card__desc" data-i18n="projects.bitewiseDescription">
               Bitewise is a nutrition platform that tackles Indonesia's nutrition challenges such as stunting,
               wasting, obesity, and anemia, especially among children and women. As part of the Cloud Computing
@@ -537,17 +606,25 @@
 
         <!-- Project 04 -->
         <article class="project-card" data-anim="fade-up" data-anim-delay="300">
+          <div class="project-card__media project-preview-trigger" data-project="hr" role="button" tabindex="0"
+            aria-label="Open HR System Preview">
+            <img src="assets/projects/hr-management-system.jpg" alt="Attendance & HR Management System"
+              class="project-card__img" loading="lazy" />
+            <div class="project-card__overlay">
+              <span class="btn-preview-project"><i class="ph ph-arrows-out-simple"></i> <span
+                  data-i18n="projects.preview">Quick View</span></span>
+            </div>
+          </div>
           <div class="project-card__top">
-            <span class="project-card__idx" data-i18n="projects.hrTag">04 // HUMAN RESOURCES SYSTEM</span>
+            <span class="project-card__idx" data-i18n="projects.hrTag">HR & Attendance System</span>
             <div class="project-card__actions">
-              <span class="p-action p-action--disabled" aria-label="GitHub Repository belum tersedia"><i
-                  class="ph ph-github-logo"></i></span>
-              <span class="p-action p-action--disabled" aria-label="Live Demo belum tersedia"><i
-                  class="ph ph-arrow-up-right"></i></span>
+              <button type="button" class="p-action project-preview-trigger" data-project="hr"
+                aria-label="Quick View"><i class="ph ph-eye"></i></button>
             </div>
           </div>
           <div class="project-card__content">
-            <h3 class="project-card__title" data-i18n="projects.hrTitle">Attendance & HR Management System</h3>
+            <h3 class="project-card__title project-card__title--clickable project-preview-trigger" data-project="hr"
+              data-i18n="projects.hrTitle">Attendance & HR Management System</h3>
             <p class="project-card__desc" data-i18n="projects.hrDescription">
               A web-based employee attendance and workforce management application for companies and industrial
               organizations. It supports daily attendance recording through Clock In/Out, work shift management,
@@ -572,134 +649,298 @@
   <section id="certifications" class="section certifications">
     <div class="container">
       <div class="section__header" data-anim="fade-up">
-        <div class="section__tag" data-i18n="sections.certificationsTag">CREDENTIALS & ACCOMPLISHMENTS</div>
+        <div class="section__tag" data-i18n="sections.certificationsTag">Certifications</div>
         <h2 class="section__title" data-i18n="sections.certificationsTitle">Certifications</h2>
         <div class="section__line"></div>
       </div>
 
       <div class="certs__grid">
-        <button class="cert-card" data-full="Sertifikat/Belajar Dasar AI.pdf" data-type="pdf" data-anim="fade-up">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.ai">Basic AI Learning</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+        <!-- Certificate 01: Bangkit -->
+        <button class="cert-card"
+          data-full="Sertifikat/%5BBangkit%202024%20Batch%202%5D%20Certificate%20-%20C269B4KY4493.pdf"
+          data-image="assets/certificates/cert-bangkit.jpg" data-anim="fade-up">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-bangkit.jpg" alt="Bangkit Cloud Computing" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
           </div>
-          <div class="cert-card__badge">PDF</div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">FEATURED</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.bangkit">Bangkit Cloud Computing</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.bangkitIssuer">Bangkit Academy</span>
+            </div>
+          </div>
         </button>
 
-        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Pemrograman%20JavaScript.pdf" data-type="pdf"
-          data-anim="fade-up" data-anim-delay="50">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.javascript">Basic JavaScript Programming</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+        <!-- Certificate 02: GCP Engineer -->
+        <button class="cert-card" data-full="Sertifikat/Menjadi%20Google%20Cloud%20Engineer.pdf"
+          data-image="assets/certificates/cert-cloud.jpg" data-anim="fade-up" data-anim-delay="50">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-cloud.jpg" alt="Google Cloud Engineer" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
           </div>
-          <div class="cert-card__badge">PDF</div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">CLOUD</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.cloud">Google Cloud Engineer Learning Path</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
         </button>
 
-        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Git%20dengan%20GitHub.pdf" data-type="pdf"
-          data-anim="fade-up" data-anim-delay="100">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.git">Basic Git with GitHub</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
-          </div>
-          <div class="cert-card__badge">PDF</div>
-        </button>
-
-        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Pemrograman%20Web.pdf" data-type="pdf"
-          data-anim="fade-up" data-anim-delay="150">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.web">Basic Web Programming</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
-          </div>
-          <div class="cert-card__badge">PDF</div>
-        </button>
-
+        <!-- Certificate 03: Backend with GCP -->
         <button class="cert-card"
           data-full="Sertifikat/Belajar%20Membuat%20Aplikasi%20Back-End%20untuk%20Pemula%20dengan%20Google%20Cloud.pdf"
-          data-type="pdf" data-anim="fade-up" data-anim-delay="200">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
+          data-image="assets/certificates/cert-backend.jpg" data-anim="fade-up" data-anim-delay="100">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-backend.jpg" alt="Back-End with Google Cloud" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">BACKEND</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
             <h3 class="cert-card__title" data-i18n="certificates.backend">Building Back-End Applications (GCP)</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
           </div>
-          <div class="cert-card__badge">PDF</div>
         </button>
 
+        <!-- Certificate 04: ML with GCP -->
         <button class="cert-card"
-          data-full="Sertifikat/Belajar%20Penerapan%20Machine%20Learning%20dengan%20Google%20Cloud.pdf" data-type="pdf"
-          data-anim="fade-up" data-anim-delay="250">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.ml">Applying Machine Learning (GCP)</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+          data-full="Sertifikat/Belajar%20Penerapan%20Machine%20Learning%20dengan%20Google%20Cloud.pdf"
+          data-image="assets/certificates/cert-ml.jpg" data-anim="fade-up" data-anim-delay="150">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-ml.jpg" alt="Machine Learning with Google Cloud" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
           </div>
-          <div class="cert-card__badge">PDF</div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">AI / ML</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.ml">Applying Machine Learning (GCP)</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
         </button>
 
+        <!-- Certificate 05: Basic AI -->
+        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20AI.pdf"
+          data-image="assets/certificates/cert-ai.jpg" data-anim="fade-up" data-anim-delay="200">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-ai.jpg" alt="Basic AI Learning" class="cert-card__img" loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">AI FUNDAMENTALS</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.ai">Basic AI Learning</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 06: JavaScript -->
+        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Pemrograman%20JavaScript.pdf"
+          data-image="assets/certificates/cert-javascript.jpg" data-anim="fade-up" data-anim-delay="250">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-javascript.jpg" alt="Basic JavaScript Programming" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">JAVASCRIPT</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.javascript">Basic JavaScript Programming</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 07: Python -->
+        <button class="cert-card" data-full="Sertifikat/Memulai%20Pemrograman%20dengan%20Python.pdf"
+          data-image="assets/certificates/cert-python.jpg" data-anim="fade-up" data-anim-delay="300">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-python.jpg" alt="Python Programming Language" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">PYTHON</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.python">Python Programming Language</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 08: Web Programming -->
+        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Pemrograman%20Web.pdf"
+          data-image="assets/certificates/cert-web.jpg" data-anim="fade-up" data-anim-delay="350">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-web.jpg" alt="Basic Web Programming" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">FRONTEND</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.web">Basic Web Programming</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 09: Git & GitHub -->
+        <button class="cert-card" data-full="Sertifikat/Belajar%20Dasar%20Git%20dengan%20GitHub.pdf"
+          data-image="assets/certificates/cert-git.jpg" data-anim="fade-up" data-anim-delay="400">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-git.jpg" alt="Basic Git with GitHub" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">VERSION CONTROL</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.git">Basic Git with GitHub</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 10: Software Engineering Fundamentals -->
         <button class="cert-card"
           data-full="Sertifikat/Memulai%20Dasar%20Pemrograman%20untuk%20Menjadi%20Pengembang%20Software.pdf"
-          data-type="pdf" data-anim="fade-up" data-anim-delay="300">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
+          data-image="assets/certificates/cert-software.jpg" data-anim="fade-up" data-anim-delay="450">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-software.jpg" alt="Software Engineering Fundamentals"
+              class="cert-card__img" loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">ENGINEERING</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
             <h3 class="cert-card__title" data-i18n="certificates.software">Software Engineering Fundamentals</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
           </div>
-          <div class="cert-card__badge">PDF</div>
         </button>
 
-        <button class="cert-card" data-full="Sertifikat/Memulai%20Pemrograman%20dengan%20Python.pdf" data-type="pdf"
-          data-anim="fade-up" data-anim-delay="350">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.python">Python Programming Language</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
-          </div>
-          <div class="cert-card__badge">PDF</div>
-        </button>
-
-        <button class="cert-card" data-full="Sertifikat/Menjadi%20Google%20Cloud%20Engineer.pdf" data-type="pdf"
-          data-anim="fade-up" data-anim-delay="400">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.cloud">Google Cloud Engineer Learning Path</h3>
-            <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
-          </div>
-          <div class="cert-card__badge">PDF</div>
-        </button>
-
+        <!-- Certificate 11: Programming Logic 101 -->
         <button class="cert-card"
-          data-full="Sertifikat/%5BBangkit%202024%20Batch%202%5D%20Certificate%20-%20C269B4KY4493.pdf" data-type="pdf"
-          data-anim="fade-up" data-anim-delay="450">
-          <div class="cert-card__icon"><i class="ph ph-file-pdf"></i></div>
-          <div class="cert-card__details">
-            <h3 class="cert-card__title" data-i18n="certificates.bangkit">Bangkit Cloud Computing</h3>
-            <span class="cert-card__issuer">Bangkit Academy</span>
+          data-full="Sertifikat/Pengenalan%20ke%20Logika%20Pemrograman%20(Programming%20Logic%20101).pdf"
+          data-image="assets/certificates/cert-logic.jpg" data-anim="fade-up" data-anim-delay="500">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-logic.jpg" alt="Programming Logic 101" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
           </div>
-          <div class="cert-card__badge">PDF</div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">LOGIC & CS</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.logic">Programming Logic 101</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.issuer">Dicoding Indonesia</span>
+            </div>
+          </div>
         </button>
       </div>
     </div>
   </section>
 
-
-
   <!-- Contact Section -->
   <section id="contact" class="section contact">
     <div class="container">
       <div class="section__header" data-anim="fade-up">
-        <div class="section__tag" data-i18n="sections.contactTag">GET IN TOUCH</div>
-        <h2 class="section__title" data-i18n="sections.contactTitle">Initiate Contact</h2>
+        <div class="section__tag" data-i18n="sections.contactTag">Contact</div>
+        <h2 class="section__title" data-i18n="sections.contactTitle">Contact Me</h2>
         <div class="section__line"></div>
       </div>
 
       <div class="contact__wrapper">
         <div class="contact__intro" data-anim="fade-up">
-          <h3 class="contact__heading" data-i18n="contact.heading">Let's build something extraordinary together.</h3>
+          <h3 class="contact__heading" data-i18n="contact.heading">Let's Connect & Collaborate</h3>
           <p class="contact__sub" data-i18n="contact.description">
-            Whether you have a question, a project proposal, or an engineering opportunity, my inbox is always open.
+            Whether you have an engineering opportunity, a project proposal, or a technical inquiry, my inbox is always
+            open.
           </p>
         </div>
 
@@ -751,8 +992,9 @@
     <div class="container">
       <div class="footer__content">
         <div class="footer__brand">
-          <span class="footer__logo">// WILSON.DEV</span>
-          <p class="footer__tag" data-i18n="footer.tagline">Designed with clean architecture & modern web standards.</p>
+          <span class="footer__logo">Wilson.dev</span>
+          <p class="footer__tag" data-i18n="footer.tagline">Wilson Boyaron Hutagalung — Software Engineer & Cloud
+            Specialist.</p>
         </div>
 
         <div class="footer__links">
@@ -766,18 +1008,90 @@
 
       <div class="footer__bottom">
         <p data-i18n="footer.copyright">&copy; 2026 Wilson Boyaron Hutagalung. All rights reserved.</p>
-        <span class="footer__sys" data-i18n="footer.status">STATUS: OPERATIONAL</span>
       </div>
     </div>
   </footer>
 
-  <!-- Scroll To Top Floating Button -->
-  <a href="/" id="scrollToTop" class="scroll-top-btn" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-      stroke-linecap="round" stroke-linejoin="round">
+  <!-- Scroll To Top Button -->
+  <button type="button" id="scrollToTop" class="scroll-top-btn" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+      stroke-linejoin="round">
       <path d="M18 15l-6-6-6 6" />
     </svg>
-  </a>
+  </button>
+
+  <!-- Certificate Modal -->
+  <div id="certificateModal" class="certificate-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="certTitle">
+    <div class="certificate-modal__backdrop"></div>
+    <div class="certificate-modal__panel">
+      <button type="button" class="certificate-modal__close" id="certModalClose" aria-label="Close modal">
+        <i class="ph ph-x"></i>
+      </button>
+      <div class="certificate-modal__header">
+        <h3 class="certificate-modal__title" id="certTitle"></h3>
+        <span class="certificate-modal__issuer" id="certIssuer"></span>
+      </div>
+      <div class="certificate-modal__media">
+        <img id="certImage" src="" alt="Certificate Preview" class="certificate-modal__img" style="display:none;" />
+        <iframe id="certFrame" src="" title="Certificate PDF" class="certificate-modal__frame" style="display:none;"
+          loading="lazy"></iframe>
+      </div>
+      <div class="certificate-modal__actions">
+        <button type="button" class="btn btn--outline" id="certViewImage">
+          <i class="ph ph-image"></i>
+          <span data-i18n="certificate.viewImage">View Full Image</span>
+        </button>
+        <a id="certOpenNew" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+          <i class="ph ph-file-pdf"></i>
+          <span data-i18n="certificate.open">Open PDF Document</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="project-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="projTitle">
+    <div class="project-modal__backdrop"></div>
+    <div class="project-modal__panel">
+      <button type="button" class="project-modal__close" id="projectModalClose" aria-label="Close modal">
+        <i class="ph ph-x"></i>
+      </button>
+      <div class="project-modal__media">
+        <img id="projImage" src="" alt="Project Preview" class="project-modal__img" loading="lazy" />
+      </div>
+      <div class="project-modal__body">
+        <div class="project-modal__header">
+          <span class="project-modal__idx" id="projTag"></span>
+          <h3 class="project-modal__title" id="projTitle"></h3>
+        </div>
+        <p class="project-modal__desc" id="projDesc"></p>
+        <div class="project-modal__section">
+          <h4 class="project-modal__subtitle" data-i18n="projects.highlightsTitle">
+            <i class="ph ph-list-checks"></i> Architecture &amp; Key Features
+          </h4>
+          <ul class="project-modal__highlights" id="projHighlights"></ul>
+        </div>
+        <div class="project-modal__section">
+          <h4 class="project-modal__subtitle" data-i18n="projects.techTitle">
+            <i class="ph ph-code"></i> Technologies &amp; Tools
+          </h4>
+          <div class="project-modal__tech" id="projTech"></div>
+        </div>
+        <div class="project-modal__actions">
+          <a id="projGithub" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+            <i class="ph ph-github-logo"></i>
+            <span data-i18n="projects.openGithub">GitHub Repository</span>
+          </a>
+          <a id="projDemo" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+            <i class="ph ph-arrow-up-right"></i>
+            <span data-i18n="projects.openLive">Live Demo / Docs</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
