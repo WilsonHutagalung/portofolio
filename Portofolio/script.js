@@ -15,18 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Self-heal legacy pathnames from old pushState (e.g. /certifications -> base path + #certifications)
-  try {
-    const legacyRoutes = ['certifications', 'projects', 'about', 'experience', 'education', 'principles', 'contact'];
-    const currentPath = window.location.pathname;
-    const matchedRoute = legacyRoutes.find(r => currentPath.endsWith('/' + r) || currentPath === '/' + r);
-    if (matchedRoute) {
-      const corrected = baseDir.pathname + '#' + matchedRoute;
-      window.history.replaceState(null, '', corrected);
-    }
-  } catch (e) {
-    // Graceful no-op
-  }
+  // Clean URL routing helpers
+  const isFileProtocol = window.location.protocol === 'file:';
+  const basePath = baseDir.pathname.endsWith('/') ? baseDir.pathname : `${baseDir.pathname}/`;
 
   // Theme Management
   const themeToggles = document.querySelectorAll('.theme-toggle-btn, #themeToggle');
@@ -286,6 +277,49 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   };
 
+  const getRouteId = () => {
+    if (isFileProtocol) return window.location.hash.slice(1);
+
+    const params = new URLSearchParams(window.location.search);
+    const viewParam = params.get('view');
+    if (viewParam) {
+      return viewParam.split('/').filter(Boolean).pop() || '';
+    }
+
+    const path = decodeURIComponent(window.location.pathname);
+    const normalizedPath = path.endsWith('/') ? path : `${path}/`;
+    const normalizedBase = decodeURIComponent(basePath);
+    if (!normalizedPath.startsWith(normalizedBase)) return '';
+
+    const rest = normalizedPath.slice(normalizedBase.length).replace(/^\/+|\/+$/g, '');
+    if (!rest || rest === 'index.html') return '';
+    return rest.split('/').pop();
+  };
+
+  const buildUrl = (id) => {
+    const fileBase = `${window.location.pathname}${window.location.search}`;
+    if (isFileProtocol) return id ? `${fileBase}#${id}` : fileBase;
+    return id ? `${basePath}${id}` : basePath;
+  };
+
+  const syncUrl = (id, replace = false) => {
+    const url = buildUrl(id);
+    try {
+      if (replace) {
+        window.history.replaceState(null, '', url);
+      } else {
+        window.history.pushState(null, '', url);
+      }
+    } catch {
+      const fallback = id ? `#${id}` : window.location.pathname;
+      if (replace) {
+        window.history.replaceState(null, '', fallback);
+      } else {
+        window.history.pushState(null, '', fallback);
+      }
+    }
+  };
+
   const navigateTo = (targetId) => {
     const id = targetId.replace(/^[/#!]+/, '');
     if (!id || id === 'hero' || id === 'home') {
@@ -304,25 +338,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (navigateTo(targetId)) {
         e.preventDefault();
-        if (targetId && targetId !== 'hero') {
-          window.history.pushState(null, '', `#${targetId}`);
-        } else {
-          window.history.pushState(null, '', window.location.pathname);
-        }
+        syncUrl(targetId === 'hero' ? '' : targetId);
       }
     });
   });
 
   window.addEventListener('popstate', () => {
-    navigateTo(window.location.hash.slice(1));
+    const id = getRouteId() || window.location.hash.slice(1);
+    if (!navigateTo(id)) {
+      showHome();
+    }
   });
 
-  if (window.location.hash) {
-    window.requestAnimationFrame(() => {
-      navigateTo(window.location.hash.slice(1));
-    });
+  const routeFromPath = getRouteId();
+  const initialId = layerIds.includes(routeFromPath) ? routeFromPath : window.location.hash.slice(1);
+
+  if (initialId && layerIds.includes(initialId)) {
+    navigateTo(initialId);
+    if (!isFileProtocol) syncUrl(initialId, true);
   } else {
     showHome();
+    if (!isFileProtocol) syncUrl('', true);
   }
 
   // Scroll listener for floating bar & back-to-top button

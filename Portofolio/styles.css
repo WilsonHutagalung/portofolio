@@ -1759,6 +1759,9 @@ html.js .layer-mode .hero {
     top: 0.75rem;
     width: calc(100% - 1.5rem);
     padding: 0.45rem 0.85rem;
+    background: var(--bg-secondary);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .navbar.scrolled {
