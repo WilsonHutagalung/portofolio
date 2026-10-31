@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Theme Management
-  const themeToggle = document.getElementById('themeToggle');
+  const themeToggles = document.querySelectorAll('.theme-toggle-btn, #themeToggle');
   const getTheme = () => document.documentElement.dataset.theme || 'dark';
   const setTheme = (theme) => {
     document.documentElement.dataset.theme = theme;
@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('portfolio-theme', theme);
   };
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
+  themeToggles.forEach((btn) => {
+    btn.addEventListener('click', () => {
       setTheme(getTheme() === 'dark' ? 'light' : 'dark');
     });
-  }
+  });
 
   // Multilanguage / i18n
   const langBtns = document.querySelectorAll('[data-language]');
@@ -106,24 +106,28 @@ document.addEventListener('DOMContentLoaded', () => {
       'hero.cardPill': 'Fokus Utama',
       'hero.categoryBackend': 'Backend & API',
       'hero.categoryCloud': 'Cloud & Infrastruktur',
-      'hero.categoryData': 'Database & Tools',
+      'hero.categoryData': 'Database & Analisis Data',
       'hero.cardStat': 'Lulusan Bangkit 2024',
       'hero.cardLink': 'Tentang Latar Belakang',
       'certificate.open': 'Buka Dokumen PDF',
       'certificate.preview': 'Lihat',
       'certificate.viewImage': 'Lihat Gambar Penuh',
       'about.role': 'Lulusan Informatika',
-      'about.heading': 'Software Engineer yang berfokus pada Backend dan Cloud Computing.',
-      'about.paragraphOne': 'Lulusan Informatika <strong>Universitas Mulawarman</strong> dengan <strong>IPK 3,83/4,00</strong> yang berfokus pada backend engineering dan cloud computing. Berpengalaman membangun aplikasi web dan mobile, RESTful API dengan Node.js, serta layanan berbasis database.',
-      'about.paragraphTwo': 'Melalui <strong>MSIB Bangkit Academy (Jalur Cloud Computing)</strong>, saya menggunakan Express.js, Hapi.js, Cloud SQL, Cloud Storage, App Engine, dan Cloud Run di <strong>Google Cloud Platform (GCP)</strong>. Saya juga memiliki pengalaman mengembangkan aplikasi Augmented Reality dengan Unity dan C#.',
+      'about.heading': 'Software Engineer yang berfokus pada Backend, Cloud Computing, dan Analisis Data.',
+      'about.paragraphOne': 'Lulusan Informatika <strong>Universitas Mulawarman</strong> dengan <strong>IPK 3,83/4,00</strong> yang berfokus pada backend engineering, infrastruktur cloud, dan pengembangan solusi berbasis data. Berpengalaman membangun aplikasi web, RESTful API dengan Node.js dan Laravel, serta perancangan database terstruktur.',
+      'about.paragraphTwo': 'Di samping rekayasa perangkat lunak, saya memiliki ketertarikan dan antusiasme tinggi pada <strong>Analisis Data dan Pengolahan Data</strong>. Saya terbiasa mengolah dan menganalisis dataset menggunakan SQL, Python, serta <strong>Microsoft Excel</strong> (analisis spreadsheet, pivot table, formula lanjutan, data modeling, dan visualisasi data) untuk menyajikan wawasan yang akurat. Didukung pengalaman <strong>MSIB Bangkit Academy (Jalur Cloud Computing)</strong> serta sertifikasi analisis data dari <strong>DQLab</strong> dan <strong>RevoU</strong>, saya siap menghubungkan rekayasa sistem dengan wawasan analitik.',
       'about.locationLabel': 'Lokasi',
       'about.locationValue': 'Samarinda, Kalimantan Timur',
       'about.degreeLabel': 'Gelar & IPK',
       'about.degreeValue': 'S.Kom — IPK 3,83',
       'about.cloudLabel': 'Keahlian Cloud',
       'about.cloudValue': 'Arsitektur GCP & Cloud API',
+      'about.dataLabel': 'Analisis Data',
+      'about.dataValue': 'SQL, Python & MS Excel',
+      'about.stackLabel': 'Teknologi Utama',
+      'about.stackValue': 'Node.js, Express & Laravel',
       'about.statusLabel': 'Status',
-      'about.statusValue': 'Terbuka untuk Posisi Engineering',
+      'about.statusValue': 'Terbuka untuk Peluang Kerja',
       'principles.modularTitle': 'Sistem Backend & Modular',
       'principles.modularDescription': 'Merancang sistem backend yang mudah dirawat dengan tanggung jawab yang jelas, modul yang dapat digunakan kembali, dan alur data yang andal.',
       'principles.cloudTitle': 'Cloud Computing & Deployment',
@@ -144,6 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'experience.arTwo': 'Merancang dan membangun aplikasi AR berbasis marker “Atomos” (C#, Unity, Vuforia, Blender, Figma) melalui 2 iterasi Agile, dengan 5 model atom 3D, animasi orbit elektron, kuis, dan tabel periodik.',
       'experience.arThree': 'Mengujicobakan aplikasi di sekolah secara berkala untuk menemukan error dan kekurangan, lalu memperbaikinya pada iterasi berikutnya.',
       'experience.arFour': 'Menjalankan Pengujian UAT berskala Likert kepada 34 siswa/i dan 1 guru kimia, dengan skor rata-rata 87,2% (siswa/i) dan 92,6% (guru), serta seluruh variabel di atas 80% (kategori Sangat Baik).',
+      'experience.kknTag': 'Pengabdian Masyarakat',
+      'experience.kknTitle': 'Pengembang Website Profil Dusun & Wakil Ketua Kelompok 6',
+      'experience.kknSubtitle': 'KKN Bina Desa 2024/2025 — Fakultas Teknik Universitas Mulawarman x PT Pertamina EP',
+      'experience.kknOne': 'Mengidentifikasi kebutuhan dusun, yaitu belum adanya media digital resmi sehingga visibilitas rendah serta promosi wisata dan budaya belum optimal.',
+      'experience.kknTwo': 'Merancang dan membangun website resmi Dusun Teluk Lombok (HTML, CSS, JavaScript, VS Code) dengan halaman profil dusun, potensi, galeri, kontak, dan informasi publik, serta mengelola domain dan hosting.',
+      'experience.kknThree': 'Mengumpulkan data profil dan dokumentasi potensi dusun (pasir kuning, terumbu karang, dermaga) sebagai konten website.',
       'experience.bangkitTitle': 'Peserta Cloud Computing',
       'experience.bangkitSubtitle': 'Bangkit Academy yang dipimpin Google, GoTo, dan Traveloka',
       'experience.bangkitOne': 'Menyelesaikan kurikulum Cloud Computing di Bangkit Academy yang mencakup dasar cloud computing, DevOps/SRE, pemrograman web, JavaScript (Node.js), pengembangan backend RESTful API, manajemen database, storage, dan deployment layanan di Google Cloud Platform.',
@@ -170,6 +180,16 @@ document.addEventListener('DOMContentLoaded', () => {
       'certificates.cloud': 'Learning Path Google Cloud Engineer',
       'certificates.logic': 'Pengenalan ke Logika Pemrograman',
       'certificates.bangkit': 'Cloud Computing Bangkit',
+      'certificates.dqlab': 'Data Analyst dengan Python & SQL',
+      'certificates.dqlabIssuer': 'DQLab',
+      'certificates.revou': 'Mini Course Data Analytics',
+      'certificates.revouIssuer': 'RevoU',
+      'certificates.visualisasiData': 'Visualisasi Data',
+      'certificates.visualisasiDataIssuer': 'DQLab',
+      'certificates.hciaCloud': 'HCIA-Cloud Service V3.5',
+      'certificates.hciaCloudIssuer': 'Huawei',
+      'certificates.hciaDatacom': 'HCIA-Datacom V1.0',
+      'certificates.hciaDatacomIssuer': 'Huawei',
       'certificates.issuer': 'Dicoding Indonesia',
       'certificates.bangkitIssuer': 'Bangkit Academy (Google, GoTo, Traveloka)',
       'page.title': 'Wilson Boyaron Hutagalung | Software Engineer & Spesialis Cloud',
@@ -228,18 +248,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
   const scrollTopBtn = document.getElementById('scrollToTop');
 
-  const scrollToTarget = (targetId) => {
-    const id = targetId.replace(/^[/#!]+/, '');
-    if (!id || id === 'hero') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return true;
-    }
+  const layerIds = ['about', 'principles', 'education', 'experience', 'projects', 'certifications', 'contact'];
+  const navLinkItems = Array.from(document.querySelectorAll('.navbar__link'));
+
+  const updateActiveNav = (id) => {
+    navLinkItems.forEach((link) => {
+      const isActive = Boolean(id) && link.hash === `#${id}`;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  const showHome = () => {
+    document.body.classList.remove('layer-mode');
+    document.querySelectorAll('.section.layer-active').forEach((section) => {
+      section.classList.remove('layer-active');
+    });
+    updateActiveNav(null);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const showLayer = (id) => {
     const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!section || !layerIds.includes(id)) return false;
+
+    document.body.classList.add('layer-mode');
+    document.querySelectorAll('.section.layer-active').forEach((activeSection) => {
+      if (activeSection !== section) activeSection.classList.remove('layer-active');
+    });
+    section.classList.add('layer-active');
+    updateActiveNav(id);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    return true;
+  };
+
+  const navigateTo = (targetId) => {
+    const id = targetId.replace(/^[/#!]+/, '');
+    if (!id || id === 'hero' || id === 'home') {
+      showHome();
       return true;
     }
-    return false;
+    return showLayer(id);
   };
 
   document.querySelectorAll('a[href^="#"], a[href^="/"]').forEach((link) => {
@@ -249,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', (e) => {
       const targetId = link.hash ? link.hash.slice(1) : href.replace(/^[/#!]+/, '');
 
-      if (scrollToTarget(targetId)) {
+      if (navigateTo(targetId)) {
         e.preventDefault();
         if (targetId && targetId !== 'hero') {
           window.history.pushState(null, '', `#${targetId}`);
@@ -261,18 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('popstate', () => {
-    const hash = window.location.hash.slice(1);
-    if (hash) {
-      scrollToTarget(hash);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    navigateTo(window.location.hash.slice(1));
   });
 
   if (window.location.hash) {
     window.requestAnimationFrame(() => {
-      scrollToTarget(window.location.hash.slice(1));
+      navigateTo(window.location.hash.slice(1));
     });
+  } else {
+    showHome();
   }
 
   // Scroll listener for floating bar & back-to-top button
@@ -303,12 +353,25 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleMenu();
     });
 
+    const navClose = document.getElementById('navClose');
+    if (navClose) {
+      navClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu(false);
+      });
+    }
+
+    const navBackdrop = document.getElementById('navBackdrop');
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', () => toggleMenu(false));
+    }
+
     navLinks.querySelectorAll('.navbar__link').forEach((link) => {
       link.addEventListener('click', () => toggleMenu(false));
     });
 
     document.addEventListener('click', (e) => {
-      if (navLinks.classList.contains('active') && !navbar.contains(e.target)) {
+      if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
         toggleMenu(false);
       }
     });

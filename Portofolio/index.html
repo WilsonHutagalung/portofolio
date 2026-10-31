@@ -11,6 +11,7 @@
   <title data-i18n="page.title">Wilson Boyaron Hutagalung | Software Engineer & Cloud Specialist</title>
 
   <script>
+    document.documentElement.classList.add('js');
     const theme = localStorage.getItem('portfolio-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
@@ -29,12 +30,25 @@
 <body>
   <!-- Clean Navbar -->
   <nav id="navbar" class="navbar">
+    <div class="navbar__backdrop" id="navBackdrop"></div>
     <div class="navbar__container">
+      <button class="navbar__toggle" id="navToggle" type="button" aria-label="Toggle navigation">
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+
       <a href="#" class="navbar__logo">
         <span class="navbar__logo-text">Wilson<span class="navbar__logo-accent">.dev</span></span>
       </a>
 
       <ul class="navbar__links" id="navLinks">
+        <li class="navbar__drawer-header">
+          <span class="navbar__logo-text">Wilson<span class="navbar__logo-accent">.dev</span></span>
+          <button type="button" class="navbar__drawer-close" id="navClose" aria-label="Close menu">
+            <i class="ph ph-x"></i>
+          </button>
+        </li>
         <li><a href="#about" class="navbar__link" data-i18n="nav.about">About</a></li>
         <li><a href="#principles" class="navbar__link" data-i18n="nav.architecture">Principles</a></li>
         <li><a href="#education" class="navbar__link" data-i18n="nav.education">Education</a></li>
@@ -42,6 +56,20 @@
         <li><a href="#projects" class="navbar__link" data-i18n="nav.projects">Projects</a></li>
         <li><a href="#certifications" class="navbar__link" data-i18n="nav.certifications">Certs</a></li>
         <li><a href="#contact" class="navbar__link navbar__link--cta" data-i18n="nav.contact">Contact</a></li>
+        <li class="navbar__drawer-footer">
+          <div class="language-switcher language-switcher--drawer" aria-label="Language selector">
+            <i class="ph ph-globe" aria-hidden="true"></i>
+            <button type="button" class="language-switcher__option is-active" data-language="en"
+              aria-label="Switch to English">EN</button>
+            <span class="language-switcher__separator">/</span>
+            <button type="button" class="language-switcher__option" data-language="id"
+              aria-label="Beralih ke Bahasa Indonesia">ID</button>
+          </div>
+          <button class="navbar__theme-toggle theme-toggle-btn" type="button" aria-label="Switch theme">
+            <i class="ph ph-moon-stars navbar__theme-icon navbar__theme-icon--dark" aria-hidden="true"></i>
+            <i class="ph ph-sun navbar__theme-icon navbar__theme-icon--light" aria-hidden="true"></i>
+          </button>
+        </li>
       </ul>
 
       <div class="navbar__actions">
@@ -53,14 +81,9 @@
           <button type="button" class="language-switcher__option" data-language="id"
             aria-label="Beralih ke Bahasa Indonesia">ID</button>
         </div>
-        <button class="navbar__theme-toggle" id="themeToggle" type="button" aria-label="Switch theme">
+        <button class="navbar__theme-toggle theme-toggle-btn" id="themeToggle" type="button" aria-label="Switch theme">
           <i class="ph ph-moon-stars navbar__theme-icon navbar__theme-icon--dark" aria-hidden="true"></i>
           <i class="ph ph-sun navbar__theme-icon navbar__theme-icon--light" aria-hidden="true"></i>
-        </button>
-        <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation">
-          <span class="navbar__toggle-bar"></span>
-          <span class="navbar__toggle-bar"></span>
-          <span class="navbar__toggle-bar"></span>
         </button>
       </div>
     </div>
@@ -112,7 +135,7 @@
           </div>
           <div class="metric-sep"></div>
           <div class="metric-item">
-            <span class="metric-val">9+</span>
+            <span class="metric-val">16+</span>
             <span class="metric-lbl" data-i18n="metrics.certs">Professional Certs</span>
           </div>
         </div>
@@ -147,11 +170,12 @@
           </div>
 
           <div class="skill-category">
-            <span class="skill-category__title" data-i18n="hero.categoryData">Databases & Tools</span>
+            <span class="skill-category__title" data-i18n="hero.categoryData">Databases & Data Analytics</span>
             <div class="skill-category__tags">
-              <span>MySQL</span>
-              <span>PostgreSQL</span>
-              <span>Cloud SQL</span>
+              <span>SQL & Python</span>
+              <span>Microsoft Excel</span>
+              <span>Data Analytics</span>
+              <span>MySQL & PostgreSQL</span>
               <span>Git & GitHub</span>
             </div>
           </div>
@@ -260,17 +284,21 @@
 
         <div class="about__text-block" data-anim="fade-up" data-anim-delay="100">
           <h3 class="about__heading" data-i18n="about.heading">
-            Software Engineer focused on Backend Systems & Cloud Computing.
+            Software Engineer focused on Backend Systems, Cloud Computing & Data Analytics.
           </h3>
           <p class="about__paragraph" data-i18n="about.paragraphOne">
             Informatics graduate from <strong>Mulawarman University</strong> with a <strong>GPA of 3.83/4.00</strong>,
-            focused on backend engineering and cloud computing. Experienced in building web and mobile applications,
-            RESTful APIs with Node.js, and database-driven services.
+            specializing in backend engineering, cloud infrastructure, and data-driven solutions. Experienced in
+            building
+            web applications, robust RESTful APIs with Node.js and Laravel, as well as scalable database systems.
           </p>
           <p class="about__paragraph" data-i18n="about.paragraphTwo">
-            Through <strong>MSIB Bangkit Academy (Cloud Computing Track)</strong>, I worked with Express.js, Hapi.js,
-            Cloud SQL, Cloud Storage, App Engine, and Cloud Run on <strong>Google Cloud Platform (GCP)</strong>. I also
-            have experience developing Augmented Reality applications with Unity and C#.
+            Beyond software engineering, I have a strong interest in <strong>Data Analytics & Data Processing</strong>.
+            I leverage SQL, Python, and <strong>Microsoft Excel</strong> (pivot tables, complex formulas, data modeling,
+            and visualization)
+            to clean, transform, and extract actionable insights from data. Certified through <strong>Bangkit Academy
+              (GCP Track)</strong>,
+            <strong>DQLab</strong>, and <strong>RevoU</strong>, I combine engineering rigor with analytical insight.
           </p>
 
           <!-- Highlights Grid -->
@@ -297,10 +325,24 @@
               </div>
             </div>
             <div class="highlight-item">
+              <i class="ph ph-chart-line-up"></i>
+              <div>
+                <strong data-i18n="about.dataLabel">Data Analytics</strong>
+                <span data-i18n="about.dataValue">SQL, Python & MS Excel</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <i class="ph ph-code"></i>
+              <div>
+                <strong data-i18n="about.stackLabel">Core Stack</strong>
+                <span data-i18n="about.stackValue">Node.js, Express & Laravel</span>
+              </div>
+            </div>
+            <div class="highlight-item">
               <i class="ph ph-briefcase"></i>
               <div>
                 <strong data-i18n="about.statusLabel">Status</strong>
-                <span data-i18n="about.statusValue">Open for Engineering Positions</span>
+                <span data-i18n="about.statusValue">Open for Opportunities</span>
               </div>
             </div>
           </div>
@@ -416,18 +458,49 @@
               <span class="timeline__badge">FEB 2026 — APR 2026</span>
               <span class="timeline__tag" data-i18n="experience.arTag">Thesis Research</span>
             </div>
-            <h3 class="timeline__title" data-i18n="experience.arTitle">Augmented Reality Application Developer “Atomos”</h3>
+            <h3 class="timeline__title" data-i18n="experience.arTitle">Augmented Reality Application Developer “Atomos”
+            </h3>
             <p class="timeline__subtitle" data-i18n="experience.arSubtitle">SMA Negeri 16 Samarinda</p>
             <ul class="timeline__list">
-              <li data-i18n="experience.arOne">Interviewed chemistry teachers to identify learning challenges in Grade X atomic structure education, addressing abstract concepts traditionally taught through 2D textbook illustrations.</li>
-              <li data-i18n="experience.arTwo">Designed and developed the marker-based Augmented Reality application “Atomos” (C#, Unity, Vuforia, Blender, Figma) across 2 Agile iterations, featuring 5 3D atomic models, electron orbit animations, an interactive quiz, and a periodic table.</li>
-              <li data-i18n="experience.arThree">Conducted periodic on-site testing at the school to discover usability issues and bugs, iteratively refining and optimizing the app across development cycles.</li>
-              <li data-i18n="experience.arFour">Executed Likert-scale User Acceptance Testing (UAT) with 34 students and 1 chemistry teacher, achieving average approval scores of 87.2% (students) and 92.6% (teacher), with all evaluation dimensions scoring above 80% (Very Good category).</li>
+              <li data-i18n="experience.arOne">Interviewed chemistry teachers to identify learning challenges in Grade X
+                atomic structure education, addressing abstract concepts traditionally taught through 2D textbook
+                illustrations.</li>
+              <li data-i18n="experience.arTwo">Designed and developed the marker-based Augmented Reality application
+                “Atomos” (C#, Unity, Vuforia, Blender, Figma) across 2 Agile iterations, featuring 5 3D atomic models,
+                electron orbit animations, an interactive quiz, and a periodic table.</li>
+              <li data-i18n="experience.arThree">Conducted periodic on-site testing at the school to discover usability
+                issues and bugs, iteratively refining and optimizing the app across development cycles.</li>
+              <li data-i18n="experience.arFour">Executed Likert-scale User Acceptance Testing (UAT) with 34 students and
+                1 chemistry teacher, achieving average approval scores of 87.2% (students) and 92.6% (teacher), with all
+                evaluation dimensions scoring above 80% (Very Good category).</li>
             </ul>
           </div>
         </div>
 
         <div class="timeline__item" data-anim="fade-up" data-anim-delay="100">
+          <div class="timeline__marker"></div>
+          <div class="timeline__card">
+            <div class="timeline__header">
+              <span class="timeline__badge">2024 — 2025</span>
+              <span class="timeline__tag" data-i18n="experience.kknTag">Community Service</span>
+            </div>
+            <h3 class="timeline__title" data-i18n="experience.kknTitle">Village Profile Website Developer &amp; Vice Chair
+              of Group 6</h3>
+            <p class="timeline__subtitle" data-i18n="experience.kknSubtitle">KKN Bina Desa 2024/2025 — Faculty of
+              Engineering, Mulawarman University x PT Pertamina EP</p>
+            <ul class="timeline__list">
+              <li data-i18n="experience.kknOne">Identified the village's needs, specifically the absence of official
+                digital media, which resulted in low visibility and suboptimal promotion of tourism and culture.</li>
+              <li data-i18n="experience.kknTwo">Designed and built the official Dusun Teluk Lombok website (HTML, CSS,
+                JavaScript, VS Code) with village profile, potential, gallery, contact, and public information pages,
+                including domain and hosting management.</li>
+              <li data-i18n="experience.kknThree">Collected village profile data and documentation of village potential
+                (yellow sand, coral reefs, pier) as website content.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item" data-anim="fade-up" data-anim-delay="150">
           <div class="timeline__marker"></div>
           <div class="timeline__card">
             <div class="timeline__header">
@@ -452,7 +525,7 @@
           </div>
         </div>
 
-        <div class="timeline__item" data-anim="fade-up" data-anim-delay="150">
+        <div class="timeline__item" data-anim="fade-up" data-anim-delay="200">
           <div class="timeline__marker"></div>
           <div class="timeline__card">
             <div class="timeline__header">
@@ -636,8 +709,9 @@
           <div class="project-card__top">
             <span class="project-card__idx" data-i18n="projects.hrTag">HR Management & Attendance System</span>
             <div class="project-card__actions">
-              <a href="https://github.com/WilsonHutagalung/Sistem-Presensi-Manajemen-SDM" target="_blank" rel="noopener noreferrer"
-                class="p-action" aria-label="GitHub Repository"><i class="ph ph-github-logo"></i></a>
+              <a href="https://github.com/WilsonHutagalung/Sistem-Presensi-Manajemen-SDM" target="_blank"
+                rel="noopener noreferrer" class="p-action" aria-label="GitHub Repository"><i
+                  class="ph ph-github-logo"></i></a>
               <button type="button" class="p-action project-preview-trigger" data-project="hr"
                 aria-label="Quick View"><i class="ph ph-eye"></i></button>
             </div>
@@ -684,7 +758,10 @@
             <h3 class="project-card__title project-card__title--clickable project-preview-trigger" data-project="atomos"
               data-i18n="projects.atomosTitle">Atomos — Augmented Reality Chemistry Learning</h3>
             <p class="project-card__desc" data-i18n="projects.atomosDescription">
-              An interactive Augmented Reality application designed to visualize Grade X 3D atomic structures for SMA Negeri 16 Samarinda. Built with Unity, Vuforia Engine, and C#, it transforms abstract textbook diagrams into immersive 3D interactive models with electron orbit animations, learning modules, quizzes, and a periodic table.
+              An interactive Augmented Reality application designed to visualize Grade X 3D atomic structures for SMA
+              Negeri 16 Samarinda. Built with Unity, Vuforia Engine, and C#, it transforms abstract textbook diagrams
+              into immersive 3D interactive models with electron orbit animations, learning modules, quizzes, and a
+              periodic table.
             </p>
             <div class="project-card__tech">
               <span>Unity</span>
@@ -977,6 +1054,126 @@
             </div>
           </div>
         </button>
+
+        <!-- Certificate 12: DQLab Data Analytics -->
+        <button class="cert-card" data-full="Sertifikat/Mini%20Bootcamp%20DQLAB.pdf"
+          data-image="assets/certificates/cert-dqlab.jpg" data-anim="fade-up" data-anim-delay="100">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-dqlab.jpg" alt="DQLab Data Analytics Mini Bootcamp"
+              class="cert-card__img" loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">DATA ANALYTICS</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.dqlab">Data Analyst with Python & SQL</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.dqlabIssuer">DQLab</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 13: RevoU Data Analytics -->
+        <button class="cert-card" data-full="Sertifikat/Revo%20u.pdf" data-image="assets/certificates/cert-revou.jpg"
+          data-anim="fade-up" data-anim-delay="150">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-revou.jpg" alt="RevoU Data Analytics Mini Course" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">DATA ANALYTICS</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.revou">Data Analytics Mini Course</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.revouIssuer">RevoU</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 14: Visualisasi Data -->
+        <button class="cert-card" data-full="Sertifikat/Sertifikat%20Visualisasi%20Data.pdf"
+          data-image="assets/certificates/cert-visualisasi-data.jpg" data-anim="fade-up" data-anim-delay="200">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-visualisasi-data.jpg" alt="Sertifikat Visualisasi Data"
+              class="cert-card__img" loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">DATA ANALYTICS</span>
+              <span class="cert-card__format"><i class="ph ph-file-pdf"></i> PDF</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.visualisasiData">Visualisasi Data</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.visualisasiDataIssuer">DQLab</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 15: HCIA Cloud Service -->
+        <button class="cert-card" data-full="Sertifikat/HCIA-Cloud%20Service%20V3.5%20Course.png"
+          data-image="assets/certificates/cert-hcia-cloud.jpg" data-anim="fade-up" data-anim-delay="250">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-hcia-cloud.jpg" alt="HCIA-Cloud Service V3.5" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">CLOUD</span>
+              <span class="cert-card__format"><i class="ph ph-image"></i> IMG</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.hciaCloud">HCIA-Cloud Service V3.5</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.hciaCloudIssuer">Huawei</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Certificate 16: HCIA Datacom -->
+        <button class="cert-card" data-full="Sertifikat/_HCIA-Datacom%20V1.0%20Course%20(1).png"
+          data-image="assets/certificates/cert-hcia-datacom.jpg" data-anim="fade-up" data-anim-delay="300">
+          <div class="cert-card__media">
+            <img src="assets/certificates/cert-hcia-datacom.jpg" alt="HCIA-Datacom V1.0" class="cert-card__img"
+              loading="lazy" />
+            <div class="cert-card__overlay">
+              <span class="btn-preview-cert"><i class="ph ph-magnifying-glass-plus"></i> <span
+                  data-i18n="certificate.preview">View</span></span>
+            </div>
+          </div>
+          <div class="cert-card__body">
+            <div class="cert-card__badge-row">
+              <span class="cert-card__badge">NETWORKING</span>
+              <span class="cert-card__format"><i class="ph ph-image"></i> IMG</span>
+            </div>
+            <h3 class="cert-card__title" data-i18n="certificates.hciaDatacom">HCIA-Datacom V1.0</h3>
+            <div class="cert-card__issuer-row">
+              <i class="ph ph-seal-check cert-card__verified"></i>
+              <span class="cert-card__issuer" data-i18n="certificates.hciaDatacomIssuer">Huawei</span>
+            </div>
+          </div>
+        </button>
       </div>
     </div>
   </section>
@@ -1008,6 +1205,7 @@
             </div>
             <i class="ph ph-arrow-up-right contact-card__arrow"></i>
           </a>
+
 
           <a href="tel:+6281316270922" class="contact-card" data-anim="fade-up" data-anim-delay="100">
             <div class="contact-card__icon"><i class="ph ph-phone"></i></div>
