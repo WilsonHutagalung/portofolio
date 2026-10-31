@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hero.tagline': 'Membangun arsitektur web yang tangguh, layanan API yang optimal, dan solusi cloud yang skalabel dengan prinsip clean code.',
       'hero.explore': 'Lihat Project',
       'hero.contact': 'Hubungi Saya',
+      'hero.cv': 'Lihat CV',
       'metrics.gpa': 'IPK Kumulatif',
       'metrics.track': 'Bangkit Jalur GCP',
       'metrics.certs': 'Sertifikat Profesional',
