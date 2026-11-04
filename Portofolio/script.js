@@ -63,6 +63,50 @@ document.addEventListener('DOMContentLoaded', () => {
       'sections.educationTitle': 'Pendidikan',
       'sections.experienceTag': 'Pengalaman',
       'sections.experienceTitle': 'Pengalaman',
+      'sections.documentationTag': 'Dokumentasi',
+      'sections.documentationTitle': 'Dokumentasi Kegiatan',
+      'sections.documentationLead': 'Rekam jejak visual dari kegiatan akademik, organisasi, dan pengabdian masyarakat.',
+      'gallery.filterAll': 'Semua',
+      'gallery.filterBangkit': 'Bangkit',
+      'gallery.filterCommunity': 'Pengabdian',
+      'gallery.filterThesis': 'Skripsi',
+      'gallery.filterOrganization': 'Organisasi',
+      'gallery.item1Tag': 'Bangkit Academy',
+      'gallery.item1Title': 'Kelulusan Cohort Cloud Computing',
+      'gallery.item1Meta': '2024 · Bangkit Academy',
+      'gallery.item2Tag': 'Pengabdian Masyarakat',
+      'gallery.item2Title': 'KKN Bina Desa — Teluk Lombok',
+      'gallery.item2Meta': 'JUL–AUG 2024 · Kutai Timur',
+      'gallery.item3Tag': 'Penelitian Skripsi',
+      'gallery.item3Title': 'Uji Coba Media Pembelajaran AR Atomos',
+      'gallery.item3Meta': '2024 · SMA Negeri 16 Samarinda',
+      'gallery.item4Tag': 'Organisasi Mahasiswa',
+      'gallery.item4Title': 'Koordinasi Acara Accifence',
+      'gallery.item4Meta': '2023 · Universitas Mulawarman',
+      'gallery.item5Tag': 'Pengabdian Masyarakat',
+      'gallery.item5Title': 'Pelatihan Mikrokontroler untuk Siswa',
+      'gallery.item5Meta': 'MAY 2024 · SMAN 6 Samarinda',
+      'gallery.item6Tag': 'Bangkit Academy',
+      'gallery.item6Title': 'Project Capstone Bitewise',
+      'gallery.item6Meta': '2024 · Bangkit Academy',
+      'gallery.item7Tag': 'Project Cloud',
+      'gallery.item7Title': 'API Backend Bitewise',
+      'gallery.item7Meta': '2024 · Google Cloud Platform',
+      'gallery.item8Tag': 'Pengabdian Masyarakat',
+      'gallery.item8Title': 'Tampilan Website Profil Dusun',
+      'gallery.item8Meta': '2024 · Kutai Timur',
+      'gallery.item9Tag': 'Penelitian Skripsi',
+      'gallery.item9Title': 'Presentasi Aplikasi Atomos',
+      'gallery.item9Meta': '2024 · SMA Negeri 16 Samarinda',
+      'gallery.item10Tag': 'Penelitian Skripsi',
+      'gallery.item10Title': 'Desain Media Pembelajaran AR',
+      'gallery.item10Meta': '2024 · SMA Negeri 16 Samarinda',
+      'gallery.item11Tag': 'Pengabdian Masyarakat',
+      'gallery.item11Title': 'Pendampingan Peserta Pelatihan',
+      'gallery.item11Meta': 'MAY 2024 · SMAN 6 Samarinda',
+      'gallery.item12Tag': 'Pengabdian Masyarakat',
+      'gallery.item12Title': 'Dokumentasi Kegiatan Pengabdian',
+      'gallery.item12Meta': 'MAY 2024 · SMAN 6 Samarinda',
       'sections.projectsTag': 'PROJECT UNGGULAN',
       'sections.projectsTitle': 'Project Engineering',
       'projects.preview': 'Lihat Detail',
@@ -77,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'projects.cloudTag': 'Cloud Computing & Backend',
       'projects.bitewiseTitle': 'Bitewise Backend API',
       'projects.bitewiseDescription': 'Bitewise adalah platform nutrisi yang menangani tantangan gizi di Indonesia seperti stunting, wasting, obesitas, dan anemia, terutama pada anak-anak dan perempuan. Sebagai bagian dari tim Cloud Computing, saya membangun REST API backend dengan Node.js dan Express untuk menangani autentikasi, akses database, dan penyimpanan file. Saya juga melakukan deployment bersama layanan prediksi machine learning dalam container Docker di Google Cloud. API didokumentasikan menggunakan Postman untuk tim mobile.',
+      'projects.dusunTag': 'Profil Komunitas & Portal Informasi',
+      'projects.dusunTitle': 'Website Profil Dusun Teluk Lombok',
+      'projects.dusunDescription': 'Website profil komunitas dan informasi publik yang responsif untuk Dusun Teluk Lombok, Desa Sangkima, Kabupaten Kutai Timur. Website ini menyajikan profil dusun, data demografi, potensi lokal, wisata pesisir, sumber daya laut, fasilitas umum, kegiatan masyarakat, dan layanan publik melalui antarmuka yang jelas dan mudah diakses. Dilengkapi galeri dokumentasi terstruktur, halaman potensi yang detail, navigasi mobile, serta akses pengaduan masyarakat berbasis WhatsApp.',
       'projects.hrTag': 'Sistem Presensi Manajemen SDM',
       'projects.hrTitle': 'Sistem Presensi Manajemen SDM',
       'projects.hrDescription': 'Aplikasi presensi dan manajemen kehadiran karyawan berbasis web untuk perusahaan maupun industri. Sistem ini mendukung pencatatan kehadiran harian melalui Clock In/Out, manajemen shift kerja, kalkulasi keterlambatan otomatis, serta pengajuan cuti dan izin. Dilengkapi portal karyawan yang responsif dan panel admin berbasis Filament untuk mengelola data master dan hak akses secara terpusat.',
@@ -641,6 +688,34 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
       }
     },
+    dusun: {
+      image: 'assets/projects/Website-profile-dusun.png',
+      github: 'https://github.com/WilsonHutagalung/Website-Profil-Dusun-Teluk-Lombok',
+      demo: 'https://dusunteluklombok.vercel.app/',
+      tech: ['HTML5', 'CSS3', 'JavaScript'],
+      en: {
+        tag: 'Community Profile & Information Portal',
+        title: 'Teluk Lombok Village Profile Website',
+        desc: 'A responsive community profile and public information website developed for Dusun Teluk Lombok, Desa Sangkima, Kabupaten Kutai Timur. The website presents the village profile, demographic information, local potential, coastal tourism, marine resources, public facilities, community activities, and public services through a clear and accessible interface.',
+        highlights: [
+          'Responsive village profile website built with HTML5, CSS3, and vanilla JavaScript.',
+          'Categorized documentation gallery and dedicated pages for local potential and coastal tourism.',
+          'Mobile-friendly navigation with an accessible public information layout.',
+          'WhatsApp-based public complaint channel for residents and visitors.'
+        ]
+      },
+      id: {
+        tag: 'Profil Komunitas & Portal Informasi',
+        title: 'Website Profil Dusun Teluk Lombok',
+        desc: 'Website profil komunitas dan informasi publik yang responsif untuk Dusun Teluk Lombok, Desa Sangkima, Kabupaten Kutai Timur. Website ini menyajikan profil dusun, data demografi, potensi lokal, wisata pesisir, sumber daya laut, fasilitas umum, kegiatan masyarakat, dan layanan publik melalui antarmuka yang jelas dan mudah diakses.',
+        highlights: [
+          'Website profil dusun responsif yang dibangun dengan HTML5, CSS3, dan JavaScript murni.',
+          'Galeri dokumentasi terstruktur serta halaman khusus untuk potensi lokal dan wisata pesisir.',
+          'Navigasi ramah perangkat mobile dengan tata letak informasi publik yang mudah diakses.',
+          'Kanal pengaduan masyarakat berbasis WhatsApp bagi warga dan pengunjung.'
+        ]
+      }
+    },
     atomos: {
       image: 'assets/projects/Aplikas-AR-Struktur-Atom.png',
       github: '',
@@ -725,6 +800,96 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Documentation Gallery
+  const galleryModal = document.getElementById('galleryModal');
+  const galleryImage = document.getElementById('galleryImage');
+  const galleryTitle = document.getElementById('galleryTitle');
+  const galleryTag = document.getElementById('galleryTag');
+  const galleryCounter = document.getElementById('galleryCounter');
+  const galleryPrev = document.getElementById('galleryPrev');
+  const galleryNext = document.getElementById('galleryNext');
+  const galleryCards = Array.from(document.querySelectorAll('.gallery-card'));
+  const galleryFilters = Array.from(document.querySelectorAll('.gallery__filter'));
+  let visibleGalleryCards = [...galleryCards];
+  let currentGalleryIndex = 0;
+
+  const renderGalleryItem = (index) => {
+    const card = visibleGalleryCards[index];
+    if (!card) return;
+
+    const image = card.querySelector('.gallery-card__img');
+    const title = card.querySelector('.gallery-card__title');
+    const tag = card.querySelector('.gallery-card__badge');
+
+    if (galleryImage && image) {
+      galleryImage.src = image.currentSrc || image.src;
+      galleryImage.alt = image.alt || '';
+    }
+    if (galleryTitle) galleryTitle.textContent = title?.textContent.trim() || '';
+    if (galleryTag) galleryTag.textContent = tag?.textContent.trim() || '';
+    if (galleryCounter) galleryCounter.textContent = `${index + 1} / ${visibleGalleryCards.length}`;
+    currentGalleryIndex = index;
+  };
+
+  const openGallery = (index) => {
+    renderGalleryItem(index);
+    openModal(galleryModal);
+  };
+
+  const stepGallery = (direction) => {
+    if (!visibleGalleryCards.length) return;
+    const nextIndex = (currentGalleryIndex + direction + visibleGalleryCards.length) % visibleGalleryCards.length;
+    renderGalleryItem(nextIndex);
+  };
+
+  galleryCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      openGallery(visibleGalleryCards.indexOf(card));
+    });
+  });
+
+  galleryFilters.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      galleryFilters.forEach((filterBtn) => {
+        const isActive = filterBtn === btn;
+        filterBtn.classList.toggle('is-active', isActive);
+        filterBtn.setAttribute('aria-selected', String(isActive));
+      });
+
+      galleryCards.forEach((card) => {
+        const matches = filter === 'all' || card.dataset.category === filter;
+        card.hidden = !matches;
+        if (matches) card.classList.add('is-visible');
+      });
+
+      visibleGalleryCards = galleryCards.filter((card) => !card.hidden);
+      currentGalleryIndex = 0;
+    });
+  });
+
+  galleryPrev?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    stepGallery(-1);
+  });
+
+  galleryNext?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    stepGallery(1);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!galleryModal?.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      stepGallery(-1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      stepGallery(1);
+    }
+  });
+
   // Modal close handlers (backdrop, close button, and ESC key)
   const bindCloseBtn = (id, modal) => {
     const btn = document.getElementById(id);
@@ -751,13 +916,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  [certModal, projModal].filter(Boolean).forEach((modal) => {
+  [certModal, projModal, galleryModal].filter(Boolean).forEach((modal) => {
     modal.querySelector('[class$="__backdrop"]')?.addEventListener('click', () => closeModal(modal));
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      [certModal, projModal].filter(Boolean).forEach((modal) => {
+      [certModal, projModal, galleryModal].filter(Boolean).forEach((modal) => {
         if (modal.classList.contains('active')) {
           closeModal(modal);
           if (modal === certModal && certFrame) {
